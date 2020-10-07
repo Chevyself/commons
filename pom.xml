@@ -46,13 +46,40 @@
                 <version>3.2.0</version>
                 <executions>
                     <execution>
-                        <phase>prepare-package</phase>
+                        <id>attach-javadocs</id>
                         <goals>
-                            <goal>javadoc</goal>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Shade plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}../../</outputDirectory>
-                            <reportOutputDirectory>${project.build.directory}../../</reportOutputDirectory>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/**</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>org.jetbrains:annotations</exclude>
+                                    <exclude>com.google.code.gson:gson</exclude>
+                                </excludes>
+                            </artifactSet>
                         </configuration>
                     </execution>
                 </executions>
@@ -66,6 +93,7 @@
             <artifactId>annotations</artifactId>
             <groupId>org.jetbrains</groupId>
             <version>17.0.0</version>
+            <optional>true</optional>
         </dependency>
         <!-- Soft dependency on Gson as any of the utilities requires it
         this is only to provide adapters for classes such as the ones in geometry -->
@@ -73,6 +101,7 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.8.6</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
