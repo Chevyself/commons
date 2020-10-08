@@ -1,5 +1,6 @@
 package me.googas.commons;
 
+import java.util.function.Supplier;
 import me.googas.commons.fallback.Fallback;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -99,5 +100,22 @@ public class Validate {
   @NotNull
   public static <O> O notNullOr(@Nullable O object, @NotNull O def) {
     return object == null ? def : object;
+  }
+
+  /**
+   * Validate that the object is not null or give another object
+   *
+   * @param object the object to check that is not null
+   * @param supplier the supplier to get the default object in case that the object to check is null
+   * @param <O> the type of the object
+   * @return the object if not null else the default object
+   */
+  @NotNull
+  public static <O> O notNullOr(@Nullable O object, @NotNull Supplier<O> supplier) {
+    if (object == null) {
+      return supplier.get();
+    } else {
+      return object;
+    }
   }
 }
