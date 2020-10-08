@@ -78,14 +78,14 @@ public class Cache {
   /**
    * Get an object from cache
    *
-   * @param predicate the boolean to match
    * @param clazz the clazz of the catchable for casting
+   * @param predicate the boolean to match
    * @param <T> the type of the catchable
    * @return the catchable if found else null
    */
   @Nullable
   public static <T extends ICatchable> T getCatchable(
-      @NotNull Predicate<T> predicate, @NotNull Class<T> clazz) {
+      @NotNull Class<T> clazz, @NotNull Predicate<T> predicate) {
     for (ICatchable catchable : Cache.cache) {
       if (clazz.isAssignableFrom(catchable.getClass())) {
         T cast = clazz.cast(catchable);
@@ -100,31 +100,31 @@ public class Cache {
   /**
    * Get an object from cache or return another value
    *
-   * @param predicate the boolean to match
    * @param clazz the clazz of the catchable for casting
+   * @param predicate the boolean to match
    * @param def the default value to provide if not found in cache
    * @param <T> the type of the catchable
    * @return the catchable if found else the default value
    */
   @NotNull
-  public static <T extends ICatchable> T getCatchable(
-      @NotNull Predicate<T> predicate, @NotNull Class<T> clazz, @NotNull T def) {
-    return Validate.notNullOr(Cache.getCatchable(predicate, clazz), def);
+  public static <T extends ICatchable> T getCatchableOr(
+      @NotNull Class<T> clazz, @NotNull Predicate<T> predicate, @NotNull T def) {
+    return Validate.notNullOr(Cache.getCatchable(clazz, predicate), def);
   }
 
   /**
    * Get an object from cache or return another value
    *
-   * @param predicate the boolean to match
    * @param clazz the clazz of the catchable for casting
+   * @param predicate the boolean to match
    * @param supplier the supplier to get the default value to provide if not found in cache
    * @param <T> the type of the catchable
    * @return the catchable if found else the default value
    */
   @NotNull
-  public static <T extends ICatchable> T getCatchable(
-      @NotNull Predicate<T> predicate, @NotNull Class<T> clazz, @NotNull Supplier<T> supplier) {
-    return Validate.notNullOr(Cache.getCatchable(predicate, clazz), supplier);
+  public static <T extends ICatchable> T getCatchableOrGet(
+      @NotNull Class<T> clazz, @NotNull Predicate<T> predicate, @NotNull Supplier<T> supplier) {
+    return Validate.notNullOr(Cache.getCatchable(clazz, predicate), supplier);
   }
 
   /** Cancels the task that runs the cache. This means that objects wont be unloaded */
