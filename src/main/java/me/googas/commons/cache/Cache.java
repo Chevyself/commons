@@ -76,6 +76,29 @@ public class Cache {
   }
 
   /**
+   * Get a list of catchables matching a predicate
+   *
+   * @param clazz the clazz of catchables to get
+   * @param predicate the predicate of the catchables
+   * @param <T> the type of the catchables
+   * @return the list of catchables
+   */
+  @NotNull
+  public static <T extends ICatchable> List<T> getCatchables(
+      @NotNull Class<T> clazz, @NotNull Predicate<T> predicate) {
+    List<T> list = new ArrayList<>();
+    for (ICatchable catchable : Cache.cache) {
+      if (clazz.isAssignableFrom(catchable.getClass())) {
+        T cast = clazz.cast(catchable);
+        if (predicate.test(cast)) {
+          list.add(cast);
+        }
+      }
+    }
+    return list;
+  }
+
+  /**
    * Get an object from cache
    *
    * @param clazz the clazz of the catchable for casting
