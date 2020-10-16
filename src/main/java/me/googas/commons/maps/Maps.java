@@ -39,6 +39,19 @@ public class Maps {
   }
 
   /**
+   * Creates a map builder without a defined value
+   *
+   * @param key with which the value is associated
+   * @param value the value associated with the key
+   * @param <K> the type of the key
+   * @return the map builder
+   */
+  @NotNull
+  public static <K> MapBuilder<K, Object> objects(@NotNull K key, @Nullable Object value) {
+    return new MapBuilder<>(Maps.singleton(key, value));
+  }
+
+  /**
    * Create a hash-map from strings separating the key and the value using a dot '.'. If there's no
    * dot it will be ignored
    *

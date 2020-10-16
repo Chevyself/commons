@@ -1,13 +1,12 @@
 package me.googas.commons.log.formatters;
 
-import me.googas.commons.Strings;
-import me.googas.commons.time.TimeUtils;
-import org.jetbrains.annotations.NotNull;
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
+import me.googas.commons.Strings;
+import me.googas.commons.time.TimeUtils;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Make a formatter for you handlers easily.
@@ -54,7 +53,7 @@ public class CustomFormatter extends Formatter {
    * @param placeHolders the brand new place holders
    */
   private void addTimePlaceholders(
-          @NotNull LogRecord record, @NotNull HashMap<String, String> placeHolders) {
+      @NotNull LogRecord record, @NotNull HashMap<String, String> placeHolders) {
     LocalDateTime date = TimeUtils.getLocalDateFromMillis(record.getMillis());
     placeHolders.put("day", String.valueOf(date.getDayOfMonth()));
     placeHolders.put("month", String.valueOf(date.getMonthValue()));
@@ -74,11 +73,12 @@ public class CustomFormatter extends Formatter {
       }
       if (record.getThrown().getCause() != null) {
         builder.append(record.getThrown().getCause().getMessage()).append("\n");
+        for (StackTraceElement element : record.getThrown().getCause().getStackTrace()) {
+          builder.append(element.toString()).append("\n");
+        }
       }
-      for (StackTraceElement element : record.getThrown().getCause().getStackTrace()) {
-        builder.append(element.toString()).append("\n");
-      }
-      placeholders.put("message", record.getThrown().getMessage());
+      String message = record.getThrown().getMessage();
+      placeholders.put("message", message == null ? "" : message);
       placeholders.put("stack", "\n" + builder.toString());
     }
     return Strings.buildMessage(this.format, placeholders);
