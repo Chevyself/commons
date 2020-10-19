@@ -110,8 +110,8 @@ public class Validate {
    * @param <O> the type of the object
    * @return the object if not null else the default object
    */
-  @NotNull
-  public static <O> O notNullOr(@Nullable O object, @NotNull Supplier<O> supplier) {
+  @Nullable
+  public static <O> O notNullOrGet(@Nullable O object, @NotNull Supplier<O> supplier) {
     if (object == null) {
       return supplier.get();
     } else {

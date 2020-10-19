@@ -144,10 +144,10 @@ public class Cache {
    * @param <T> the type of the catchable
    * @return the catchable if found else the default value
    */
-  @NotNull
+  @Nullable
   public static <T extends ICatchable> T getCatchableOrGet(
       @NotNull Class<T> clazz, @NotNull Predicate<T> predicate, @NotNull Supplier<T> supplier) {
-    return Validate.notNullOr(Cache.getCatchable(clazz, predicate), supplier);
+    return Validate.notNullOrGet(Cache.getCatchable(clazz, predicate), supplier);
   }
 
   /** Cancels the task that runs the cache. This means that objects wont be unloaded */
