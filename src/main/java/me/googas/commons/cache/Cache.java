@@ -87,7 +87,7 @@ public class Cache {
   public static <T extends ICatchable> List<T> getCatchables(
       @NotNull Class<T> clazz, @NotNull Predicate<T> predicate) {
     List<T> list = new ArrayList<>();
-    for (ICatchable catchable : Cache.cache) {
+    for (ICatchable catchable : Cache.copy()) {
       if (clazz.isAssignableFrom(catchable.getClass())) {
         T cast = clazz.cast(catchable);
         if (predicate.test(cast)) {
@@ -109,7 +109,7 @@ public class Cache {
   @Nullable
   public static <T extends ICatchable> T getCatchable(
       @NotNull Class<T> clazz, @NotNull Predicate<T> predicate) {
-    for (ICatchable catchable : Cache.cache) {
+    for (ICatchable catchable : Cache.copy()) {
       if (clazz.isAssignableFrom(catchable.getClass())) {
         T cast = clazz.cast(catchable);
         if (predicate.test(cast)) {
