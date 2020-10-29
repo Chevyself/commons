@@ -176,7 +176,6 @@ public class Cache {
         if (catchable.getSecondsLeft() > 0) {
           catchable.onSecondPassed();
         } else {
-          catchable.onRemove();
           catchable.unload(true);
         }
       }
