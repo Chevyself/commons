@@ -1,7 +1,8 @@
 package me.googas.commons.cache;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.function.Predicate;
@@ -16,13 +17,12 @@ public class Cache {
   /** The timer to run the cache */
   @NotNull private static final Timer timer = new Timer();
   /** The cache */
-  @NotNull private static final List<ICatchable> cache = new ArrayList<>();
+  @NotNull private static final Collection<ICatchable> cache = new HashSet<>();
   /** The timer task that runs the cache */
   @NotNull private static TimerTask task = new CacheTask();
 
   static {
-    // Runs every 1000 millis which is a second
-    Cache.timer.schedule(Cache.task, 0, 1000);
+    Cache.timer.schedule(Cache.task, 1000, 1000);
   }
 
   /**
@@ -55,24 +55,14 @@ public class Cache {
   }
 
   /**
-   * Get the list of items so called 'cache'
-   *
-   * @return the list of items
-   */
-  @NotNull
-  public static List<ICatchable> getCache() {
-    return Cache.cache;
-  }
-
-  /**
    * Creates a new list with the same objects inside of the cache. This object can be used to
    * manipulate the objects without causing {@link java.util.ConcurrentModificationException}
    *
    * @return the copied list
    */
   @NotNull
-  public static List<ICatchable> copy() {
-    return new ArrayList<>(Cache.cache);
+  public static Collection<ICatchable> copy() {
+    return new HashSet<>(Cache.cache);
   }
 
   /**
@@ -84,9 +74,9 @@ public class Cache {
    * @return the list of catchables
    */
   @NotNull
-  public static <T extends ICatchable> List<T> getCatchables(
+  public static <T extends ICatchable> Collection<T> getCatchables(
       @NotNull Class<T> clazz, @NotNull Predicate<T> predicate) {
-    List<T> list = new ArrayList<>();
+    Collection<T> list = new ArrayList<>();
     for (ICatchable catchable : Cache.copy()) {
       if (clazz.isAssignableFrom(catchable.getClass())) {
         T cast = clazz.cast(catchable);
@@ -96,6 +86,16 @@ public class Cache {
       }
     }
     return list;
+  }
+
+  /**
+   * Get the list of items so called 'cache'
+   *
+   * @return the list of items
+   */
+  @NotNull
+  public static Collection<ICatchable> getCache() {
+    return Cache.cache;
   }
 
   /**
@@ -170,8 +170,7 @@ public class Cache {
 
     @Override
     public void run() {
-      List<ICatchable> copy = Cache.copy();
-      for (ICatchable catchable : copy) {
+      for (ICatchable catchable : Cache.copy()) {
         catchable.reduceTime(1);
         if (catchable.getSecondsLeft() > 0) {
           catchable.onSecondPassed();
