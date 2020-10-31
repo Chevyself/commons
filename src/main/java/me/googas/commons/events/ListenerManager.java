@@ -4,10 +4,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import me.googas.commons.fallback.Fallback;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 public class ListenerManager {
 
   /** The listeners registered in the manager */
-  @NotNull private final Set<EventListener> listeners = new HashSet<>();
+  @NotNull private final Collection<EventListener> listeners = new HashSet<>();
 
   /**
    * Register the listeners from the object.

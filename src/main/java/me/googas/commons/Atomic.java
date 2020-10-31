@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
  * instance. This is a not null instance check {@link NullableAtomic} to use nul instances
  *
  * @param <O> the type of object that will be contained in this atomic
+ * @deprecated use {@link java.util.concurrent.atomic.AtomicReference}
  */
 public class Atomic<O> {
 
@@ -29,7 +30,7 @@ public class Atomic<O> {
    */
   @NotNull
   public O get() {
-    return o;
+    return this.o;
   }
 
   /**

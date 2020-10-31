@@ -1,23 +1,22 @@
 package me.googas.commons.maps;
 
-import java.util.HashMap;
 import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 
 /** Helps with single line hash map building */
 public class MapBuilder<K, V> {
 
-  /** The hash map that is being built */
-  @NotNull private final HashMap<K, V> hashMap;
+  /** The map that is being built */
+  @NotNull private final Map<K, V> map;
 
   /**
    * Create a map builder
    *
-   * @param hashMap the map that is being built
+   * @param map the map that is being built
    */
   @NotNull
-  public MapBuilder(@NotNull HashMap<K, V> hashMap) {
-    this.hashMap = hashMap;
+  public MapBuilder(@NotNull Map<K, V> map) {
+    this.map = map;
   }
 
   /**
@@ -30,7 +29,7 @@ public class MapBuilder<K, V> {
    * @param <T> the type that extends value
    */
   public <T extends K, O extends V> MapBuilder<K, V> append(@NotNull T key, @NotNull O value) {
-    this.hashMap.put(key, value);
+    this.map.put(key, value);
     return this;
   }
 
@@ -41,7 +40,7 @@ public class MapBuilder<K, V> {
    * @return the map builder
    */
   public MapBuilder<K, V> appendAll(@NotNull Map<? extends K, ? extends V> map) {
-    this.hashMap.putAll(map);
+    this.map.putAll(map);
     return this;
   }
 
@@ -51,7 +50,7 @@ public class MapBuilder<K, V> {
    * @return the built map
    */
   @NotNull
-  public HashMap<K, V> build() {
-    return this.hashMap;
+  public Map<K, V> build() {
+    return this.map;
   }
 }

@@ -1,6 +1,7 @@
 package me.googas.commons.maps;
 
 import java.util.HashMap;
+import java.util.Map;
 import me.googas.commons.Strings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -18,7 +19,7 @@ public class Maps {
    * @return the map with the key and value
    */
   @NotNull
-  public static <T, O> HashMap<T, O> singleton(@NotNull T key, @Nullable O value) {
+  public static <T, O> Map<T, O> singleton(@NotNull T key, @Nullable O value) {
     HashMap<T, O> map = new HashMap<>();
     map.put(key, value);
     return map;

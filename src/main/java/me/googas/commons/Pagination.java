@@ -65,37 +65,18 @@ public class Pagination<O> {
   }
 
   /**
-   * Get page given the page number and a limit of elements for each page. First it will execute a
-   * {@link #validatePage(int)} to check that the page is not lower than 1 or higher than {@link
-   * #maxPage(int)} and finally using a while loop to get the elements added
-   *
-   * @param page the page queried to see
-   * @param limit the limit of elements in each page
-   * @return the page as a list of the elements inside of it
-   */
-  @Deprecated
-  @NotNull
-  public List<O> getPage(int page, int limit) {
-    List<O> newPage = new ArrayList<>();
-    int skip = (page - 1) * limit;
-    int i = skip;
-    while (i < skip + limit && i < this.list.size()) {
-      newPage.add(this.list.get(i));
-      i++;
-    }
-    return newPage;
-  }
-
-  /**
-   * Get page given the page number and a limit of elements for each page. First it will execute a
-   * {@link #validatePage(int)} to check that the page is not lower than 1 or higher than {@link
-   * #maxPage()} and finally using a while loop to get the elements added
+   * Get page given the page number and a limit of elements for each page. If the page is greater or
+   * lower than the min it will go to the nearest page.
    *
    * @param page the page queried to see
    * @return the page as a list of the elements inside of it
    */
   public List<O> getPage(int page) {
-    this.validatePage(page);
+    if (page < 1) {
+      page = 1;
+    } else if (page > this.maxPage()) {
+      page = this.maxPage();
+    }
     List<O> newPage = new ArrayList<>();
     int skip = (page - 1) * this.limit;
     int i = skip;
@@ -104,18 +85,6 @@ public class Pagination<O> {
       i++;
     }
     return newPage;
-  }
-
-  /**
-   * Validates if a page number is correct Checks if is higher than 0 Checks if it is less or the
-   * {@link Pagination#maxPage(int)}
-   *
-   * @param page the page to validate
-   */
-  private void validatePage(int page) {
-    int maxPage = this.maxPage();
-    Validate.assertTrue(page > 0, "Page cannot be less than 1");
-    Validate.assertTrue(page <= maxPage, "Page cannot be higher than the maximum page: " + maxPage);
   }
 
   /**

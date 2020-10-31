@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
  * An {@link Atomic} but that can have a null value.
  *
  * @param <O> the type of object inside this atomic
+ * @deprecated use {@link java.util.concurrent.atomic.AtomicReference}
  */
 public class NullableAtomic<O> {
 

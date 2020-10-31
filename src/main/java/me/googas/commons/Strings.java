@@ -1,8 +1,8 @@
 package me.googas.commons;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import me.googas.commons.maps.MapBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -14,7 +14,7 @@ public class Strings {
   @NotNull private static final StringBuilder builder = new StringBuilder();
 
   /**
-   * This method is made to save resources from {@link #buildMessage(String, HashMap)}, {@link
+   * This method is made to save resources from {@link #buildMessage(String, Map)}, {@link
    * #buildMessage(String, Object...)} and {@link #buildMessage(String, MapBuilder)} to not go in a
    * loop. In case that the message is null it will just give an string with the characters "Null"
    *
@@ -88,7 +88,7 @@ public class Strings {
    */
   @NotNull
   public static String buildMessage(
-      @Nullable String message, @NotNull HashMap<String, String> placeHolders) {
+      @Nullable String message, @NotNull Map<String, String> placeHolders) {
     if (message == null) return "Null";
     Atomic<String> atomicMessage = new Atomic<>(message);
     for (String placeholder : placeHolders.keySet()) {
@@ -103,8 +103,8 @@ public class Strings {
   }
 
   /**
-   * This method is the same as {@link #buildMessage(String, HashMap)} but using the {@link
-   * MapBuilder} to give an option of easier to make map
+   * This method is the same as {@link #buildMessage(String, Map)} but using the {@link MapBuilder}
+   * to give an option of easier to make map
    *
    * @param message the message to build
    * @param placeholders the placeholders and its values. The placeholders are the key and those do
@@ -113,7 +113,7 @@ public class Strings {
    */
   public static String buildMessage(
       @Nullable String message, @NotNull MapBuilder<String, String> placeholders) {
-    return buildMessage(message, placeholders.build());
+    return Strings.buildMessage(message, placeholders.build());
   }
 
   /**
