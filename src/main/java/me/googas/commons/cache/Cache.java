@@ -41,7 +41,9 @@ public class Cache {
    * @param catchable the object to remove
    */
   public static void remove(@NotNull ICatchable catchable) {
-    Cache.cache.remove(catchable);
+    if (!Cache.cache.remove(catchable)) {
+      Cache.cache.removeIf(cached -> cached.equals(catchable));
+    }
   }
 
   /**
