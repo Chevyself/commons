@@ -1,185 +1,174 @@
 package me.googas.commons.cache;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
 import me.googas.commons.Validate;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-/** This class acts like a 'Cache' allowing programs to hold objects in memory */
-public class Cache {
+import java.lang.ref.SoftReference;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
-  /** The timer to run the cache */
-  @NotNull private static final Timer timer = new Timer();
-  /** The cache */
-  @NotNull private static final Collection<ICatchable> cache = new HashSet<>();
-  /** The timer task that runs the cache */
-  @NotNull private static TimerTask task = new CacheTask();
+/**
+ * An object which represents a way to manage cache. This stores the catchables
+ * objects and the time for their removal
+ */
+public interface Cache extends Runnable {
 
-  static {
-    Cache.timer.schedule(Cache.task, 1000, 1000);
-  }
-
-  /**
-   * Adds an object inside the cache
-   *
-   * @param catchable the object to put inside the cache
-   * @return true if the catchable was added to the list
-   */
-  public static boolean add(@NotNull ICatchable catchable) {
-    return Cache.cache.add(catchable);
-  }
-
-  /**
-   * Removes an object from the cache
-   *
-   * @param catchable the object to remove
-   */
-  public static void remove(@NotNull ICatchable catchable) {
-    if (!Cache.cache.remove(catchable)) {
-      Cache.cache.removeIf(cached -> cached.equals(catchable));
+    /**
+     * Creates a copy of the current cache
+     *
+     * @return the copy of the current cache
+     */
+    @NotNull
+    default Collection<SoftReference<Catchable>> copy() {
+        return new HashSet<>(this.getMap().keySet());
     }
-  }
 
-  /**
-   * Check if the cache contains an object
-   *
-   * @param catchable to check
-   * @return true if the cache contains it
-   */
-  public static boolean contains(@NotNull ICatchable catchable) {
-    return Cache.cache.contains(catchable);
-  }
-
-  /**
-   * Creates a new list with the same objects inside of the cache. This object can be used to
-   * manipulate the objects without causing {@link java.util.ConcurrentModificationException}
-   *
-   * @return the copied list
-   */
-  @NotNull
-  public static Collection<ICatchable> copy() {
-    return new HashSet<>(Cache.cache);
-  }
-
-  /**
-   * Get a list of catchables matching a predicate
-   *
-   * @param clazz the clazz of catchables to get
-   * @param predicate the predicate of the catchables
-   * @param <T> the type of the catchables
-   * @return the list of catchables
-   */
-  @NotNull
-  public static <T extends ICatchable> Collection<T> getCatchables(
-      @NotNull Class<T> clazz, @NotNull Predicate<T> predicate) {
-    Collection<T> list = new ArrayList<>();
-    for (ICatchable catchable : Cache.copy()) {
-      if (clazz.isAssignableFrom(catchable.getClass())) {
-        T cast = clazz.cast(catchable);
-        if (predicate.test(cast)) {
-          list.add(cast);
+    /**
+     * Get an object from cache
+     *
+     * @param clazz the clazz of the catchable for casting
+     * @param predicate the boolean to match
+     * @param <T> the type of the catchable
+     * @return the catchable if found else null
+     */
+    @Nullable
+    default <T extends Catchable> T getCatchable(@NotNull Class<T> clazz, @NotNull Predicate<T> predicate) {
+        for (SoftReference<Catchable> reference : this.copy()) {
+            Catchable catchable = reference.get();
+            if (catchable != null && clazz.isAssignableFrom(catchable.getClass())) {
+                T cast = clazz.cast(catchable);
+                if (predicate.test(cast)) {
+                    this.getMap().put(reference, this.getTimeToRemove(catchable));
+                    return cast;
+                }
+            }
         }
-      }
+        return null;
     }
-    return list;
-  }
 
-  /**
-   * Get the list of items so called 'cache'
-   *
-   * @return the list of items
-   */
-  @NotNull
-  public static Collection<ICatchable> getCache() {
-    return Cache.cache;
-  }
+    /**
+     * Get an object from cache or return another value
+     *
+     * @param clazz the clazz of the catchable for casting
+     * @param predicate the boolean to match
+     * @param def the default value to provide if not found in cache
+     * @param <T> the type of the catchable
+     * @return the catchable if found else the default value
+     */
+    @NotNull
+    default <T extends Catchable> T getCatchableOr(@NotNull Class<T> clazz, @NotNull T def, @NotNull Predicate<T> predicate) {
+        return Validate.notNullOr(this.getCatchable(clazz, predicate), def);
+    }
 
-  /**
-   * Get an object from cache
-   *
-   * @param clazz the clazz of the catchable for casting
-   * @param predicate the boolean to match
-   * @param <T> the type of the catchable
-   * @return the catchable if found else null
-   */
-  @Nullable
-  public static <T extends ICatchable> T getCatchable(
-      @NotNull Class<T> clazz, @NotNull Predicate<T> predicate) {
-    for (ICatchable catchable : Cache.copy()) {
-      if (clazz.isAssignableFrom(catchable.getClass())) {
-        T cast = clazz.cast(catchable);
-        if (predicate.test(cast)) {
-          return cast;
+    /**
+     * Get an object from cache or return another value
+     *
+     * @param clazz the clazz of the catchable for casting
+     * @param predicate the boolean to match
+     * @param supplier the supplier to get the default value to provide if not found in cache
+     * @param <T> the type of the catchable
+     * @return the catchable if found else the default value
+     */
+    @Nullable
+    default <T extends Catchable> T getCatchableOrGet(@NotNull Class<T> clazz, @NotNull Predicate<T> predicate, @NotNull Supplier<T> supplier) {
+        return Validate.notNullOrGet(this.getCatchable(clazz, predicate), supplier);
+    }
+
+    /**
+     * Checks whether an object is inside the cache
+     *
+     * @param catchable the object to check if it is inside the cache
+     * @return true if the object is inside the cache
+     */
+    default boolean contains(@NotNull Catchable catchable) {
+        for (SoftReference<Catchable> reference : this.copy()) {
+            if (catchable.equals(reference.get())) {
+                return true;
+            }
         }
-      }
+        return false;
     }
-    return null;
-  }
 
-  /**
-   * Get an object from cache or return another value
-   *
-   * @param clazz the clazz of the catchable for casting
-   * @param predicate the boolean to match
-   * @param def the default value to provide if not found in cache
-   * @param <T> the type of the catchable
-   * @return the catchable if found else the default value
-   */
-  @NotNull
-  public static <T extends ICatchable> T getCatchableOr(
-      @NotNull Class<T> clazz, @NotNull Predicate<T> predicate, @NotNull T def) {
-    return Validate.notNullOr(Cache.getCatchable(clazz, predicate), def);
-  }
+    /**
+     * Adds an object to the cache
+     *
+     * @param catchable the object to be added
+     */
+    default void add(@NotNull Catchable catchable) {
+        if (this.contains(catchable)) {
+            throw new IllegalStateException("There's already an instance of " + catchable + " inside of the cache");
+        }
+        this.getMap().put(new SoftReference<>(catchable), this.getTimeToRemove(catchable));
+    }
 
-  /**
-   * Get an object from cache or return another value
-   *
-   * @param clazz the clazz of the catchable for casting
-   * @param predicate the boolean to match
-   * @param supplier the supplier to get the default value to provide if not found in cache
-   * @param <T> the type of the catchable
-   * @return the catchable if found else the default value
-   */
-  @Nullable
-  public static <T extends ICatchable> T getCatchableOrGet(
-      @NotNull Class<T> clazz, @NotNull Predicate<T> predicate, @NotNull Supplier<T> supplier) {
-    return Validate.notNullOrGet(Cache.getCatchable(clazz, predicate), supplier);
-  }
+    /**
+     * Removes an object from cache
+     *
+     * @param catchable the object to be removed
+     * @return whether the object was removed from cache
+     */
+    default boolean remove(@NotNull Catchable catchable) {
+        if (this.contains(catchable)) {
+            return this.getMap().keySet().removeIf(reference -> catchable.equals(reference.get()));
+        } else {
+            return false;
+        }
+    }
 
-  /** Cancels the task that runs the cache. This means that objects wont be unloaded */
-  public static void cancelTask() {
-    Cache.task.cancel();
-  }
+    /**
+     * Refreshes a catchable object
+     *
+     * @param catchable the object to be cache
+     */
+    default void refresh(@NotNull Catchable catchable) {
+        for (SoftReference<Catchable> reference : this.getMap().keySet()) {
+            if (catchable.equals(reference.get())) {
+                this.getMap().put(reference, this.getTimeToRemove(catchable));
+            }
+        }
+    }
 
-  /**
-   * Get the task that the cache needs to run
-   *
-   * @return the task that the cache uses to run
-   */
-  @NotNull
-  public static TimerTask getTask() {
-    return Cache.task;
-  }
+    /**
+     * Get the time in which an object must be removed
+     *
+     * @param catchable the object to get the removal time
+     * @return the removal time of the object
+     */
+    default long getTimeToRemove(@NotNull Catchable catchable) {
+        return System.currentTimeMillis() + catchable.getToRemove().millis();
+    }
 
-  /** The task that run every second until the cache unloads */
-  static class CacheTask extends TimerTask {
+    /**
+     * This map contains the reference to the cache object and the time
+     * in millis for the object to be removed
+     *
+     * @return the map with the reference and time of the objects
+     */
+    @NotNull
+    Map<SoftReference<Catchable>, Long> getMap();
 
     @Override
-    public void run() {
-      for (ICatchable catchable : Cache.copy()) {
-        catchable.reduceTime(1);
-        if (catchable.getSecondsLeft() > 0) {
-          catchable.onSecondPassed();
-        } else {
-          catchable.unload(true);
-        }
-      }
+    default void run() {
+        Map<SoftReference<Catchable>, Long> copy = new HashMap<>(this.getMap());
+        copy.forEach((reference, time) -> {
+            Catchable catchable = reference.get();
+            if (catchable != null) {
+                if (System.currentTimeMillis() >= time) {
+                    try {
+                        catchable.onRemove();
+                        reference.clear();
+                    } catch (Throwable e) {
+                        Thread.getDefaultUncaughtExceptionHandler().uncaughtException(Thread.currentThread(), e);
+                    }
+                }
+            }
+        });
+        this.getMap().keySet().removeIf(reference -> reference.get() == null);
     }
-  }
 }

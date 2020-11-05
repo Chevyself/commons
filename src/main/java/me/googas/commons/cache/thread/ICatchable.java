@@ -1,4 +1,4 @@
-package me.googas.commons.cache;
+package me.googas.commons.cache.thread;
 
 import me.googas.commons.time.Time;
 import me.googas.commons.time.Unit;
