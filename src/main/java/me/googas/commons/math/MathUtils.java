@@ -22,4 +22,8 @@ public class MathUtils {
   public static double cubed(double number) {
     return number * number * number;
   }
+
+  public static double percentage(double total, double num) {
+    return num * 100 / total;
+  }
 }

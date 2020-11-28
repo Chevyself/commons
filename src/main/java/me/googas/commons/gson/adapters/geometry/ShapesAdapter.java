@@ -12,7 +12,6 @@ import me.googas.commons.math.geometry.Shape;
 import me.googas.commons.math.geometry.Sphere;
 import me.googas.commons.math.geometry.modifier.Modifier;
 
-/** Adapts shapes from json */
 public class ShapesAdapter implements ShapeAdapter<Shape> {
 
   @Override

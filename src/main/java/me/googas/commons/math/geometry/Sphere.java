@@ -2,19 +2,17 @@ package me.googas.commons.math.geometry;
 
 import java.util.HashSet;
 import java.util.Set;
+import lombok.NonNull;
 import me.googas.commons.RandomUtils;
 import me.googas.commons.math.MathUtils;
 import me.googas.commons.math.geometry.containers.Points;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** A sphere */
 public class Sphere implements Shape {
 
-  /** The id of the sphere */
-  @Nullable private final String id;
+  private final String id;
   /** The center of the sphere */
-  @NotNull private Point center;
+  @NonNull private Point center;
   /** The radius of the sphere */
   private double radius;
 
@@ -25,7 +23,7 @@ public class Sphere implements Shape {
    * @param center the center of the sphere
    * @param radius the radius of the sphere
    */
-  public Sphere(@Nullable String id, @NotNull Point center, double radius) {
+  public Sphere(String id, @NonNull Point center, double radius) {
     this.id = id;
     this.center = center;
     this.radius = radius;
@@ -36,7 +34,7 @@ public class Sphere implements Shape {
    *
    * @param center the new center of the sphere
    */
-  public void setCenter(@NotNull Point center) {
+  public void setCenter(@NonNull Point center) {
     this.center = center;
   }
 
@@ -54,7 +52,7 @@ public class Sphere implements Shape {
    *
    * @return the center of the sphere
    */
-  @NotNull
+  @NonNull
   public Point getCenter() {
     return this.center;
   }
@@ -69,12 +67,12 @@ public class Sphere implements Shape {
   }
 
   @Override
-  public @Nullable String getId() {
+  public String getId() {
     return this.id;
   }
 
   @Override
-  public boolean contains(@NotNull Point point) {
+  public boolean contains(@NonNull Point point) {
     return (MathUtils.square(point.getX() - this.center.getX())
             + MathUtils.square(point.getY() - this.center.getY())
             + MathUtils.square(point.getZ() - this.center.getZ())
@@ -87,7 +85,7 @@ public class Sphere implements Shape {
   }
 
   @Override
-  public @NotNull Points getPointsInside() {
+  public @NonNull Points getPointsInside() {
     Set<Point> set = new HashSet<>();
     for (Point point :
         new Box(this.getMinimum(), this.getMaximum(), null).getPointsInside().getPoints()) {
@@ -99,7 +97,7 @@ public class Sphere implements Shape {
   }
 
   @Override
-  public @NotNull Point getMinimum() {
+  public @NonNull Point getMinimum() {
     return new Point(
         this.center.getX() - this.radius,
         this.center.getY() - this.radius,
@@ -107,7 +105,7 @@ public class Sphere implements Shape {
   }
 
   @Override
-  public @NotNull Point getMaximum() {
+  public @NonNull Point getMaximum() {
     return new Point(
         this.center.getX() + this.radius,
         this.center.getY() + this.radius,
@@ -127,13 +125,8 @@ public class Sphere implements Shape {
         + '}';
   }
 
-  /**
-   * Get a random point inside of the shape
-   *
-   * @return the random point
-   */
   @Override
-  public @NotNull Point getRandomPoint() {
+  public @NonNull Point getRandomPoint() {
     double x =
         this.getCenter().getX()
             + RandomUtils.nextDouble(0, this.radius) * Math.sin(RandomUtils.nextDouble(0, 360));

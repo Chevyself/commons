@@ -8,8 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import lombok.NonNull;
 
 /**
  * Static utilities for groups of objects such as {@link List}, {@link java.lang.reflect.Array} or
@@ -25,7 +24,7 @@ public class Lots {
    * @return the array of objects
    */
   @SafeVarargs
-  public static <O> @NotNull O[] array(@NotNull O... objects) {
+  public static <O> @NonNull O[] array(@NonNull O... objects) {
     return objects;
   }
 
@@ -37,8 +36,8 @@ public class Lots {
    * @return the list of objects
    */
   @SafeVarargs
-  @NotNull
-  public static <O> List<O> list(@NotNull O... objects) {
+  @NonNull
+  public static <O> List<O> list(@NonNull O... objects) {
     return new ArrayList<>(Arrays.asList(objects));
   }
 
@@ -96,7 +95,7 @@ public class Lots {
    * @param array the array to get the new from
    * @return the new array with the objects from the array at a certain position
    */
-  @NotNull
+  @NonNull
   public static String[] arrayFrom(int position, String[] array) {
     if (position < 0) {
       throw new IllegalArgumentException("Position cannot be less than 0");
@@ -120,7 +119,7 @@ public class Lots {
    * @param <O> the type of the collection
    * @return a string given by the collection
    */
-  @NotNull
+  @NonNull
   public static <O> String pretty(Collection<O> collection) {
     return collection.toString().replace("[", "").replace("]", "");
   }
@@ -134,7 +133,8 @@ public class Lots {
    * @param <O> the type of the objects
    * @return the list that got the elements added
    */
-  public static <O> List<O> addIf(@NotNull List<O> list, @NotNull List<O> toAdd, Predicate<O> bol) {
+  public static <O> List<O> addIf(
+      @NonNull List<O> list, @NonNull List<O> toAdd, @NonNull Predicate<O> bol) {
     for (O object : toAdd) {
       if (bol.test(object)) {
         list.add(object);
@@ -151,7 +151,7 @@ public class Lots {
    * @return the immutable list
    */
   @SafeVarargs
-  public static <O> List<O> inmutable(@NotNull O... objects) {
+  public static <O> List<O> inmutable(@NonNull O... objects) {
     return Collections.unmodifiableList(Lots.list(objects));
   }
 
@@ -163,8 +163,8 @@ public class Lots {
    * @return the created set of objects
    */
   @SafeVarargs
-  @NotNull
-  public static <O> Set<O> set(@NotNull O... objects) {
+  @NonNull
+  public static <O> Set<O> set(@NonNull O... objects) {
     return new HashSet<>(Lots.list(objects));
   }
 
@@ -174,8 +174,7 @@ public class Lots {
    * @param list the list to get the class from
    * @return the clazz of the list or empty if there's no object in the list
    */
-  @Nullable
-  public static Class<?> getClazz(@NotNull List<?> list) {
+  public static Class<?> getClazz(@NonNull List<?> list) {
     if (list.isEmpty()) {
       return null;
     }

@@ -1,22 +1,22 @@
 package me.googas.commons;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 /** Static utilities for randomization */
 public class RandomUtils {
 
   /** The java Random instance */
-  @NotNull private static final Random random = new Random();
+  @NonNull private static final Random random = new Random();
   /** Upper case letters. Used for random strings */
-  @NotNull private static final String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  @NonNull private static final String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   /** Lower case letters. Used for random strings */
-  @NotNull private static final String LOWER_LETTERS = "abcdefghijklmnopqrstuvwxyz";
+  @NonNull private static final String LOWER_LETTERS = "abcdefghijklmnopqrstuvwxyz";
   /** Numbers inside a string. Used for random strings */
-  @NotNull private static final String NUMBERS = "1234567890";
+  @NonNull private static final String NUMBERS = "1234567890";
 
   /**
    * Create a random string with the provided characters. It will loop getting random characters
@@ -26,10 +26,10 @@ public class RandomUtils {
    * @param length the length of the new string
    * @return the randomly generated string
    */
-  public static String nextString(@NotNull String charsString, int length) {
+  public static String nextString(@NonNull String charsString, int length) {
     char[] text = new char[length];
     for (int i = 0; i < length; i++) {
-      text[i] = charsString.charAt(random.nextInt(charsString.length()));
+      text[i] = charsString.charAt(RandomUtils.random.nextInt(charsString.length()));
     }
     return new String(text);
   }
@@ -42,7 +42,8 @@ public class RandomUtils {
    * @return the randomly generated string
    */
   public static String nextString(int length) {
-    return nextString(LETTERS + LOWER_LETTERS + NUMBERS, length);
+    return RandomUtils.nextString(
+        RandomUtils.LETTERS + RandomUtils.LOWER_LETTERS + RandomUtils.NUMBERS, length);
   }
 
   /**
@@ -55,7 +56,7 @@ public class RandomUtils {
    * @return the random generated integer inside the bounds
    */
   public static int nextInt(int min, int max) {
-    return random.nextInt(((max - min) + 1) + min);
+    return RandomUtils.random.nextInt(((max - min) + 1) + min);
   }
 
   /**
@@ -69,7 +70,7 @@ public class RandomUtils {
    */
   public static double nextDouble(double min, double max) {
     if (max < min) {
-      return nextDouble(max, min);
+      return RandomUtils.nextDouble(max, min);
     } else {
       return min + ((1 + max - min) * Math.random());
     }
@@ -83,7 +84,7 @@ public class RandomUtils {
    * @return the random generated and {@link Math#floor(double)} double inside the bound.
    */
   public static double nextDoubleFloor(double min, double max) {
-    return Math.floor(nextDouble(min, max));
+    return Math.floor(RandomUtils.nextDouble(min, max));
   }
 
   /**
@@ -94,7 +95,7 @@ public class RandomUtils {
    * @return the randomly generated string
    */
   public static String nextStringLetters(int length) {
-    return nextString(LETTERS + LOWER_LETTERS, length);
+    return RandomUtils.nextString(RandomUtils.LETTERS + RandomUtils.LOWER_LETTERS, length);
   }
 
   /**
@@ -105,7 +106,7 @@ public class RandomUtils {
    * @return the randomly generated string
    */
   public static String nextStringUpper(int length) {
-    return nextString(LETTERS, length);
+    return RandomUtils.nextString(RandomUtils.LETTERS, length);
   }
 
   /**
@@ -116,70 +117,44 @@ public class RandomUtils {
    * @return the randomly generated string
    */
   public static String nextStringLower(int length) {
-    return nextString(LOWER_LETTERS, length);
+    return RandomUtils.nextString(RandomUtils.LOWER_LETTERS, length);
   }
 
   /**
-   * Get a random element from a set. It will convert the set into an Array List and the get a
-   * random integer inside the bounds of the set size.
+   * Get a random entry from a collection
    *
-   * @param set the set to get the element
-   * @param <O> the type of the elements from the set
-   * @return the randomly selected element
-   * @throws IllegalArgumentException if the set is empty
+   * @param collection the collection to get the random entry
+   * @param <O> the type of the entries inside the collection
+   * @return the entry
    */
-  @NotNull
-  public static <O> O getRandom(@NotNull Set<O> set) {
-    if (set.isEmpty()) {
-      throw new IllegalArgumentException("The input is empty");
+  @NonNull
+  public static <O> O getRandom(@NonNull Collection<O> collection) {
+    int random = (int) (Math.random() * collection.size());
+    for (O entry : collection) {
+      if (--random < 0) return entry;
     }
-    return new ArrayList<>(set).get(random.nextInt(set.size()));
+    throw new IllegalArgumentException("Random collection cannot be empty!");
   }
 
   /**
-   * Get a random object inside a list. It will get a random integer inside the bounds of the array
-   * list size.
+   * Get an amount of randomly selected items from a collection
    *
-   * @param list the list to get the element
-   * @param <O> the type of the elements from the list
-   * @return the randomly selected element
-   * @throws IllegalArgumentException if the array list is empty
+   * @param collection the collection to get the entries
+   * @param amount the amount of entries to get
+   * @param <O> the type of the objects in the collection
+   * @return the list containing the random entries
    */
-  @NotNull
-  public static <O> O getRandom(@NotNull List<O> list) {
-    if (list.isEmpty()) {
-      throw new IllegalArgumentException("List cannot be empty!");
+  @NonNull
+  public static <O> List<O> getRandom(@NonNull Collection<O> collection, int amount) {
+    if (amount > collection.size())
+      throw new IllegalStateException(
+          "The amount cannot be higher than the size of the collection");
+    List<O> list = new ArrayList<>();
+    while (list.size() < amount) {
+      O random = RandomUtils.getRandom(collection);
+      if (!list.contains(random)) list.add(random);
     }
-    return list.get(random.nextInt(list.size()));
-  }
-
-  /**
-   * Get the amount of randomly selected elements. Using {@link #getRandom(List)} getting elements
-   * to add in a new {@link ArrayList}
-   *
-   * @param list the list to get the elements
-   * @param amount the amount of elements to get
-   * @param <O> the type of the elements from the list
-   * @return the randomly selected elements
-   * @throws IllegalArgumentException if the provided list is empty or the amount is bigger than the
-   *     elements inside the list
-   */
-  @NotNull
-  public static <O> List<O> getRandom(@NotNull List<O> list, int amount) {
-    if (list.isEmpty()) {
-      throw new IllegalArgumentException("List cannot be empty!");
-    } else if (amount > list.size()) {
-      throw new IllegalArgumentException("The amount is bigger than the size of the list");
-    }
-    List<O> newList = new ArrayList<>(amount);
-    O toAdd = getRandom(list);
-    while (newList.size() != amount) {
-      while (newList.contains(toAdd)) {
-        toAdd = getRandom(list);
-      }
-      newList.add(toAdd);
-    }
-    return newList;
+    return list;
   }
 
   /**
@@ -187,8 +162,8 @@ public class RandomUtils {
    *
    * @return the object
    */
-  @NotNull
+  @NonNull
   public static Random getRandom() {
-    return random;
+    return RandomUtils.random;
   }
 }

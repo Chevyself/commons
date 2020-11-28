@@ -1,7 +1,7 @@
 package me.googas.commons;
 
 import java.util.UUID;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 /** Static utilities for {@link UUID} */
 public class UUIDUtils {
@@ -16,8 +16,8 @@ public class UUIDUtils {
    * @param uuid the UUID to be trimmed
    * @return the trimmed uuid
    */
-  @NotNull
-  public static String trim(@NotNull UUID uuid) {
+  @NonNull
+  public static String trim(@NonNull UUID uuid) {
     return uuid.toString().replace("-", "");
   }
 
@@ -29,8 +29,8 @@ public class UUIDUtils {
    * @throws IllegalArgumentException if the trimmed string is not an actual UUID see {@link
    *     UUID#fromString(String)}
    */
-  @NotNull
-  public static UUID untrim(@NotNull String trimmed) {
+  @NonNull
+  public static UUID untrim(@NonNull String trimmed) {
     StringBuilder builder = Strings.getBuilder();
     builder.append(trimmed);
     builder.insert(20, "-");

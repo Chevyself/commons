@@ -1,6 +1,6 @@
 package me.googas.commons;
 
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 /** Static utilities for json */
 public class JsonUtils {
@@ -12,7 +12,7 @@ public class JsonUtils {
    * @param string the string to check
    * @return true if the string is json
    */
-  public static boolean isJson(@NotNull String string) {
+  public static boolean isJson(@NonNull String string) {
     return string.startsWith("{") && string.endsWith("}")
         || string.startsWith("[") && string.endsWith("]");
   }

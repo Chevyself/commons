@@ -8,11 +8,10 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import java.lang.reflect.Type;
+import lombok.NonNull;
 import me.googas.commons.Strings;
 import me.googas.commons.math.geometry.Point;
-import org.jetbrains.annotations.NotNull;
 
-/** Adapts a point into json */
 public class PointAdapter implements JsonSerializer<Point>, JsonDeserializer<Point> {
 
   /**
@@ -21,7 +20,7 @@ public class PointAdapter implements JsonSerializer<Point>, JsonDeserializer<Poi
    * @param number the double to get as json
    * @return the json object
    */
-  @NotNull
+  @NonNull
   public static String infiniteToJson(double number) {
     return number < 0 ? "-oo" : "oo";
   }
@@ -32,7 +31,7 @@ public class PointAdapter implements JsonSerializer<Point>, JsonDeserializer<Poi
    * @param element the json element to get the double from
    * @return the double parsed from the json file
    */
-  public static double fromJson(@NotNull JsonElement element) {
+  public static double fromJson(@NonNull JsonElement element) {
     String string = element.getAsString();
     if (Strings.containsIgnoreCase(string, "oo")) {
       return string.startsWith("-") ? Double.NEGATIVE_INFINITY : Double.POSITIVE_INFINITY;

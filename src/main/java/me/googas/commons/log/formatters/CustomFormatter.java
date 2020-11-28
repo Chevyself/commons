@@ -1,12 +1,15 @@
 package me.googas.commons.log.formatters;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
+import lombok.NonNull;
 import me.googas.commons.Strings;
 import me.googas.commons.time.TimeUtils;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Make a formatter for you handlers easily.
@@ -20,14 +23,14 @@ import org.jetbrains.annotations.NotNull;
 public class CustomFormatter extends Formatter {
 
   /** The format for the formatter */
-  @NotNull private final String format;
+  @NonNull private final String format;
 
   /**
    * Create an instance
    *
    * @param format the format to use
    */
-  public CustomFormatter(@NotNull String format) {
+  public CustomFormatter(@NonNull String format) {
     this.format = format;
   }
 
@@ -37,7 +40,7 @@ public class CustomFormatter extends Formatter {
    * @param record the record to format
    * @return a pack of placeholders
    */
-  private HashMap<String, String> getPlaceholders(@NotNull LogRecord record) {
+  private HashMap<String, String> getPlaceholders(@NonNull LogRecord record) {
     HashMap<String, String> placeHolders = new HashMap<>();
     this.addTimePlaceholders(record, placeHolders);
     placeHolders.put("level", record.getLevel().getName());
@@ -53,7 +56,7 @@ public class CustomFormatter extends Formatter {
    * @param placeHolders the brand new place holders
    */
   private void addTimePlaceholders(
-      @NotNull LogRecord record, @NotNull HashMap<String, String> placeHolders) {
+      @NonNull LogRecord record, @NonNull HashMap<String, String> placeHolders) {
     LocalDateTime date = TimeUtils.getLocalDateFromMillis(record.getMillis());
     placeHolders.put("day", String.valueOf(date.getDayOfMonth()));
     placeHolders.put("month", String.valueOf(date.getMonthValue()));
@@ -63,24 +66,22 @@ public class CustomFormatter extends Formatter {
     placeHolders.put("second", String.valueOf(date.getSecond()));
   }
 
+  @NonNull
+  private String getStackTrace(@NonNull Throwable throwable) {
+    Writer stringWriter = new StringWriter();
+    PrintWriter printWriter = new PrintWriter(stringWriter);
+    throwable.printStackTrace(printWriter);
+    return stringWriter.toString();
+  }
+
   @Override
-  public String format(@NotNull LogRecord record) {
+  public String format(@NonNull LogRecord record) {
     HashMap<String, String> placeholders = this.getPlaceholders(record);
     if (record.getThrown() != null) {
-      StringBuilder builder = Strings.getBuilder();
-      for (StackTraceElement element : record.getThrown().getStackTrace()) {
-        builder.append(element.toString()).append("\n");
-      }
-      if (record.getThrown().getCause() != null) {
-        builder.append(record.getThrown().getCause().getMessage()).append("\n");
-        for (StackTraceElement element : record.getThrown().getCause().getStackTrace()) {
-          builder.append(element.toString()).append("\n");
-        }
-      }
       String message = record.getThrown().getMessage();
-      placeholders.put("message", message == null ? "" : message);
-      placeholders.put("stack", "\n" + builder.toString());
+      placeholders.put("message", message == null ? "No information provided" : message);
+      placeholders.put("stack", this.getStackTrace(record.getThrown()));
     }
-    return Strings.buildMessage(this.format, placeholders);
+    return Strings.build(this.format, placeholders);
   }
 }

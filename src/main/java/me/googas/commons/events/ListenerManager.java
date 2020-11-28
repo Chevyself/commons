@@ -8,8 +8,8 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import me.googas.commons.fallback.Fallback;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
+import me.googas.commons.fallback.GoogasFallback;
 
 /**
  * Manages calling to events and selecting the respective listeners for the event. Listener are
@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 public class ListenerManager {
 
   /** The listeners registered in the manager */
-  @NotNull private final Collection<EventListener> listeners = new HashSet<>();
+  @NonNull private final Collection<EventListener> listeners = new HashSet<>();
 
   /**
    * Register the listeners from the object.
@@ -32,7 +32,7 @@ public class ListenerManager {
    *     more than one parameters and if the parameter does not extend {@link Event}
    */
   @SuppressWarnings("unchecked")
-  public void registerListeners(@NotNull Object object) {
+  public void registerListeners(@NonNull Object object) {
     Class<?> aClass = object.getClass();
     for (Method method : aClass.getMethods()) {
       Listener annotation = method.getAnnotation(Listener.class);
@@ -74,8 +74,8 @@ public class ListenerManager {
    * @param clazz the clazz of the event to get all the listeners
    * @return a list of listeners for the event
    */
-  @NotNull
-  public List<EventListener> getListeners(@NotNull Class<? extends Event> clazz) {
+  @NonNull
+  public List<EventListener> getListeners(@NonNull Class<? extends Event> clazz) {
     List<EventListener> listeners = new ArrayList<>();
     for (EventListener listener : this.listeners) {
       if (listener.getEvent().isAssignableFrom(clazz)) {
@@ -91,7 +91,7 @@ public class ListenerManager {
    *
    * @param object the listener to unregister
    */
-  public void unregister(@NotNull Object object) {
+  public void unregister(@NonNull Object object) {
     this.listeners.removeIf(listener -> listener.getListener() == object);
   }
 
@@ -100,12 +100,12 @@ public class ListenerManager {
    *
    * @param event the event to be called
    */
-  public void call(@NotNull Event event) {
+  public void call(@NonNull Event event) {
     for (EventListener listener : this.getListeners(event.getClass())) {
       try {
         listener.getMethod().invoke(listener.getListener(), event);
       } catch (IllegalAccessException | InvocationTargetException e) {
-        Fallback.addError("Listener method could not be invoked in " + listener);
+        GoogasFallback.addError("Listener method could not be invoked in " + listener);
         e.printStackTrace();
       }
     }
@@ -118,7 +118,7 @@ public class ListenerManager {
    * @return true if the event was cancelled
    * @throws IllegalArgumentException cancellable is not an instance of {@link Event}
    */
-  public boolean call(@NotNull Cancellable cancellable) {
+  public boolean call(@NonNull Cancellable cancellable) {
     if (cancellable instanceof Event) {
       this.call((Event) cancellable);
       return cancellable.isCancelled();

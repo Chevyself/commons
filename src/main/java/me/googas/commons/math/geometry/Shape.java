@@ -2,10 +2,9 @@ package me.googas.commons.math.geometry;
 
 import java.util.HashSet;
 import java.util.Set;
+import lombok.NonNull;
 import me.googas.commons.RandomUtils;
 import me.googas.commons.math.geometry.containers.Points;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** An object that represents a 3 dimensional shape */
 public interface Shape {
@@ -17,7 +16,7 @@ public interface Shape {
    * @return true if it is
    */
   @Deprecated
-  default boolean isFacePoint(@NotNull Point point) {
+  default boolean isFacePoint(@NonNull Point point) {
     Point x = new Point(1, 0, 0);
     Point y = new Point(0, 1, 0);
     Point z = new Point(0, 0, 1);
@@ -35,7 +34,7 @@ public interface Shape {
    * @param point the point to check if it is inside this shape
    * @return true if it is inside
    */
-  default boolean contains(@NotNull Point point) {
+  default boolean contains(@NonNull Point point) {
     return this.getPointsInside().contains(point);
   }
 
@@ -45,7 +44,7 @@ public interface Shape {
    * @param another the other shape to check if it is inside this one
    * @return true if it is inside this shape
    */
-  default boolean contains(@NotNull Shape another) {
+  default boolean contains(@NonNull Shape another) {
     return another.getPointsInside().size() == this.intersectingPoints(another).size();
   }
 
@@ -55,7 +54,7 @@ public interface Shape {
    * @param another the other shape to check
    * @return true if part of it is inside this shape
    */
-  default boolean intersects(@NotNull Shape another) {
+  default boolean intersects(@NonNull Shape another) {
     return !this.intersectingPoints(another).isEmpty();
   }
 
@@ -65,8 +64,8 @@ public interface Shape {
    * @param another the shape to check where it is intersecting
    * @return the points where this shapes are intersecting
    */
-  @NotNull
-  default Points intersectingPoints(@NotNull Shape another) {
+  @NonNull
+  default Points intersectingPoints(@NonNull Shape another) {
     Set<Point> points = new HashSet<>();
     for (Point point : another.getPointsInside().getPoints()) {
       if (this.contains(point)) {
@@ -81,7 +80,6 @@ public interface Shape {
    *
    * @return the id
    */
-  @Nullable
   String getId();
 
   /**
@@ -89,7 +87,7 @@ public interface Shape {
    *
    * @return the points inside
    */
-  @NotNull
+  @NonNull
   Points getPointsInside();
 
   /**
@@ -97,7 +95,7 @@ public interface Shape {
    *
    * @return the minimum point of the shape
    */
-  @NotNull
+  @NonNull
   Point getMinimum();
 
   /**
@@ -105,7 +103,7 @@ public interface Shape {
    *
    * @return the maximum point of the shape
    */
-  @NotNull
+  @NonNull
   Point getMaximum();
 
   /**
@@ -114,7 +112,7 @@ public interface Shape {
    *
    * @return the points that are the faces of the shape
    */
-  @NotNull
+  @NonNull
   default Points getFacePoints() {
     Points pointsInside = this.getPointsInside();
     if (pointsInside.isInfinite()) {
@@ -136,7 +134,7 @@ public interface Shape {
    *
    * @return the random point
    */
-  @NotNull
+  @NonNull
   default Point getRandomPoint() {
     return RandomUtils.getRandom(this.getPointsInside().getPoints());
   }

@@ -1,6 +1,6 @@
 package me.googas.commons.events;
 
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 /** Thrown when a listener cannot be registered */
 public class ListenerRegistrationException extends RuntimeException {
@@ -10,7 +10,7 @@ public class ListenerRegistrationException extends RuntimeException {
    *
    * @param message the message
    */
-  public ListenerRegistrationException(@NotNull String message) {
+  public ListenerRegistrationException(@NonNull String message) {
     super(message);
   }
 }

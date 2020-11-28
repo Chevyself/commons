@@ -10,7 +10,6 @@ import com.google.gson.JsonSerializer;
 import java.lang.reflect.Type;
 import me.googas.commons.time.Time;
 
-/** The adapter for time */
 public class TimeAdapter implements JsonSerializer<Time>, JsonDeserializer<Time> {
 
   @Override

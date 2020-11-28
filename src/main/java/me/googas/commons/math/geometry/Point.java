@@ -1,7 +1,7 @@
 package me.googas.commons.math.geometry;
 
+import lombok.NonNull;
 import me.googas.commons.math.MathUtils;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * An object that represents a point inside the cartesian coordinates system. This means this object
@@ -34,7 +34,7 @@ public class Point {
    *
    * @return the new instance of this point
    */
-  @NotNull
+  @NonNull
   public Point duplicate() {
     return new Point(this.x, this.y, this.z);
   }
@@ -45,7 +45,7 @@ public class Point {
    * @param another another point to check the distance
    * @return the distance between the two points
    */
-  public double distance(@NotNull Point another) {
+  public double distance(@NonNull Point another) {
     return Math.sqrt(
         MathUtils.square(another.getX() - this.x)
             + MathUtils.square(another.getY() - this.y)
@@ -60,8 +60,8 @@ public class Point {
    * @param point the other point to sum
    * @return this point with the sum of the two points
    */
-  @NotNull
-  public Point sum(@NotNull Point point) {
+  @NonNull
+  public Point sum(@NonNull Point point) {
     this.x += point.getX();
     this.y += point.getY();
     this.z += point.getZ();
@@ -75,7 +75,7 @@ public class Point {
    * @return the size of the point
    */
   public double size() {
-    return x + y + z;
+    return this.x + this.y + this.z;
   }
 
   /**
@@ -86,8 +86,8 @@ public class Point {
    * @param point the other point to subtract
    * @return this point with the subtraction of the two points
    */
-  @NotNull
-  public Point subtract(@NotNull Point point) {
+  @NonNull
+  public Point subtract(@NonNull Point point) {
     this.x = -point.getX();
     this.y = -point.getY();
     this.z = -point.getZ();
@@ -100,7 +100,7 @@ public class Point {
    * @param point the point to check if it is bigger than this one
    * @return true if this point is smaller than the queried one
    */
-  public boolean lowerThan(@NotNull Point point) {
+  public boolean lowerThan(@NonNull Point point) {
     return this.size() < point.size();
   }
 
@@ -110,8 +110,8 @@ public class Point {
    * @param point the point to check if it is smaller than this one
    * @return true if this point is bigger than the queried one
    */
-  public boolean greaterThan(@NotNull Point point) {
-    return size() > point.size();
+  public boolean greaterThan(@NonNull Point point) {
+    return this.size() > point.size();
   }
 
   /**
@@ -142,12 +142,23 @@ public class Point {
   }
 
   /**
+   * Get the dot component with another point. The dot component is each component multiplied and
+   * then summed
+   *
+   * @param point the other point to get the dot component
+   * @return the dot component between the points
+   */
+  public double dot(@NonNull Point point) {
+    return (this.x * point.getX()) + (this.y * point.getY()) + (this.z * point.getZ());
+  }
+
+  /**
    * Get the position x
    *
    * @return the position x
    */
   public double getX() {
-    return x;
+    return this.x;
   }
 
   /**
@@ -156,16 +167,7 @@ public class Point {
    * @return the position y
    */
   public double getY() {
-    return y;
-  }
-
-  /**
-   * Get the position z
-   *
-   * @return the position z
-   */
-  public double getZ() {
-    return z;
+    return this.y;
   }
 
   /** Floors the {@link #x}, {@link #y} and {@link #z} values. */
@@ -175,9 +177,13 @@ public class Point {
     this.z = Math.floor(this.z);
   }
 
-  @Override
-  public String toString() {
-    return "x=" + x + ", y=" + y + ", z=" + z;
+  /**
+   * Get the position z
+   *
+   * @return the position z
+   */
+  public double getZ() {
+    return this.z;
   }
 
   /**
@@ -188,7 +194,7 @@ public class Point {
    * @return true if the point is infinite if any of its coordinates
    */
   public boolean isInfinite() {
-    return Double.isInfinite(x) || Double.isInfinite(y) || Double.isInfinite(z);
+    return Double.isInfinite(this.x) || Double.isInfinite(this.y) || Double.isInfinite(this.z);
   }
 
   /**
@@ -202,15 +208,9 @@ public class Point {
         MathUtils.square(this.x) + MathUtils.square(this.y) + MathUtils.square(this.z));
   }
 
-  /**
-   * Get the dot component with another point. The dot component is each component multiplied and
-   * then summed
-   *
-   * @param point the other point to get the dot component
-   * @return the dot component between the points
-   */
-  public double dot(@NotNull Point point) {
-    return (this.x * point.getX()) + (this.y * point.getY()) + (this.z * point.getZ());
+  @Override
+  public String toString() {
+    return "x=" + this.x + ", y=" + this.y + ", z=" + this.z;
   }
 
   @Override
@@ -220,20 +220,20 @@ public class Point {
 
     Point point = (Point) object;
 
-    if (Double.compare(point.x, x) != 0) return false;
-    if (Double.compare(point.y, y) != 0) return false;
-    return Double.compare(point.z, z) == 0;
+    if (Double.compare(point.x, this.x) != 0) return false;
+    if (Double.compare(point.y, this.y) != 0) return false;
+    return Double.compare(point.z, this.z) == 0;
   }
 
   @Override
   public int hashCode() {
     int result;
     long temp;
-    temp = Double.doubleToLongBits(x);
+    temp = Double.doubleToLongBits(this.x);
     result = (int) (temp ^ (temp >>> 32));
-    temp = Double.doubleToLongBits(y);
+    temp = Double.doubleToLongBits(this.y);
     result = 31 * result + (int) (temp ^ (temp >>> 32));
-    temp = Double.doubleToLongBits(z);
+    temp = Double.doubleToLongBits(this.z);
     result = 31 * result + (int) (temp ^ (temp >>> 32));
     return result;
   }

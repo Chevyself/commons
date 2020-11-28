@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 /** Static utilities for time */
 public class TimeUtils {
@@ -15,7 +15,7 @@ public class TimeUtils {
    * @param millis the millis to get the date from
    * @return the date
    */
-  @NotNull
+  @NonNull
   public static LocalDateTime getLocalDateFromMillis(long millis) {
     return Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDateTime();
   }
@@ -26,7 +26,7 @@ public class TimeUtils {
    * @param millis the millis to get the offset date
    * @return the offset date
    */
-  @NotNull
+  @NonNull
   public static OffsetDateTime getOffsetDateFromMillis(long millis) {
     return Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toOffsetDateTime();
   }
@@ -37,7 +37,7 @@ public class TimeUtils {
    * @param date to get the millis from
    * @return the millis
    */
-  public static long getMillisFromLocalDate(@NotNull LocalDateTime date) {
+  public static long getMillisFromLocalDate(@NonNull LocalDateTime date) {
     return date.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
   }
   /**
@@ -46,7 +46,7 @@ public class TimeUtils {
    * @param date to get the millis from
    * @return the millis
    */
-  public static long getMillisFromOffsetDate(@NotNull OffsetDateTime date) {
+  public static long getMillisFromOffsetDate(@NonNull OffsetDateTime date) {
     return date.toInstant().toEpochMilli();
   }
 
@@ -56,9 +56,9 @@ public class TimeUtils {
    * @param date the date to get the time from
    * @return the time since a date
    */
-  @NotNull
-  public static Time getTimeFromToday(@NotNull LocalDateTime date) {
-    return getTimeDifference(date, getLocalDateFromMillis(System.currentTimeMillis()));
+  @NonNull
+  public static Time getTimeFromToday(@NonNull LocalDateTime date) {
+    return TimeUtils.getTimeDifference(date, TimeUtils.getLocalDateFromMillis(System.currentTimeMillis()));
   }
 
   /**
@@ -67,9 +67,9 @@ public class TimeUtils {
    * @param date the date to get the time from
    * @return the time since a date
    */
-  @NotNull
-  public static Time getTimeFromToday(@NotNull OffsetDateTime date) {
-    return getTimeDifference(date, getOffsetDateFromMillis(System.currentTimeMillis()));
+  @NonNull
+  public static Time getTimeFromToday(@NonNull OffsetDateTime date) {
+    return TimeUtils.getTimeDifference(date, TimeUtils.getOffsetDateFromMillis(System.currentTimeMillis()));
   }
 
   /**
@@ -79,10 +79,10 @@ public class TimeUtils {
    * @param compare the second date
    * @return the two dates to compare the time from
    */
-  @NotNull
+  @NonNull
   public static Time getTimeDifference(
-      @NotNull LocalDateTime date, @NotNull LocalDateTime compare) {
-    long millis = getMillisFromLocalDate(date) - getMillisFromLocalDate(compare);
+      @NonNull LocalDateTime date, @NonNull LocalDateTime compare) {
+    long millis = TimeUtils.getMillisFromLocalDate(date) - TimeUtils.getMillisFromLocalDate(compare);
     if (millis < 0) {
       millis *= -1;
     }
@@ -97,8 +97,8 @@ public class TimeUtils {
    * @return the two dates to compare the time from
    */
   public static Time getTimeDifference(
-      @NotNull OffsetDateTime date, @NotNull OffsetDateTime compare) {
-    long millis = getMillisFromOffsetDate(date) - getMillisFromOffsetDate(compare);
+      @NonNull OffsetDateTime date, @NonNull OffsetDateTime compare) {
+    long millis = TimeUtils.getMillisFromOffsetDate(date) - TimeUtils.getMillisFromOffsetDate(compare);
     if (millis < 0) {
       millis *= -1;
     }

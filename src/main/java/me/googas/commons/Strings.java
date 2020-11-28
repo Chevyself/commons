@@ -3,26 +3,26 @@ package me.googas.commons;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
+import lombok.NonNull;
 import me.googas.commons.maps.MapBuilder;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** Static utilities for strings */
 public class Strings {
 
   /** The string builder to some string building utilities */
-  @NotNull private static final StringBuilder builder = new StringBuilder();
+  @NonNull private static final StringBuilder builder = new StringBuilder();
 
   /**
-   * This method is made to save resources from {@link #buildMessage(String, Map)}, {@link
-   * #buildMessage(String, Object...)} and {@link #buildMessage(String, MapBuilder)} to not go in a
-   * loop. In case that the message is null it will just give an string with the characters "Null"
+   * This method is made to save resources from {@link #build(String, Map)}, {@link #build(String,
+   * Object...)} and {@link #build(String, MapBuilder)} to not go in a loop. In case that the
+   * message is null it will just give an string with the characters "Null"
    *
    * @param message the message to build
    * @return "Null" if the message is null else the message
    */
-  @NotNull
-  public static String buildMessage(@Nullable String message) {
+  @NonNull
+  public static String build(String message) {
     return message == null ? "Null" : message;
   }
 
@@ -39,8 +39,8 @@ public class Strings {
    * @param strings the object that will replace the placeholders
    * @return the built message
    */
-  @NotNull
-  public static String buildMessage(@Nullable String message, Object... strings) {
+  @NonNull
+  public static String build(String message, Object... strings) {
     if (message != null) {
       for (int i = 0; i < strings.length; i++) {
         message =
@@ -59,8 +59,8 @@ public class Strings {
    * @param strings the string array to build the message
    * @return a brand new string made with the array
    */
-  @NotNull
-  public static String fromArray(@NotNull String[] strings) {
+  @NonNull
+  public static String fromArray(String[] strings) {
     StringBuilder builder = Strings.getBuilder();
 
     for (String string : strings) {
@@ -74,8 +74,8 @@ public class Strings {
 
   /**
    * Build a message using more readable placeholders. Instead of using a method such as {@link
-   * #buildMessage(String, Object...)} this uses a map with the placeholder and the given object to
-   * replace it:
+   * #build(String, Object...)} this uses a map with the placeholder and the given object to replace
+   * it:
    *
    * <p>"This message has a %placeholder%"
    *
@@ -86,11 +86,10 @@ public class Strings {
    *     not require to have the character "%" and the value is another string
    * @return the built message
    */
-  @NotNull
-  public static String buildMessage(
-      @Nullable String message, @NotNull Map<String, String> placeHolders) {
+  @NonNull
+  public static String build(String message, @NonNull Map<String, String> placeHolders) {
     if (message == null) return "Null";
-    Atomic<String> atomicMessage = new Atomic<>(message);
+    AtomicReference<String> atomicMessage = new AtomicReference<>(message);
     for (String placeholder : placeHolders.keySet()) {
       String value = placeHolders.get(placeholder);
       if (value != null) {
@@ -103,17 +102,16 @@ public class Strings {
   }
 
   /**
-   * This method is the same as {@link #buildMessage(String, Map)} but using the {@link MapBuilder}
-   * to give an option of easier to make map
+   * This method is the same as {@link #build(String, Map)} but using the {@link MapBuilder} to give
+   * an option of easier to make map
    *
    * @param message the message to build
    * @param placeholders the placeholders and its values. The placeholders are the key and those do
    *     not require * to have the character "%" and the value is another string
    * @return the built message
    */
-  public static String buildMessage(
-      @Nullable String message, @NotNull MapBuilder<String, String> placeholders) {
-    return Strings.buildMessage(message, placeholders.build());
+  public static String build(String message, @NonNull MapBuilder<String, String> placeholders) {
+    return Strings.build(message, placeholders.build());
   }
 
   /**
@@ -123,7 +121,7 @@ public class Strings {
    * @param search the another string to check if the string is inside of it
    * @return true if its contained else false;
    */
-  public static boolean containsIgnoreCase(@NotNull String string, @NotNull String search) {
+  public static boolean containsIgnoreCase(@NonNull String string, @NonNull String search) {
     final int length = search.length();
     if (length == 0) {
       return true;
@@ -143,8 +141,8 @@ public class Strings {
    * @param toMatch the string to partially match
    * @return the list with matching strings
    */
-  @NotNull
-  public static List<String> copyPartials(@NotNull String toMatch, @NotNull List<String> list) {
+  @NonNull
+  public static List<String> copyPartials(@NonNull String toMatch, @NonNull List<String> list) {
     List<String> matching = new ArrayList<>();
     return Lots.addIf(
         matching, list, string -> string.toLowerCase().startsWith(toMatch.toLowerCase()));

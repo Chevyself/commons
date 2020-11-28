@@ -2,9 +2,8 @@ package me.googas.commons.maps;
 
 import java.util.HashMap;
 import java.util.Map;
+import lombok.NonNull;
 import me.googas.commons.Strings;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** Utils for maps */
 public class Maps {
@@ -18,8 +17,8 @@ public class Maps {
    * @param <O> the type of the value
    * @return the map with the key and value
    */
-  @NotNull
-  public static <T, O> Map<T, O> singleton(@NotNull T key, @Nullable O value) {
+  @NonNull
+  public static <T, O> Map<T, O> singleton(@NonNull T key, O value) {
     HashMap<T, O> map = new HashMap<>();
     map.put(key, value);
     return map;
@@ -34,8 +33,8 @@ public class Maps {
    * @param <V> the type of the value
    * @return the map builder
    */
-  @NotNull
-  public static <K, V> MapBuilder<K, V> builder(@NotNull K key, @Nullable V value) {
+  @NonNull
+  public static <K, V> MapBuilder<K, V> builder(@NonNull K key, V value) {
     return new MapBuilder<>(Maps.singleton(key, value));
   }
 
@@ -47,8 +46,8 @@ public class Maps {
    * @param <K> the type of the key
    * @return the map builder
    */
-  @NotNull
-  public static <K> MapBuilder<K, Object> objects(@NotNull K key, @Nullable Object value) {
+  @NonNull
+  public static <K> MapBuilder<K, Object> objects(@NonNull K key, Object value) {
     return new MapBuilder<>(Maps.singleton(key, value));
   }
 
@@ -59,7 +58,7 @@ public class Maps {
    * @param strings to get the key and value
    * @return the map
    */
-  public static HashMap<String, String> fromStringArray(@NotNull String... strings) {
+  public static HashMap<String, String> fromStringArray(@NonNull String... strings) {
     HashMap<String, String> map = new HashMap<>();
     for (String string : strings) {
       if (string.contains(".")) {
@@ -79,7 +78,7 @@ public class Maps {
    * @return the map
    */
   public static HashMap<String, String> fromStringArray(
-      String separator, @NotNull String... strings) {
+      String separator, @NonNull String... strings) {
     HashMap<String, String> map = new HashMap<>();
     for (String string : strings) {
       if (string.contains(separator)) {
@@ -97,7 +96,7 @@ public class Maps {
    * @param string to convert
    * @return the map
    */
-  public static HashMap<String, String> fromString(@NotNull String string) {
+  public static HashMap<String, String> fromString(@NonNull String string) {
     return Maps.fromStringArray(string.split(","));
   }
 
@@ -107,7 +106,7 @@ public class Maps {
    * @param map to get as string
    * @return the built string
    */
-  @NotNull
+  @NonNull
   public static String toString(HashMap<String, String> map) {
     StringBuilder builder = Strings.getBuilder();
     map.forEach((key, value) -> builder.append(key).append(".").append(value).append(","));

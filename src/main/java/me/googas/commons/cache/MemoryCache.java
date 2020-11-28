@@ -1,30 +1,26 @@
 package me.googas.commons.cache;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.ref.SoftReference;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import lombok.NonNull;
+import lombok.experimental.Delegate;
+import me.googas.commons.builder.ToStringBuilder;
 
-/**
- * A simple implementation for cache
- */
+/** A simple implementation for cache */
 public class MemoryCache implements Cache {
 
-    /**
-     * The map required for the cache
-     */
-    @NotNull
-    private final Map<SoftReference<Catchable>, Long> map = new HashMap<>();
+  /** The map required for the cache */
+  @NonNull @Delegate
+  private final Map<SoftReference<Catchable>, Long> map = new ConcurrentHashMap<>();
 
-    /**
-     * This map contains the reference to the cache object and the time
-     * in millis for the object to be removed
-     *
-     * @return the map with the reference and time of the objects
-     */
-    @Override
-    public @NotNull Map<SoftReference<Catchable>, Long> getMap() {
-        return this.map;
-    }
+  @Override
+  public @NonNull Map<SoftReference<Catchable>, Long> getMap() {
+    return this.map;
+  }
+
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this).append("map", this.map).build();
+  }
 }

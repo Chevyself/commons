@@ -10,17 +10,17 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 /** Provides an static instance of Gson and static utilities for adapters and factories. */
 public class GsonProvider {
 
   /** The map of adapters working in the gson instance */
-  @NotNull private static final HashMap<Type, Object> adapters = new HashMap<>();
+  @NonNull private static final HashMap<Type, Object> adapters = new HashMap<>();
   /** The type adapter factories to register in gson */
-  @NotNull private static final Set<TypeAdapterFactory> factories = new HashSet<>();
+  @NonNull private static final Set<TypeAdapterFactory> factories = new HashSet<>();
   /** The gson instance */
-  @NotNull public static Gson GSON = GsonProvider.build();
+  @NonNull public static Gson GSON = GsonProvider.build();
 
   /** Builds and sets the gson instance */
   public static void refresh() {
@@ -32,7 +32,7 @@ public class GsonProvider {
    *
    * @return a gson instance
    */
-  @NotNull
+  @NonNull
   public static Gson build() {
     GsonBuilder builder = new GsonBuilder();
     builder.setPrettyPrinting();
@@ -48,7 +48,7 @@ public class GsonProvider {
    * @param type the type that the adapter serializes and deserializes
    * @param adapter the adapter
    */
-  public static void addAdapter(@NotNull Type type, @NotNull Object adapter) {
+  public static void addAdapter(@NonNull Type type, @NonNull Object adapter) {
     GsonProvider.adapters.put(type, adapter);
   }
 
@@ -59,7 +59,7 @@ public class GsonProvider {
    * @param factory the factory to add
    * @return true if changes where made
    */
-  public static boolean addFactory(@NotNull TypeAdapterFactory factory) {
+  public static boolean addFactory(@NonNull TypeAdapterFactory factory) {
     return GsonProvider.factories.add(factory);
   }
 
@@ -71,7 +71,7 @@ public class GsonProvider {
    * @throws IOException in case file handling goes wrong: it could be that the file does not exist
    *     or th file writer just fails. It will be closed at the end
    */
-  public static void save(@NotNull File file, @NotNull Object toWrite) throws IOException {
+  public static void save(@NonNull File file, @NonNull Object toWrite) throws IOException {
     FileWriter fileWriter = new FileWriter(file);
     fileWriter.write(GsonProvider.GSON.toJson(toWrite));
     fileWriter.close();
@@ -82,7 +82,7 @@ public class GsonProvider {
    *
    * @return the adapters in a map
    */
-  @NotNull
+  @NonNull
   public static HashMap<Type, Object> getAdapters() {
     return GsonProvider.adapters;
   }

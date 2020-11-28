@@ -2,20 +2,18 @@ package me.googas.commons.math.geometry;
 
 import java.util.HashSet;
 import java.util.Set;
+import lombok.NonNull;
 import me.googas.commons.RandomUtils;
 import me.googas.commons.math.geometry.containers.Points;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** A box */
 public class Box implements Shape {
 
-  /** The id of the shape */
-  @Nullable private final String id;
+  private final String id;
   /** The minimum position of the cube */
-  @NotNull private Point minimum;
+  @NonNull private Point minimum;
   /** The maximum position of the cube */
-  @NotNull private Point maximum;
+  @NonNull private Point maximum;
 
   /**
    * Create the box
@@ -24,7 +22,7 @@ public class Box implements Shape {
    * @param maximum the maximum position of the box
    * @param id the id of the cube
    */
-  public Box(@NotNull Point minimum, @NotNull Point maximum, @Nullable String id) {
+  public Box(@NonNull Point minimum, @NonNull Point maximum, String id) {
     this.minimum =
         new Point(
             Math.min(minimum.getX(), maximum.getX()),
@@ -43,7 +41,7 @@ public class Box implements Shape {
    *
    * @param minimum the new minimum position
    */
-  public void setMinimum(@NotNull Point minimum) {
+  public void setMinimum(@NonNull Point minimum) {
     this.minimum = minimum;
   }
 
@@ -52,7 +50,7 @@ public class Box implements Shape {
    *
    * @param maximum the maximum position
    */
-  public void setMaximum(@NotNull Point maximum) {
+  public void setMaximum(@NonNull Point maximum) {
     this.maximum = maximum;
   }
 
@@ -62,7 +60,7 @@ public class Box implements Shape {
    * @return the height
    */
   public double getHeight() {
-    return getMaximum().getY() - getMinimum().getY();
+    return this.getMaximum().getY() - this.getMinimum().getY();
   }
 
   /**
@@ -71,7 +69,7 @@ public class Box implements Shape {
    * @return the width
    */
   public double getWidth() {
-    return getMaximum().getX() - getMinimum().getX();
+    return this.getMaximum().getX() - this.getMinimum().getX();
   }
 
   /**
@@ -80,48 +78,37 @@ public class Box implements Shape {
    * @return the length
    */
   public double getLength() {
-    return getMaximum().getZ() - getMinimum().getZ();
+    return this.getMaximum().getZ() - this.getMinimum().getZ();
   }
 
-  /**
-   * Get the minimum point of the box
-   *
-   * @return the minimum point
-   */
-  @NotNull
+  @NonNull
   @Override
   public Point getMinimum() {
-    return minimum;
+    return this.minimum;
   }
 
-  /**
-   * Get the maximum point of the box
-   *
-   * @return the maximum point
-   */
-  @NotNull
+  @NonNull
   @Override
   public Point getMaximum() {
-    return maximum;
+    return this.maximum;
   }
 
   @Override
   public double getVolume() {
-    return getWidth() * getLength() * getHeight();
+    return this.getWidth() * this.getLength() * this.getHeight();
   }
 
-  @Nullable
   public String getId() {
     return this.id;
   }
 
-  @NotNull
+  @NonNull
   @Override
   public Points getPointsInside() {
     Set<Point> points = new HashSet<>();
-    for (double x = getMinimum().getX(); x < getMaximum().getX(); x++) {
-      for (double z = getMinimum().getZ(); z < getMaximum().getZ(); z++) {
-        for (double y = getMinimum().getY(); y < getMaximum().getY(); y++) {
+    for (double x = this.getMinimum().getX(); x < this.getMaximum().getX(); x++) {
+      for (double z = this.getMinimum().getZ(); z < this.getMaximum().getZ(); z++) {
+        for (double y = this.getMinimum().getY(); y < this.getMaximum().getY(); y++) {
           points.add(new Point(x, y, z));
         }
       }
@@ -129,37 +116,34 @@ public class Box implements Shape {
     return new Points(points);
   }
 
-  /**
-   * Get a random point inside of the shape
-   *
-   * @return the random point
-   */
   @Override
-  public @NotNull Point getRandomPoint() {
+  public @NonNull Point getRandomPoint() {
     return new Point(
-        RandomUtils.nextDoubleFloor(minimum.getX(), maximum.getX()),
-        RandomUtils.nextDoubleFloor(minimum.getY(), maximum.getY()),
-        RandomUtils.nextDoubleFloor(minimum.getZ(), maximum.getZ()));
+        RandomUtils.nextDoubleFloor(this.minimum.getX(), this.maximum.getX()),
+        RandomUtils.nextDoubleFloor(this.minimum.getY(), this.maximum.getY()),
+        RandomUtils.nextDoubleFloor(this.minimum.getZ(), this.maximum.getZ()));
   }
 
   @Override
   public String toString() {
-    return "Box{" + "minimum=" + minimum + ", maximum=" + maximum + ", id='" + id + '\'' + '}';
+    return "Box{"
+        + "minimum="
+        + this.minimum
+        + ", maximum="
+        + this.maximum
+        + ", id='"
+        + this.id
+        + '\''
+        + '}';
   }
 
-  /**
-   * Check if this shape contains a point inside of it
-   *
-   * @param point the point to check if it is inside this shape
-   * @return true if it is inside
-   */
   @Override
-  public boolean contains(@NotNull Point point) {
-    return point.getX() >= minimum.getX()
-        && point.getX() <= maximum.getX()
-        && point.getY() >= minimum.getY()
-        && point.getY() <= maximum.getY()
-        && point.getZ() >= minimum.getZ()
-        && point.getZ() <= maximum.getZ();
+  public boolean contains(@NonNull Point point) {
+    return point.getX() >= this.minimum.getX()
+        && point.getX() <= this.maximum.getX()
+        && point.getY() >= this.minimum.getY()
+        && point.getY() <= this.maximum.getY()
+        && point.getZ() >= this.minimum.getZ()
+        && point.getZ() <= this.maximum.getZ();
   }
 }

@@ -12,7 +12,6 @@ import me.googas.commons.math.geometry.modifier.Modifier;
 import me.googas.commons.math.geometry.modifier.Negative;
 import me.googas.commons.math.geometry.modifier.Union;
 
-/** Adapts the modifier class to json */
 public class ModifiersAdapter implements ModifierAdapter<Modifier> {
 
   @Override

@@ -2,20 +2,18 @@ package me.googas.commons.math.geometry;
 
 import java.util.HashSet;
 import java.util.Set;
+import lombok.NonNull;
 import me.googas.commons.RandomUtils;
 import me.googas.commons.math.MathUtils;
 import me.googas.commons.math.geometry.containers.Points;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** A cylinder */
 public class Cylinder implements Shape {
 
-  /** The id of the shape */
-  @Nullable private final String id;
+  private final String id;
 
   /** The base of the cylinder */
-  @NotNull private Point base;
+  @NonNull private Point base;
   /** The radius of the cylinder */
   private double radius;
   /** The height of the cylinder */
@@ -29,7 +27,7 @@ public class Cylinder implements Shape {
    * @param radius the radius of the cylinder
    * @param height the height of the cylinder
    */
-  public Cylinder(@Nullable String id, @NotNull Point base, double radius, double height) {
+  public Cylinder(String id, @NonNull Point base, double radius, double height) {
     this.id = id;
     this.base = base;
     this.radius = radius;
@@ -41,7 +39,7 @@ public class Cylinder implements Shape {
    *
    * @param base the new base
    */
-  public void setBase(@NotNull Point base) {
+  public void setBase(@NonNull Point base) {
     this.base = base;
   }
 
@@ -68,7 +66,7 @@ public class Cylinder implements Shape {
    *
    * @return the base of the cylinder
    */
-  @NotNull
+  @NonNull
   public Point getBase() {
     return this.base;
   }
@@ -105,7 +103,7 @@ public class Cylinder implements Shape {
    *
    * @return the minimum point
    */
-  @NotNull
+  @NonNull
   @Override
   public Point getMinimum() {
     return new Point(
@@ -117,7 +115,7 @@ public class Cylinder implements Shape {
    *
    * @return the maximum point
    */
-  @NotNull
+  @NonNull
   @Override
   public Point getMaximum() {
     return new Point(
@@ -126,14 +124,13 @@ public class Cylinder implements Shape {
         this.base.getZ() + this.radius);
   }
 
-  @Nullable
   @Override
   public String getId() {
     return this.id;
   }
 
   @Override
-  public boolean contains(@NotNull Point point) {
+  public boolean contains(@NonNull Point point) {
     return point.getY() >= this.base.getY()
         && point.getY() <= this.getTotalHeight()
         && (MathUtils.square(point.getX() - this.base.getX())
@@ -146,7 +143,7 @@ public class Cylinder implements Shape {
     return this.height * Math.PI * MathUtils.square(this.radius);
   }
 
-  @NotNull
+  @NonNull
   @Override
   public Points getPointsInside() {
     Set<Point> set = new HashSet<>();
@@ -165,7 +162,7 @@ public class Cylinder implements Shape {
    * @return the random point
    */
   @Override
-  public @NotNull Point getRandomPoint() {
+  public @NonNull Point getRandomPoint() {
     double x =
         this.getBase().getX()
             + RandomUtils.nextDouble(0, this.radius) * Math.sin(RandomUtils.nextDouble(0, 360));

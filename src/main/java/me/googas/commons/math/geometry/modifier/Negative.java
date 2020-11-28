@@ -3,19 +3,17 @@ package me.googas.commons.math.geometry.modifier;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.NonNull;
 import me.googas.commons.math.geometry.Point;
 import me.googas.commons.math.geometry.Shape;
 import me.googas.commons.math.geometry.containers.Points;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /** Inverse the shapes. It contains everything that is not inside the shapes */
 public class Negative implements Modifier {
 
-  /** The id of the shape */
-  @Nullable private final String id;
+  private final String id;
   /** The shapes that are inside the negative */
-  private final Set<Shape> shapes;
+  @NonNull private final Set<Shape> shapes;
 
   /**
    * Create a negative modification
@@ -23,18 +21,13 @@ public class Negative implements Modifier {
    * @param id the id of the negative modification
    * @param shapes the shapes that contains this modification
    */
-  public Negative(@Nullable String id, Set<Shape> shapes) {
+  public Negative(String id, @NonNull Set<Shape> shapes) {
     this.id = id;
     this.shapes = shapes;
   }
 
-  /**
-   * The id to identify a shape in runtime
-   *
-   * @return the id
-   */
   @Override
-  public @Nullable String getId() {
+  public String getId() {
     return this.id;
   }
 
@@ -44,7 +37,7 @@ public class Negative implements Modifier {
    * @return the points inside
    */
   @Override
-  public @NotNull Points getPointsInside() {
+  public @NonNull Points getPointsInside() {
     return new Points(new HashSet<>());
   }
 
@@ -54,7 +47,7 @@ public class Negative implements Modifier {
    * @return the minimum point of the shape
    */
   @Override
-  public @NotNull Point getMinimum() {
+  public @NonNull Point getMinimum() {
     throw new UnsupportedOperationException(
         "There's infinite points. This operation would never end");
   }
@@ -65,7 +58,7 @@ public class Negative implements Modifier {
    * @return the maximum point of the shape
    */
   @Override
-  public @NotNull Point getMaximum() {
+  public @NonNull Point getMaximum() {
     throw new UnsupportedOperationException(
         "There's infinite points. This operation would never end");
   }

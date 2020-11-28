@@ -1,12 +1,16 @@
 package me.googas.commons;
 
 import java.util.function.Supplier;
+import lombok.Getter;
+import lombok.NonNull;
 import me.googas.commons.fallback.Fallback;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import me.googas.commons.fallback.SimpleFallback;
 
 /** Static method to validate certain stuff like booleans, non nulls, etc */
 public class Validate {
+
+  /** This contains a simple fallback used to store the errors given */
+  @NonNull @Getter private static final Fallback fallback = new SimpleFallback();
 
   /**
    * Validate that a boolean is true else throw an exception
@@ -14,7 +18,7 @@ public class Validate {
    * @param toAssert the boolean to assert to true
    * @param message the message to send if the boolean is not true
    */
-  public static void assertTrue(boolean toAssert, @Nullable String message) {
+  public static void assertTrue(boolean toAssert, String message) {
     if (!toAssert) {
       throw new IllegalArgumentException(message == null ? "This must assert true!" : message);
     }
@@ -26,7 +30,7 @@ public class Validate {
    * @param toAssert the boolean to assert to false
    * @param message the message to send if the boolean is not false
    */
-  public static void assertFalse(boolean toAssert, @Nullable String message) {
+  public static void assertFalse(boolean toAssert, String message) {
     if (toAssert) {
       throw new IllegalArgumentException(message == null ? "This must assert false!" : message);
     }
@@ -42,8 +46,8 @@ public class Validate {
    * @return the object if it is not null
    * @throws NullPointerException if the object is null with the provided message if given one
    */
-  @NotNull
-  public static <O> O notNull(@Nullable O object, @Nullable String message) {
+  @NonNull
+  public static <O> O notNull(O object, String message) {
     return Validate.notNull(object, new NullPointerException(message));
   }
 
@@ -57,9 +61,8 @@ public class Validate {
    * @return the object if it is not null
    * @throws T the exception in the parameter if the object is null
    */
-  @NotNull
-  public static <O, T extends Throwable> O notNull(@Nullable O object, @NotNull T toThrow)
-      throws T {
+  @NonNull
+  public static <O, T extends Throwable> O notNull(O object, @NonNull T toThrow) throws T {
     if (object != null) {
       return object;
     } else {
@@ -69,7 +72,7 @@ public class Validate {
 
   /**
    * Validate that the object is not null or give another object but giving an error to the {@link
-   * Fallback}
+   * #fallback}
    *
    * @param object the object to check that is not null
    * @param def the default object in case the object is null
@@ -77,13 +80,13 @@ public class Validate {
    * @param <O> the type of the object
    * @return the object if not null else the default object
    */
-  @NotNull
-  public static <O> O notNullOr(@Nullable O object, @NotNull O def, @Nullable String message) {
+  @NonNull
+  public static <O> O notNullOr(O object, O def, String message) {
     if (object != null) {
       return object;
     } else {
       if (message != null) {
-        Fallback.addError(message);
+        Validate.fallback.getErrors().add(message);
       }
       return def;
     }
@@ -97,8 +100,8 @@ public class Validate {
    * @param <O> the type of the object
    * @return the object if not null else the default object
    */
-  @NotNull
-  public static <O> O notNullOr(@Nullable O object, @NotNull O def) {
+  @NonNull
+  public static <O> O notNullOr(O object, @NonNull O def) {
     return object == null ? def : object;
   }
 
@@ -110,12 +113,11 @@ public class Validate {
    * @param <O> the type of the object
    * @return the object if not null else the default object
    */
-  @Nullable
-  public static <O> O notNullOrGet(@Nullable O object, @NotNull Supplier<O> supplier) {
-    if (object == null) {
-      return supplier.get();
-    } else {
+  public static <O> O notNullOrGet(O object, @NonNull Supplier<O> supplier) {
+    if (object != null) {
       return object;
+    } else {
+      return supplier.get();
     }
   }
 }

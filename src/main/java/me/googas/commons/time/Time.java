@@ -3,8 +3,7 @@ package me.googas.commons.time;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.concurrent.TimeUnit;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import lombok.NonNull;
 
 /**
  * This object represents time in a simple fashion: a time {@link Unit} and a value that is given in
@@ -15,7 +14,7 @@ public class Time {
   /** The value of time */
   private final long value;
   /** The unit of time */
-  @NotNull private final Unit unit;
+  @NonNull private final Unit unit;
 
   /**
    * Create a time instance. If we want the time to be "10 seconds" we would give the value as "10"
@@ -24,7 +23,7 @@ public class Time {
    * @param value the value of time
    * @param unit the unit of time
    */
-  public Time(final long value, @NotNull final Unit unit) {
+  public Time(final long value, @NonNull final Unit unit) {
     this.value = value;
     this.unit = unit;
   }
@@ -39,7 +38,7 @@ public class Time {
    * @throws IllegalArgumentException if the string is null, if the long cannot be parsed, if the
    *     unit cannot be parsed
    */
-  public static Time fromString(@Nullable final String string) {
+  public static Time fromString(final String string) {
     if (string != null && !string.isEmpty()) {
       final long value = Long.parseLong(string.substring(0, string.length() - 1));
       final Unit unit = Unit.fromChar(string.charAt(string.length() - 1));
@@ -76,7 +75,7 @@ public class Time {
    * @param unit the unit to convert this time to
    * @return the time with the new unit and value
    */
-  public Time getAs(@NotNull final Unit unit) {
+  public Time getAs(@NonNull final Unit unit) {
     return new Time(this.millis() / unit.millis(), unit);
   }
 
@@ -174,7 +173,7 @@ public class Time {
    *
    * @return the effective string for this time
    */
-  @NotNull
+  @NonNull
   public String toEffectiveString() {
     return this.getAs(Unit.fromMillis(this.millis())).toString();
   }
@@ -184,7 +183,7 @@ public class Time {
    *
    * @return the string that can be saved for later parsing
    */
-  @NotNull
+  @NonNull
   public String toDatabaseString() {
     return this.value + this.unit.getSimple();
   }
@@ -196,7 +195,7 @@ public class Time {
    *
    * @return this instance of time as classic time
    */
-  @NotNull
+  @NonNull
   public ClassicTime toClassicTime() {
     TimeUnit newUnit = this.unit.toTimeUnit();
     long newValue = this.getValue(newUnit);
@@ -209,8 +208,8 @@ public class Time {
    * @param unit the unit to get the value from
    * @return the value as certain unit
    */
-  public long getValue(@NotNull TimeUnit unit) {
-    return getAs(Unit.fromTimeUnit(unit)).getValue();
+  public long getValue(@NonNull TimeUnit unit) {
+    return this.getAs(Unit.fromTimeUnit(unit)).getValue();
   }
 
   /**
@@ -220,7 +219,7 @@ public class Time {
    * @param unit the unit to get the value as
    * @return the value as the given unit
    */
-  public long getValue(@NotNull Unit unit) {
+  public long getValue(@NonNull Unit unit) {
     return this.getAs(unit).getValue();
   }
 
@@ -234,21 +233,6 @@ public class Time {
   }
 
   /**
-   * Get the unit of this time instance
-   *
-   * @return the unit of this time instance
-   */
-  @NotNull
-  public Unit getUnit() {
-    return this.unit;
-  }
-
-  @Override
-  public String toString() {
-    return this.value + " " + unit.toString().toLowerCase();
-  }
-
-  /**
    * Subtract this time with another. Calculated as follows:
    *
    * <p>time = {@link #millis()} - param {@link #millis()}
@@ -256,8 +240,8 @@ public class Time {
    * @param time the time to subtract with
    * @return the subtraction and it will not be negative it would be 0
    */
-  @NotNull
-  public Time subtract(@NotNull Time time) {
+  @NonNull
+  public Time subtract(@NonNull Time time) {
     long millis = this.millis() - time.millis();
     return Time.fromMillis(millis < 0 ? 0 : millis);
   }
@@ -270,8 +254,8 @@ public class Time {
    * @param time the time to sum with
    * @return the result of the operation
    */
-  @NotNull
-  public Time sum(@NotNull Time time) {
+  @NonNull
+  public Time sum(@NonNull Time time) {
     return Time.fromMillis(this.millis() + time.millis());
   }
 
@@ -281,7 +265,7 @@ public class Time {
    * @param time the time to check if is lower than this instance
    * @return true if the parameter time is lower than this instance
    */
-  public boolean greaterThan(@NotNull Time time) {
+  public boolean greaterThan(@NonNull Time time) {
     return this.millis() > time.millis();
   }
 
@@ -291,18 +275,33 @@ public class Time {
    * @param time the time to check if is higher than this instance
    * @return true if the parameter time is higher than this instance
    */
-  public boolean lowerThan(@NotNull Time time) {
+  public boolean lowerThan(@NonNull Time time) {
     return this.millis() < time.millis();
+  }
+
+  /**
+   * Get the unit of this time instance
+   *
+   * @return the unit of this time instance
+   */
+  @NonNull
+  public Unit getUnit() {
+    return this.unit;
+  }
+
+  @Override
+  public String toString() {
+    return this.value + " " + this.unit.toString().toLowerCase();
   }
 
   @Override
   public boolean equals(Object object) {
     if (this == object) return true;
     if (object instanceof Long) {
-      return millis() == (long) object;
+      return this.millis() == (long) object;
     }
     if (object instanceof Time) {
-      return millis() == ((Time) object).millis();
+      return this.millis() == ((Time) object).millis();
     } else {
       return false;
     }
@@ -310,8 +309,8 @@ public class Time {
 
   @Override
   public int hashCode() {
-    int result = (int) (value ^ (value >>> 32));
-    result = 31 * result + unit.hashCode();
+    int result = (int) (this.value ^ (this.value >>> 32));
+    result = 31 * result + this.unit.hashCode();
     return result;
   }
 }

@@ -1,7 +1,8 @@
 package me.googas.commons.time;
 
 import java.util.concurrent.TimeUnit;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
+import lombok.experimental.Delegate;
 
 /**
  * Just like {@link Time} but using the java unit {@link TimeUnit}. Only created for getting the
@@ -10,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class ClassicTime {
 
   /** The unit of the time */
-  @NotNull private final TimeUnit unit;
+  @NonNull private final TimeUnit unit;
   /** The value of the time */
   private final long value;
 
@@ -21,53 +22,25 @@ public class ClassicTime {
    * @param value the value of time
    * @param unit the unit of time
    */
-  public ClassicTime(long value, @NotNull TimeUnit unit) {
+  public ClassicTime(long value, @NonNull TimeUnit unit) {
     this.value = value;
     this.unit = unit;
   }
 
   /**
-   * Get the value of this time instance
-   *
-   * @return the value of this time instance
-   */
-  public long getValue() {
-    return this.value;
-  }
-
-  /**
-   * Get the unit of this time instance
-   *
-   * @return the unit of this time instance
-   */
-  @NotNull
-  public TimeUnit getUnit() {
-    return this.unit;
-  }
-
-  /**
-   * Get this time instance in millis. Converted using {@link TimeUnit#toMillis(long)} given the
-   * {@link #value}
-   *
-   * @return the classic time given in millis
-   */
-  public long millis() {
-    return this.unit.toMillis(this.value);
-  }
-
-  /**
    * Get the time as {@link Time}. It will be converted using {@link Time#fromMillis(long)} and the
-   * millis will be given by {@link #millis()}
+   * millis will be given by {@link Time#millis()}
    *
    * @return this instance a core type of time
    */
-  @NotNull
+  @NonNull
+  @Delegate
   public Time toTime() {
     return Time.fromMillis(this.millis());
   }
 
   @Override
   public String toString() {
-    return this.value + " " + unit.toString().toLowerCase();
+    return this.value + " " + this.unit.toString().toLowerCase();
   }
 }

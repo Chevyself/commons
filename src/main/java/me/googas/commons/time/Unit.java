@@ -1,7 +1,7 @@
 package me.googas.commons.time;
 
 import java.util.concurrent.TimeUnit;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 /** Represents a time unit */
 public enum Unit {
@@ -25,11 +25,11 @@ public enum Unit {
   YEARS("y", "years", true, 31557600000L);
 
   /** The unit represented by a single letter/character */
-  @NotNull private final String simple;
+  @NonNull private final String simple;
   /** The unit as a full name */
-  @NotNull private final String complete;
+  @NonNull private final String complete;
   /** Whether it can be obtained from a {@link Unit#fromMillis(long)} query */
-  @NotNull private final boolean millisObtainable;
+  @NonNull private final boolean millisObtainable;
   /** The unit in millis */
   private final long millis;
 
@@ -42,7 +42,7 @@ public enum Unit {
    * @param millisObtainable Whether it can be obtained from a {@link Unit#fromMillis(long)} query
    * @param millis the unit milliseconds
    */
-  Unit(@NotNull String simple, @NotNull String complete, boolean millisObtainable, long millis) {
+  Unit(@NonNull String simple, @NonNull String complete, boolean millisObtainable, long millis) {
     this.simple = simple;
     this.complete = complete;
     this.millisObtainable = millisObtainable;
@@ -56,7 +56,7 @@ public enum Unit {
    * @return the matched string
    * @throws IllegalArgumentException if the string did not match an unit.
    */
-  @NotNull
+  @NonNull
   private static Unit fromString(final String string) {
     for (Unit unit : Unit.values()) {
       if (unit.simple.equalsIgnoreCase(string) || unit.complete.equalsIgnoreCase(string)) {
@@ -93,8 +93,8 @@ public enum Unit {
     if (millis < 0) {
       throw new IllegalArgumentException("Time cannot be negative");
     } else {
-      Unit unit = MILLISECONDS;
-      for (Unit value : values()) {
+      Unit unit = Unit.MILLISECONDS;
+      for (Unit value : Unit.values()) {
         if (value.millis <= millis && value.isMillisObtainable()) {
           unit = value;
         }
@@ -110,8 +110,8 @@ public enum Unit {
    * @param unit the java unit to get this type of unit from
    * @return the unit that matches the milliseconds given by the java unit
    */
-  public static Unit fromTimeUnit(@NotNull TimeUnit unit) {
-    return fromMillis(unit.toMillis(1));
+  public static Unit fromTimeUnit(@NonNull TimeUnit unit) {
+    return Unit.fromMillis(unit.toMillis(1));
   }
 
   /**
@@ -120,7 +120,7 @@ public enum Unit {
    * @return true if it can be obtained from milliseconds
    */
   public boolean isMillisObtainable() {
-    return millisObtainable;
+    return this.millisObtainable;
   }
 
   /**
@@ -164,7 +164,7 @@ public enum Unit {
    *
    * @return the {@link #simple} of the unit
    */
-  @NotNull
+  @NonNull
   public String getSimple() {
     return this.simple;
   }
@@ -174,7 +174,7 @@ public enum Unit {
    *
    * @return the {@link #complete} of the unit
    */
-  @NotNull
+  @NonNull
   public String getComplete() {
     return this.complete;
   }

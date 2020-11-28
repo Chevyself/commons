@@ -1,8 +1,8 @@
 package me.googas.commons.math.geometry.modifier;
 
 import java.util.Collection;
+import lombok.NonNull;
 import me.googas.commons.math.geometry.Shape;
-import org.jetbrains.annotations.NotNull;
 
 /** Shapes can have different modifications which introduce a bunch of new usages */
 public interface Modifier extends Shape {
@@ -12,6 +12,6 @@ public interface Modifier extends Shape {
    *
    * @return the collection of shapes
    */
-  @NotNull
+  @NonNull
   Collection<Shape> getShapes();
 }

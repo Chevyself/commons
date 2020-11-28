@@ -11,7 +11,6 @@ import java.lang.reflect.Type;
 import me.googas.commons.time.ClassicTime;
 import me.googas.commons.time.Time;
 
-/** The adapter for classic time */
 public class ClassicTimeAdapter
     implements JsonSerializer<ClassicTime>, JsonDeserializer<ClassicTime> {
 

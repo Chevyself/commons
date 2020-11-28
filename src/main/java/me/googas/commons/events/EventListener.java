@@ -1,7 +1,8 @@
 package me.googas.commons.events;
 
 import java.lang.reflect.Method;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
+import me.googas.commons.builder.ToStringBuilder;
 
 /**
  * This class represents each method that is listening to an event. {@link #listener} is the object
@@ -11,13 +12,13 @@ import org.jetbrains.annotations.NotNull;
 public class EventListener {
 
   /** The object to invoke the method */
-  @NotNull private final Object listener;
+  @NonNull private final Object listener;
 
   /** The method that is listing for the method to be invoked */
-  @NotNull private final Method method;
+  @NonNull private final Method method;
 
   /** The event parameter that is used to invoke the method */
-  @NotNull private final Class<? extends Event> event;
+  @NonNull private final Class<? extends Event> event;
 
   /** The priority for the event to be called in the listener */
   private final int priority;
@@ -32,9 +33,9 @@ public class EventListener {
    * @param priority the priority for the event to be called in the listener
    */
   public EventListener(
-      @NotNull Object listener,
-      @NotNull Method method,
-      @NotNull Class<? extends Event> event,
+      @NonNull Object listener,
+      @NonNull Method method,
+      @NonNull Class<? extends Event> event,
       int priority) {
     this.listener = listener;
     this.method = method;
@@ -47,7 +48,7 @@ public class EventListener {
    *
    * @return the object to invoke the method
    */
-  @NotNull
+  @NonNull
   public Object getListener() {
     return this.listener;
   }
@@ -57,7 +58,7 @@ public class EventListener {
    *
    * @return the method that is listening to the event
    */
-  @NotNull
+  @NonNull
   public Method getMethod() {
     return this.method;
   }
@@ -67,7 +68,7 @@ public class EventListener {
    *
    * @return the event that is being listening to by the method
    */
-  @NotNull
+  @NonNull
   public Class<? extends Event> getEvent() {
     return this.event;
   }
@@ -83,15 +84,11 @@ public class EventListener {
 
   @Override
   public String toString() {
-    return "EventListener{"
-        + "listener="
-        + this.listener
-        + ", method="
-        + this.method
-        + ", event="
-        + this.event
-        + ", priority="
-        + this.priority
-        + '}';
+    return new ToStringBuilder(this)
+        .append("listener", this.listener)
+        .append("method", this.method)
+        .append("event", this.event)
+        .append("priority", this.priority)
+        .build();
   }
 }

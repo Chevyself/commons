@@ -10,14 +10,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import lombok.NonNull;
 
 /** Core utilities for files */
 public class CoreFiles {
 
   /** The class loader of this class to be used to load resources */
-  @NotNull private static final ClassLoader LOADER = CoreFiles.class.getClassLoader();
+  @NonNull private static final ClassLoader LOADER = CoreFiles.class.getClassLoader();
 
   /**
    * Get a file from a directory
@@ -26,8 +25,7 @@ public class CoreFiles {
    * @param fileName the name of the file
    * @return the file
    */
-  @Nullable
-  public static File getFile(@Nullable String parent, @NotNull String fileName) {
+  public static File getFile(String parent, @NonNull String fileName) {
     File file = new FileNameValidator(parent, fileName).getFile();
     if (file.exists()) {
       return file;
@@ -42,8 +40,7 @@ public class CoreFiles {
    * @param fileName the path to the file
    * @return the file if found else null
    */
-  @Nullable
-  public static File getFile(@NotNull String fileName) {
+  public static File getFile(@NonNull String fileName) {
     return CoreFiles.getFile(null, fileName);
   }
 
@@ -55,9 +52,8 @@ public class CoreFiles {
    * @return the file
    * @throws IOException if the directory or the file could not be created
    */
-  @NotNull
-  public static File getOrCreate(@Nullable String parent, @NotNull String fileName)
-      throws IOException {
+  @NonNull
+  public static File getOrCreate(String parent, @NonNull String fileName) throws IOException {
     FileNameValidator validator = new FileNameValidator(parent, fileName);
     File file = validator.getFile();
     File directory = validator.getDirectory();
@@ -85,8 +81,8 @@ public class CoreFiles {
    * @return the file
    * @throws IOException if the resource could not be copied
    */
-  @NotNull
-  public static File copyResource(@NotNull File file, @NotNull InputStream stream)
+  @NonNull
+  public static File copyResource(@NonNull File file, @NonNull InputStream stream)
       throws IOException {
     Files.copy(stream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
     return file;
@@ -100,7 +96,7 @@ public class CoreFiles {
    * @return the file
    * @throws IOException if the file could not be created/copied
    */
-  public static File copyResource(@NotNull File file, @NotNull String resourceName)
+  public static File copyResource(@NonNull File file, @NonNull String resourceName)
       throws IOException {
     return CoreFiles.copyResource(file, CoreFiles.getResource(resourceName));
   }
@@ -111,8 +107,8 @@ public class CoreFiles {
    * @param name the name of the resource
    * @return the resource as input stream
    */
-  @NotNull
-  public static InputStream getResource(@NotNull String name) {
+  @NonNull
+  public static InputStream getResource(@NonNull String name) {
     return Validate.notNull(
         CoreFiles.LOADER.getResourceAsStream(name), "Resource " + name + " was not found!");
   }
@@ -126,10 +122,9 @@ public class CoreFiles {
    * @return the file
    * @throws IOException if the file could not be created/copied in case that it is needed
    */
-  @NotNull
+  @NonNull
   public static File getFileOrResource(
-      @Nullable String parent, @NotNull String fileName, @NotNull InputStream resource)
-      throws IOException {
+      String parent, @NonNull String fileName, @NonNull InputStream resource) throws IOException {
     File file = CoreFiles.getFile(parent, fileName);
     if (file == null || !file.exists()) {
       file = CoreFiles.getOrCreate(parent, fileName);
@@ -146,8 +141,8 @@ public class CoreFiles {
    * @return the file
    * @throws IOException if the file could not be created/copied in case that it is needed
    */
-  @NotNull
-  public static File getFileOrResource(@NotNull String fileName, @NotNull InputStream resource)
+  @NonNull
+  public static File getFileOrResource(@NonNull String fileName, @NonNull InputStream resource)
       throws IOException {
     return CoreFiles.getFileOrResource(null, fileName, resource);
   }
@@ -160,9 +155,8 @@ public class CoreFiles {
    * @return the file
    * @throws IOException if the file could not be created/copied in case that it is needed
    */
-  @NotNull
-  public static File getFileOrResource(@Nullable String parent, @NotNull String fileName)
-      throws IOException {
+  @NonNull
+  public static File getFileOrResource(String parent, @NonNull String fileName) throws IOException {
     File file = CoreFiles.getFile(parent, fileName);
     if (file == null || !file.exists()) {
       file = CoreFiles.getOrCreate(parent, fileName);
@@ -178,8 +172,8 @@ public class CoreFiles {
    * @return the file
    * @throws IOException if the file could not be created/copied in case that it is needed
    */
-  @NotNull
-  public static File getFileOrResource(@NotNull String fileName) throws IOException {
+  @NonNull
+  public static File getFileOrResource(@NonNull String fileName) throws IOException {
     return CoreFiles.getFileOrResource(null, fileName, CoreFiles.getResource(fileName));
   }
 
@@ -190,8 +184,8 @@ public class CoreFiles {
    * @return the file
    * @throws IOException if the file could not be created
    */
-  @NotNull
-  public static File getOrCreate(@NotNull String fileName) throws IOException {
+  @NonNull
+  public static File getOrCreate(@NonNull String fileName) throws IOException {
     return CoreFiles.getOrCreate(null, fileName);
   }
 
@@ -200,7 +194,7 @@ public class CoreFiles {
    *
    * @return the directory
    */
-  @NotNull
+  @NonNull
   public static String currentDirectory() {
     return System.getProperty("user.dir");
   }
@@ -211,8 +205,8 @@ public class CoreFiles {
    * @param path the path to validate
    * @return the validated path
    */
-  @NotNull
-  public static String validatePath(@NotNull String path) {
+  @NonNull
+  public static String validatePath(@NonNull String path) {
     return path.replace("/", File.separator);
   }
 
@@ -223,8 +217,8 @@ public class CoreFiles {
    * @return the file reader
    * @throws FileNotFoundException if the file is not found
    */
-  @NotNull
-  public static FileReader getReader(@NotNull File file) throws FileNotFoundException {
+  @NonNull
+  public static FileReader getReader(@NonNull File file) throws FileNotFoundException {
     return new FileReader(file);
   }
 
@@ -235,8 +229,8 @@ public class CoreFiles {
    * @return the directory
    * @throws IOException if the directory cannot be created
    */
-  @NotNull
-  public static File directoryOrCreate(@NotNull String parent) throws IOException {
+  @NonNull
+  public static File directoryOrCreate(@NonNull String parent) throws IOException {
     File file = new File(CoreFiles.validatePath(parent));
     if (!file.exists()) {
       if (CoreFiles.createDirectories(file)) {
@@ -259,7 +253,7 @@ public class CoreFiles {
    * @param destination the destination directory
    * @throws IOException if the destination directory could not be created
    */
-  public static void copyDirectory(@NotNull File source, @NotNull File destination)
+  public static void copyDirectory(@NonNull File source, @NonNull File destination)
       throws IOException {
     String[] list = source.list();
     if (source.isDirectory() && list != null) {
@@ -285,7 +279,7 @@ public class CoreFiles {
    * @param destination the destination file
    * @throws IOException if the files do not exist
    */
-  public static void copyFile(@NotNull File source, @NotNull File destination) throws IOException {
+  public static void copyFile(@NonNull File source, @NonNull File destination) throws IOException {
     try (InputStream input = new FileInputStream(source);
         OutputStream output = new FileOutputStream(destination)) {
       byte[] buffer = new byte[1024];
@@ -302,7 +296,7 @@ public class CoreFiles {
    * @param file the file that needs the parent
    * @return true if the parents were created
    */
-  public static boolean createFileParents(@NotNull File file) {
+  public static boolean createFileParents(@NonNull File file) {
     return CoreFiles.createDirectories(file.getParentFile());
   }
 
@@ -312,7 +306,7 @@ public class CoreFiles {
    * @param directory the directory that needs its parents
    * @return true if the directories were created
    */
-  public static boolean createDirectories(@NotNull File directory) {
+  public static boolean createDirectories(@NonNull File directory) {
     File toCreate = directory;
     while (!toCreate.exists()) {
       if (toCreate.getParentFile() != null && !toCreate.getParentFile().exists()) {
@@ -332,9 +326,9 @@ public class CoreFiles {
   private static class FileNameValidator {
 
     /** The file */
-    @NotNull private final File file;
+    @NonNull private final File file;
     /** The directory of the file */
-    @Nullable private File directory;
+    private File directory;
 
     /**
      * Starts the validation
@@ -342,7 +336,7 @@ public class CoreFiles {
      * @param parent the directory of the file
      * @param fileName the file
      */
-    public FileNameValidator(@Nullable String parent, @NotNull String fileName) {
+    public FileNameValidator(String parent, @NonNull String fileName) {
       fileName = CoreFiles.validatePath(fileName);
       this.file =
           parent == null ? new File(fileName) : new File(CoreFiles.validatePath(parent), fileName);
@@ -354,7 +348,7 @@ public class CoreFiles {
      *
      * @return the file
      */
-    @NotNull
+    @NonNull
     public File getFile() {
       return this.file;
     }
@@ -364,7 +358,6 @@ public class CoreFiles {
      *
      * @return the directory
      */
-    @Nullable
     public File getDirectory() {
       return this.directory;
     }
