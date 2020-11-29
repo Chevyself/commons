@@ -1,6 +1,7 @@
 package me.googas.commons.events;
 
 import java.lang.reflect.Method;
+import lombok.Getter;
 import lombok.NonNull;
 import me.googas.commons.builder.ToStringBuilder;
 
@@ -12,16 +13,16 @@ import me.googas.commons.builder.ToStringBuilder;
 public class EventListener {
 
   /** The object to invoke the method */
-  @NonNull private final Object listener;
+  @NonNull @Getter private final Object listener;
 
   /** The method that is listing for the method to be invoked */
-  @NonNull private final Method method;
+  @NonNull @Getter private final Method method;
 
   /** The event parameter that is used to invoke the method */
-  @NonNull private final Class<? extends Event> event;
+  @NonNull @Getter private final Class<? extends Event> event;
 
   /** The priority for the event to be called in the listener */
-  private final int priority;
+  @Getter private final int priority;
 
   /**
    * Create an event listener instance which can be used inside the {@link ListenerManager} to be
@@ -41,45 +42,6 @@ public class EventListener {
     this.method = method;
     this.event = event;
     this.priority = priority;
-  }
-
-  /**
-   * Get the object to invoke the method
-   *
-   * @return the object to invoke the method
-   */
-  @NonNull
-  public Object getListener() {
-    return this.listener;
-  }
-
-  /**
-   * Get the method that is listening to the event
-   *
-   * @return the method that is listening to the event
-   */
-  @NonNull
-  public Method getMethod() {
-    return this.method;
-  }
-
-  /**
-   * Get the event that is being listening to by the method
-   *
-   * @return the event that is being listening to by the method
-   */
-  @NonNull
-  public Class<? extends Event> getEvent() {
-    return this.event;
-  }
-
-  /**
-   * Get the priority that the method is listening to
-   *
-   * @return the priority in which the event will be called for this listener
-   */
-  public int getPriority() {
-    return this.priority;
   }
 
   @Override

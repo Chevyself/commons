@@ -1,6 +1,8 @@
 package me.googas.commons.math.geometry;
 
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 import me.googas.commons.math.MathUtils;
 
 /**
@@ -10,11 +12,11 @@ import me.googas.commons.math.MathUtils;
 public class Point {
 
   /** The x position of the point */
-  private double x;
+  @Getter @Setter private double x;
   /** The y position of the point */
-  private double y;
+  @Getter @Setter private double y;
   /** The z position of the point */
-  private double z;
+  @Getter @Setter private double z;
 
   /**
    * Create the point
@@ -115,33 +117,6 @@ public class Point {
   }
 
   /**
-   * Set the position x
-   *
-   * @param x the new position x
-   */
-  public void setX(double x) {
-    this.x = x;
-  }
-
-  /**
-   * Set the position y
-   *
-   * @param y the new position y
-   */
-  public void setY(double y) {
-    this.y = y;
-  }
-
-  /**
-   * Set the position z
-   *
-   * @param z the new position z
-   */
-  public void setZ(double z) {
-    this.z = z;
-  }
-
-  /**
    * Get the dot component with another point. The dot component is each component multiplied and
    * then summed
    *
@@ -152,38 +127,11 @@ public class Point {
     return (this.x * point.getX()) + (this.y * point.getY()) + (this.z * point.getZ());
   }
 
-  /**
-   * Get the position x
-   *
-   * @return the position x
-   */
-  public double getX() {
-    return this.x;
-  }
-
-  /**
-   * Get the position y
-   *
-   * @return the position y
-   */
-  public double getY() {
-    return this.y;
-  }
-
   /** Floors the {@link #x}, {@link #y} and {@link #z} values. */
   public void floor() {
     this.x = Math.floor(this.x);
     this.y = Math.floor(this.y);
     this.z = Math.floor(this.z);
-  }
-
-  /**
-   * Get the position z
-   *
-   * @return the position z
-   */
-  public double getZ() {
-    return this.z;
   }
 
   /**

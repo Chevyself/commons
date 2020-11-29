@@ -46,31 +46,16 @@ public class Intersect implements Modifier {
     return points;
   }
 
-  /**
-   * Get the minimum point of the shape
-   *
-   * @return the minimum point of the shape
-   */
   @Override
   public @NonNull Point getMinimum() {
     return this.getPointsInside().getMinimum();
   }
 
-  /**
-   * Get the maximum point of the shape
-   *
-   * @return the maximum point of the shape
-   */
   @Override
   public @NonNull Point getMaximum() {
     return this.getPointsInside().getMaximum();
   }
 
-  /**
-   * Get the volume of the shape
-   *
-   * @return the volume of the shape
-   */
   @Override
   public double getVolume() {
     return 0;

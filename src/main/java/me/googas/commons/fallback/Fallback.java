@@ -18,6 +18,21 @@ public interface Fallback {
   }
 
   /**
+   * Make the fallback process an exception
+   *
+   * @param exception the throwable/exception to handle
+   */
+  void process(Throwable exception);
+
+  /**
+   * Make the fallback process an exception and a message
+   *
+   * @param exception the throwable/exception to handle
+   * @param message the message to save in the fallback
+   */
+  void process(Throwable exception, String message);
+
+  /**
    * Get the complete list of errors contained inside this fallback
    *
    * @return the list of errors

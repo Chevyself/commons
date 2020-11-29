@@ -39,13 +39,11 @@ public class Time {
    *     unit cannot be parsed
    */
   public static Time fromString(final String string) {
-    if (string != null && !string.isEmpty()) {
-      final long value = Long.parseLong(string.substring(0, string.length() - 1));
-      final Unit unit = Unit.fromChar(string.charAt(string.length() - 1));
-      return new Time(value, unit);
-    } else {
+    if (string == null || string.isEmpty())
       throw new IllegalArgumentException("Cannot get time from a null string");
-    }
+    final long value = Long.parseLong(string.substring(0, string.length() - 1));
+    final Unit unit = Unit.fromChar(string.charAt(string.length() - 1));
+    return new Time(value, unit);
   }
 
   /**
@@ -77,17 +75,6 @@ public class Time {
    */
   public Time getAs(@NonNull final Unit unit) {
     return new Time(this.millis() / unit.millis(), unit);
-  }
-
-  /**
-   * For minecraft purposes this will change the time into minecraft ticks. Deprecated use {@link
-   * #getAs(Unit)} and give the unit as {@link Unit#MINECRAFT_TICKS}
-   *
-   * @return the time in ticks
-   */
-  @Deprecated
-  public long ticks() {
-    return (this.millis() * 20) / 1000;
   }
 
   /**
@@ -168,8 +155,6 @@ public class Time {
    * Get an effective string and readable string of time.
    *
    * <p>This means that if there is "60 seconds" the effective string will be "1 minute"
-   *
-   * <p>TODO some whay of localization for this class
    *
    * @return the effective string for this time
    */

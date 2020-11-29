@@ -1,10 +1,11 @@
 package me.googas.commons.math.geometry;
 
-import java.util.HashSet;
-import java.util.Set;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 import me.googas.commons.RandomUtils;
 import me.googas.commons.math.MathUtils;
+import me.googas.commons.math.Shapes;
 import me.googas.commons.math.geometry.containers.Points;
 
 /** A sphere */
@@ -12,9 +13,9 @@ public class Sphere implements Shape {
 
   private final String id;
   /** The center of the sphere */
-  @NonNull private Point center;
+  @NonNull @Getter @Setter private Point center;
   /** The radius of the sphere */
-  private double radius;
+  @Getter @Setter private double radius;
 
   /**
    * Create the sphere
@@ -27,43 +28,6 @@ public class Sphere implements Shape {
     this.id = id;
     this.center = center;
     this.radius = radius;
-  }
-
-  /**
-   * Set the center of the sphere
-   *
-   * @param center the new center of the sphere
-   */
-  public void setCenter(@NonNull Point center) {
-    this.center = center;
-  }
-
-  /**
-   * Set the radius of the sphere
-   *
-   * @param radius the new radius of the sphere
-   */
-  public void setRadius(double radius) {
-    this.radius = radius;
-  }
-
-  /**
-   * Get the center of the sphere
-   *
-   * @return the center of the sphere
-   */
-  @NonNull
-  public Point getCenter() {
-    return this.center;
-  }
-
-  /**
-   * Get the radius of the sphere
-   *
-   * @return the radius of the sphere
-   */
-  public double getRadius() {
-    return this.radius;
   }
 
   @Override
@@ -86,14 +50,7 @@ public class Sphere implements Shape {
 
   @Override
   public @NonNull Points getPointsInside() {
-    Set<Point> set = new HashSet<>();
-    for (Point point :
-        new Box(this.getMinimum(), this.getMaximum(), null).getPointsInside().getPoints()) {
-      if (this.contains(point)) {
-        set.add(point);
-      }
-    }
-    return new Points(set);
+    return Shapes.getPoints(this, this.getMinimum(), this.getMaximum());
   }
 
   @Override

@@ -8,8 +8,9 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import lombok.Getter;
 import lombok.NonNull;
-import me.googas.commons.fallback.GoogasFallback;
+import me.googas.commons.Validate;
 
 /**
  * Manages calling to events and selecting the respective listeners for the event. Listener are
@@ -19,7 +20,7 @@ import me.googas.commons.fallback.GoogasFallback;
 public class ListenerManager {
 
   /** The listeners registered in the manager */
-  @NonNull private final Collection<EventListener> listeners = new HashSet<>();
+  @NonNull @Getter private final Collection<EventListener> listeners = new HashSet<>();
 
   /**
    * Register the listeners from the object.
@@ -68,8 +69,7 @@ public class ListenerManager {
   }
 
   /**
-   * Get all the listeners for certain event. The list will be organized by the {@link
-   * EventListener#getPriority()}
+   * Get all the listeners for certain event. The list will be organized by the listener priority
    *
    * @param clazz the clazz of the event to get all the listeners
    * @return a list of listeners for the event
@@ -105,8 +105,8 @@ public class ListenerManager {
       try {
         listener.getMethod().invoke(listener.getListener(), event);
       } catch (IllegalAccessException | InvocationTargetException e) {
-        GoogasFallback.addError("Listener method could not be invoked in " + listener);
-        e.printStackTrace();
+        Validate.getFallback()
+            .process(e, listener + " listener of " + event + " could not be invoked");
       }
     }
   }
@@ -119,11 +119,9 @@ public class ListenerManager {
    * @throws IllegalArgumentException cancellable is not an instance of {@link Event}
    */
   public boolean call(@NonNull Cancellable cancellable) {
-    if (cancellable instanceof Event) {
-      this.call((Event) cancellable);
-      return cancellable.isCancelled();
-    } else {
+    if (!(cancellable instanceof Event))
       throw new IllegalArgumentException(cancellable + " must extend " + Event.class);
-    }
+    this.call((Event) cancellable);
+    return cancellable.isCancelled();
   }
 }

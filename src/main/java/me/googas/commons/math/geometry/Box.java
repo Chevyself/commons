@@ -3,6 +3,7 @@ package me.googas.commons.math.geometry;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.NonNull;
+import lombok.Setter;
 import me.googas.commons.RandomUtils;
 import me.googas.commons.math.geometry.containers.Points;
 
@@ -11,9 +12,9 @@ public class Box implements Shape {
 
   private final String id;
   /** The minimum position of the cube */
-  @NonNull private Point minimum;
+  @NonNull @Setter private Point minimum;
   /** The maximum position of the cube */
-  @NonNull private Point maximum;
+  @NonNull @Setter private Point maximum;
 
   /**
    * Create the box
@@ -34,24 +35,6 @@ public class Box implements Shape {
             Math.max(minimum.getY(), maximum.getY()),
             Math.max(minimum.getZ(), maximum.getZ()));
     this.id = id;
-  }
-
-  /**
-   * Set the minimum position
-   *
-   * @param minimum the new minimum position
-   */
-  public void setMinimum(@NonNull Point minimum) {
-    this.minimum = minimum;
-  }
-
-  /**
-   * Set the maximum position
-   *
-   * @param maximum the maximum position
-   */
-  public void setMaximum(@NonNull Point maximum) {
-    this.maximum = maximum;
   }
 
   /**

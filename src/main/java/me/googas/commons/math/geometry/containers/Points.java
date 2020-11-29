@@ -28,7 +28,7 @@ public class Points {
    * @return true if at least one point was added
    */
   public boolean addAll(@NonNull Points points) {
-    return this.addAll(points);
+    return this.points.addAll(points.getPoints());
   }
 
   /**

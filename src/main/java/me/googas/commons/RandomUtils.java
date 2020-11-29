@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+import lombok.Getter;
 import lombok.NonNull;
 
 /** Static utilities for randomization */
 public class RandomUtils {
 
   /** The java Random instance */
-  @NonNull private static final Random random = new Random();
+  @NonNull @Getter private static final Random random = new Random();
   /** Upper case letters. Used for random strings */
   @NonNull private static final String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   /** Lower case letters. Used for random strings */
@@ -155,15 +156,5 @@ public class RandomUtils {
       if (!list.contains(random)) list.add(random);
     }
     return list;
-  }
-
-  /**
-   * Get the {@link Random} object used for the generation of randomness for this utility
-   *
-   * @return the object
-   */
-  @NonNull
-  public static Random getRandom() {
-    return RandomUtils.random;
   }
 }

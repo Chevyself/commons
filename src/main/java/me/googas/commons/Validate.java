@@ -3,6 +3,7 @@ package me.googas.commons;
 import java.util.function.Supplier;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 import me.googas.commons.fallback.Fallback;
 import me.googas.commons.fallback.SimpleFallback;
 
@@ -10,7 +11,7 @@ import me.googas.commons.fallback.SimpleFallback;
 public class Validate {
 
   /** This contains a simple fallback used to store the errors given */
-  @NonNull @Getter private static final Fallback fallback = new SimpleFallback();
+  @NonNull @Getter @Setter private static Fallback fallback = new SimpleFallback();
 
   /**
    * Validate that a boolean is true else throw an exception

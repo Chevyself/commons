@@ -1,10 +1,11 @@
 package me.googas.commons.math.geometry;
 
-import java.util.HashSet;
-import java.util.Set;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 import me.googas.commons.RandomUtils;
 import me.googas.commons.math.MathUtils;
+import me.googas.commons.math.Shapes;
 import me.googas.commons.math.geometry.containers.Points;
 
 /** A cylinder */
@@ -13,11 +14,11 @@ public class Cylinder implements Shape {
   private final String id;
 
   /** The base of the cylinder */
-  @NonNull private Point base;
+  @NonNull @Getter @Setter private Point base;
   /** The radius of the cylinder */
-  private double radius;
+  @Getter @Setter private double radius;
   /** The height of the cylinder */
-  private double height;
+  @Getter @Setter private double height;
 
   /**
    * Create a cylinder
@@ -35,61 +36,6 @@ public class Cylinder implements Shape {
   }
 
   /**
-   * Set the base of the cylinder
-   *
-   * @param base the new base
-   */
-  public void setBase(@NonNull Point base) {
-    this.base = base;
-  }
-
-  /**
-   * Set the radius of the cylinder
-   *
-   * @param radius the new radius
-   */
-  public void setRadius(double radius) {
-    this.radius = radius;
-  }
-
-  /**
-   * Set the height of the cylinder
-   *
-   * @param height the new height
-   */
-  public void setHeight(double height) {
-    this.height = height;
-  }
-
-  /**
-   * Get the base of the cylinder
-   *
-   * @return the base of the cylinder
-   */
-  @NonNull
-  public Point getBase() {
-    return this.base;
-  }
-
-  /**
-   * Get the radius of the cylinder
-   *
-   * @return the radius
-   */
-  public double getRadius() {
-    return this.radius;
-  }
-
-  /**
-   * Get the height of the cylinder
-   *
-   * @return the height of the cylinder
-   */
-  public double getHeight() {
-    return this.height;
-  }
-
-  /**
    * Get the height + the y coordinate of the base
    *
    * @return the total height
@@ -98,11 +44,6 @@ public class Cylinder implements Shape {
     return this.base.getY() + this.height;
   }
 
-  /**
-   * Get the minimum point of the cylinder
-   *
-   * @return the minimum point
-   */
   @NonNull
   @Override
   public Point getMinimum() {
@@ -110,11 +51,6 @@ public class Cylinder implements Shape {
         this.base.getX() - this.radius, this.base.getY(), this.base.getZ() - this.radius);
   }
 
-  /**
-   * Get the maximum point of the cylinder
-   *
-   * @return the maximum point
-   */
   @NonNull
   @Override
   public Point getMaximum() {
@@ -146,21 +82,9 @@ public class Cylinder implements Shape {
   @NonNull
   @Override
   public Points getPointsInside() {
-    Set<Point> set = new HashSet<>();
-    for (Point point :
-        new Box(this.getMinimum(), this.getMaximum(), null).getPointsInside().getPoints()) {
-      if (this.contains(point)) {
-        set.add(point);
-      }
-    }
-    return new Points(set);
+    return Shapes.getPoints(this, this.getMinimum(), this.getMaximum());
   }
 
-  /**
-   * Get a random point inside of the shape
-   *
-   * @return the random point
-   */
   @Override
   public @NonNull Point getRandomPoint() {
     double x =

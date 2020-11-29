@@ -3,6 +3,7 @@ package me.googas.commons.math.geometry.modifier;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.Getter;
 import lombok.NonNull;
 import me.googas.commons.math.geometry.Point;
 import me.googas.commons.math.geometry.Shape;
@@ -13,7 +14,7 @@ public class Complement implements Modifier {
 
   private final String id;
   /** The shape to complement */
-  @NonNull private final Shape shape;
+  @NonNull @Getter private final Shape shape;
   /** The shapes inside the union */
   @NonNull private final Set<Shape> shapes;
 

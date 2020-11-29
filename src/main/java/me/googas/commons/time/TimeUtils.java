@@ -58,7 +58,8 @@ public class TimeUtils {
    */
   @NonNull
   public static Time getTimeFromToday(@NonNull LocalDateTime date) {
-    return TimeUtils.getTimeDifference(date, TimeUtils.getLocalDateFromMillis(System.currentTimeMillis()));
+    return TimeUtils.getTimeDifference(
+        date, TimeUtils.getLocalDateFromMillis(System.currentTimeMillis()));
   }
 
   /**
@@ -69,7 +70,8 @@ public class TimeUtils {
    */
   @NonNull
   public static Time getTimeFromToday(@NonNull OffsetDateTime date) {
-    return TimeUtils.getTimeDifference(date, TimeUtils.getOffsetDateFromMillis(System.currentTimeMillis()));
+    return TimeUtils.getTimeDifference(
+        date, TimeUtils.getOffsetDateFromMillis(System.currentTimeMillis()));
   }
 
   /**
@@ -82,10 +84,9 @@ public class TimeUtils {
   @NonNull
   public static Time getTimeDifference(
       @NonNull LocalDateTime date, @NonNull LocalDateTime compare) {
-    long millis = TimeUtils.getMillisFromLocalDate(date) - TimeUtils.getMillisFromLocalDate(compare);
-    if (millis < 0) {
-      millis *= -1;
-    }
+    long millis =
+        TimeUtils.getMillisFromLocalDate(date) - TimeUtils.getMillisFromLocalDate(compare);
+    if (millis < 0) millis *= -1;
     return Time.fromMillis(millis);
   }
 
@@ -98,10 +99,9 @@ public class TimeUtils {
    */
   public static Time getTimeDifference(
       @NonNull OffsetDateTime date, @NonNull OffsetDateTime compare) {
-    long millis = TimeUtils.getMillisFromOffsetDate(date) - TimeUtils.getMillisFromOffsetDate(compare);
-    if (millis < 0) {
-      millis *= -1;
-    }
+    long millis =
+        TimeUtils.getMillisFromOffsetDate(date) - TimeUtils.getMillisFromOffsetDate(compare);
+    if (millis < 0) millis *= -1;
     return Time.fromMillis(millis);
   }
 }

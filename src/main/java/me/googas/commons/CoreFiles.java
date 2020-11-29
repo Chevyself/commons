@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import lombok.Getter;
 import lombok.NonNull;
 
 /** Core utilities for files */
@@ -27,11 +28,8 @@ public class CoreFiles {
    */
   public static File getFile(String parent, @NonNull String fileName) {
     File file = new FileNameValidator(parent, fileName).getFile();
-    if (file.exists()) {
-      return file;
-    } else {
-      return null;
-    }
+    if (file.exists()) return file;
+    return null;
   }
 
   /**
@@ -58,19 +56,12 @@ public class CoreFiles {
     File file = validator.getFile();
     File directory = validator.getDirectory();
     if (directory != null && !directory.exists()) {
-      if (!CoreFiles.createFileParents(file)) {
+      if (!CoreFiles.createFileParents(file))
         throw new IOException("Directory " + directory + " could not be created");
-      }
     }
-    if (file.exists()) {
-      return file;
-    } else {
-      if (file.createNewFile()) {
-        return file;
-      } else {
-        throw new IOException("The file " + file + " could not be created");
-      }
-    }
+    if (file.exists()) return file;
+    if (file.createNewFile()) return file;
+    throw new IOException("The file " + file + " could not be created");
   }
 
   /**
@@ -233,17 +224,11 @@ public class CoreFiles {
   public static File directoryOrCreate(@NonNull String parent) throws IOException {
     File file = new File(CoreFiles.validatePath(parent));
     if (!file.exists()) {
-      if (CoreFiles.createDirectories(file)) {
-        return file;
-      } else {
-        throw new IOException("Directory could not be created");
-      }
+      if (CoreFiles.createDirectories(file)) return file;
+      else throw new IOException("Directory could not be created");
     }
-    if (file.isDirectory()) {
-      return file;
-    } else {
-      throw new IOException("There's already a file with the name of the directory");
-    }
+    if (file.isDirectory()) return file;
+    throw new IOException("There's already a file with the name of the directory");
   }
 
   /**
@@ -257,11 +242,8 @@ public class CoreFiles {
       throws IOException {
     String[] list = source.list();
     if (source.isDirectory() && list != null) {
-      if (!destination.exists()) {
-        if (!destination.mkdir()) {
-          throw new IOException(destination + " could not be created");
-        }
-      }
+      if (!destination.exists() && !destination.mkdir())
+        throw new IOException(destination + " could not be created");
       for (String string : list) {
         File sourceFile = new File(source, string);
         File destinationFile = new File(destination, string);
@@ -326,9 +308,9 @@ public class CoreFiles {
   private static class FileNameValidator {
 
     /** The file */
-    @NonNull private final File file;
+    @NonNull @Getter private final File file;
     /** The directory of the file */
-    private File directory;
+    @Getter private final File directory;
 
     /**
      * Starts the validation
@@ -341,25 +323,6 @@ public class CoreFiles {
       this.file =
           parent == null ? new File(fileName) : new File(CoreFiles.validatePath(parent), fileName);
       this.directory = this.file.getParentFile();
-    }
-
-    /**
-     * Get the validated file
-     *
-     * @return the file
-     */
-    @NonNull
-    public File getFile() {
-      return this.file;
-    }
-
-    /**
-     * Get the directory of the file
-     *
-     * @return the directory
-     */
-    public File getDirectory() {
-      return this.directory;
     }
   }
 }

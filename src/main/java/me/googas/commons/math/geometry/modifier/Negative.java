@@ -31,43 +31,23 @@ public class Negative implements Modifier {
     return this.id;
   }
 
-  /**
-   * Get all the points inside the shape
-   *
-   * @return the points inside
-   */
   @Override
   public @NonNull Points getPointsInside() {
     return new Points(new HashSet<>());
   }
 
-  /**
-   * Get the minimum point of the shape
-   *
-   * @return the minimum point of the shape
-   */
   @Override
   public @NonNull Point getMinimum() {
     throw new UnsupportedOperationException(
         "There's infinite points. This operation would never end");
   }
 
-  /**
-   * Get the maximum point of the shape
-   *
-   * @return the maximum point of the shape
-   */
   @Override
   public @NonNull Point getMaximum() {
     throw new UnsupportedOperationException(
         "There's infinite points. This operation would never end");
   }
 
-  /**
-   * Get the volume of the shape
-   *
-   * @return the volume of the shape
-   */
   @Override
   public double getVolume() {
     return Double.MAX_VALUE;

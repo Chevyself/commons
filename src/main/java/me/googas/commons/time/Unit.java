@@ -90,17 +90,14 @@ public enum Unit {
    * @return the unit given by the millis
    */
   public static Unit fromMillis(long millis) {
-    if (millis < 0) {
-      throw new IllegalArgumentException("Time cannot be negative");
-    } else {
-      Unit unit = Unit.MILLISECONDS;
-      for (Unit value : Unit.values()) {
-        if (value.millis <= millis && value.isMillisObtainable()) {
-          unit = value;
-        }
+    if (millis < 0) throw new IllegalArgumentException("Time cannot be negative");
+    Unit unit = Unit.MILLISECONDS;
+    for (Unit value : Unit.values()) {
+      if (value.millis <= millis && value.isMillisObtainable()) {
+        unit = value;
       }
-      return unit;
     }
+    return unit;
   }
 
   /**
@@ -152,9 +149,7 @@ public enum Unit {
   public TimeUnit toTimeUnit() {
     TimeUnit result = TimeUnit.NANOSECONDS;
     for (TimeUnit value : TimeUnit.values()) {
-      if (value.toMillis(1) <= this.millis) {
-        result = value;
-      }
+      if (value.toMillis(1) <= this.millis) result = value;
     }
     return result;
   }
