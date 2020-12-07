@@ -7,7 +7,8 @@ import lombok.NonNull;
 
 /**
  * This object represents time in a simple fashion: a time {@link Unit} and a value that is given in
- * millis. As seen this uses a custom type of unit, to use {@link TimeUnit} see {@link ClassicTime}.
+ * toMillis. As seen this uses a custom type of unit, to use {@link TimeUnit} see {@link
+ * ClassicTime}.
  */
 public class Time {
 
@@ -47,10 +48,10 @@ public class Time {
   }
 
   /**
-   * Get a time instance using millis. It will create a new instance of time with <br>
-   * {@link Unit#MILLISECONDS} as the provided value is given in millis
+   * Get a time instance using toMillis. It will create a new instance of time with <br>
+   * {@link Unit#MILLISECONDS} as the provided value is given in toMillis
    *
-   * @param millis the millis that will be used as the value of time.
+   * @param millis the toMillis that will be used as the value of time.
    * @return the new time instance
    */
   public static Time fromMillis(long millis) {
@@ -78,11 +79,11 @@ public class Time {
   }
 
   /**
-   * Get this time in millis.
+   * Get this time in toMillis.
    *
    * <p>Basically multiply {@link #value} with the {@link Unit#millis()}
    *
-   * @return the time in millis as a long
+   * @return the time in toMillis as a long
    */
   public long millis() {
     return this.value * this.unit.millis();
@@ -130,22 +131,22 @@ public class Time {
   }
 
   /**
-   * Get the next date since today in millis. Calculated as follows
+   * Get the next date since today in toMillis. Calculated as follows
    *
    * <p>next date = {@link System#currentTimeMillis()} + {@link #millis()}
    *
-   * @return the next date in millis
+   * @return the next date in toMillis
    */
   private long nextDateMillis() {
     return System.currentTimeMillis() + this.millis();
   }
 
   /**
-   * Get the previous date since today in millis. Calculated as follows
+   * Get the previous date since today in toMillis. Calculated as follows
    *
    * <p>previous date = {@link System#currentTimeMillis()} - {@link #millis()}
    *
-   * @return the previous date in millis
+   * @return the previous date in toMillis
    */
   private long previousDateMillis() {
     return System.currentTimeMillis() - this.millis();

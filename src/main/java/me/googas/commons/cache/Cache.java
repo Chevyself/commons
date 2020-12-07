@@ -218,8 +218,8 @@ public interface Cache extends Runnable {
   }
 
   /**
-   * This map contains the reference to the cache object and the time in millis for the object to be
-   * removed
+   * This map contains the reference to the cache object and the time in toMillis for the object to
+   * be removed
    *
    * @return the map with the reference and time of the objects
    */

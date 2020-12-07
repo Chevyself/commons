@@ -29,14 +29,24 @@ public class ClassicTime {
 
   /**
    * Get the time as {@link Time}. It will be converted using {@link Time#fromMillis(long)} and the
-   * millis will be given by {@link Time#millis()}
+   * toMillis will be given by {@link Time#millis()}
    *
    * @return this instance a core type of time
    */
   @NonNull
-  @Delegate
+  @Delegate(excludes = {Long.class})
   public Time toTime() {
-    return Time.fromMillis(this.millis());
+    return Time.fromMillis(this.toMillis());
+  }
+
+  /**
+   * Get this time instance in toMillis. Converted using {@link TimeUnit#toMillis(long)} given the
+   * {@link #value}
+   *
+   * @return the classic time given in toMillis
+   */
+  public long toMillis() {
+    return this.unit.toMillis(this.value);
   }
 
   @Override

@@ -10,9 +10,9 @@ import lombok.NonNull;
 public class TimeUtils {
 
   /**
-   * Get local date from millis.
+   * Get local date from toMillis.
    *
-   * @param millis the millis to get the date from
+   * @param millis the toMillis to get the date from
    * @return the date
    */
   @NonNull
@@ -21,9 +21,9 @@ public class TimeUtils {
   }
 
   /**
-   * Get the offset date from millis
+   * Get the offset date from toMillis
    *
-   * @param millis the millis to get the offset date
+   * @param millis the toMillis to get the offset date
    * @return the offset date
    */
   @NonNull
@@ -32,19 +32,19 @@ public class TimeUtils {
   }
 
   /**
-   * Get the millis from a local date
+   * Get the toMillis from a local date
    *
-   * @param date to get the millis from
-   * @return the millis
+   * @param date to get the toMillis from
+   * @return the toMillis
    */
   public static long getMillisFromLocalDate(@NonNull LocalDateTime date) {
     return date.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
   }
   /**
-   * Get the millis from a local date
+   * Get the toMillis from a local date
    *
-   * @param date to get the millis from
-   * @return the millis
+   * @param date to get the toMillis from
+   * @return the toMillis
    */
   public static long getMillisFromOffsetDate(@NonNull OffsetDateTime date) {
     return date.toInstant().toEpochMilli();

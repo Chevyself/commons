@@ -6,7 +6,7 @@ import lombok.NonNull;
 /** Represents a time unit */
 public enum Unit {
   /** The unit of milliseconds */
-  MILLISECONDS("l", "millis", true, 1),
+  MILLISECONDS("l", "toMillis", true, 1),
   /** The unit of Minecraft ticks */
   MINECRAFT_TICKS("t", "ticks", false, 50),
   /** The unit of seconds */
@@ -30,7 +30,7 @@ public enum Unit {
   @NonNull private final String complete;
   /** Whether it can be obtained from a {@link Unit#fromMillis(long)} query */
   @NonNull private final boolean millisObtainable;
-  /** The unit in millis */
+  /** The unit in toMillis */
   private final long millis;
 
   /**
@@ -87,7 +87,7 @@ public enum Unit {
    * <p>This method ignores the units with {@link #millisObtainable} as false.
    *
    * @param millis the milliseconds to get the unit from
-   * @return the unit given by the millis
+   * @return the unit given by the toMillis
    */
   public static Unit fromMillis(long millis) {
     if (millis < 0) throw new IllegalArgumentException("Time cannot be negative");
@@ -101,8 +101,8 @@ public enum Unit {
   }
 
   /**
-   * Get an unit using a {@link TimeUnit}. It will use the {@link #fromMillis(long)} and the millis
-   * used are given using {@link TimeUnit#toMillis(long)} using a duration of "1"
+   * Get an unit using a {@link TimeUnit}. It will use the {@link #fromMillis(long)} and the
+   * toMillis used are given using {@link TimeUnit#toMillis(long)} using a duration of "1"
    *
    * @param unit the java unit to get this type of unit from
    * @return the unit that matches the milliseconds given by the java unit
@@ -121,20 +121,20 @@ public enum Unit {
   }
 
   /**
-   * Get this unit millis
+   * Get this unit toMillis
    *
-   * @return this unit millis
+   * @return this unit toMillis
    */
   public long millis() {
     return this.millis;
   }
 
   /**
-   * Get this unit millis multiplied by the duration. Simple as it is this unit {@link #millis}
+   * Get this unit toMillis multiplied by the duration. Simple as it is this unit {@link #millis}
    * multiplied by the duration
    *
-   * @param duration to multiply this unit millis to
-   * @return the millis of the unit given the duration
+   * @param duration to multiply this unit toMillis to
+   * @return the toMillis of the unit given the duration
    */
   public long millis(long duration) {
     return this.millis * duration;
