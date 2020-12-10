@@ -78,6 +78,31 @@ public interface Scheduler {
   }
 
   /**
+   * Create a repetitive task
+   *
+   * @param initial the initial time until the task repeats
+   * @param period the period in which the task will repeat
+   * @param repetitive the repetitive task to run
+   * @return the repetitive task
+   */
+  @NonNull
+  Repetitive repeat(@NonNull Time initial, @NonNull Time period, @NonNull Repetitive repetitive);
+
+  /**
+   * Create a repetitive task
+   *
+   * @param initial the initial time until the task repeats
+   * @param period the period in which the task will repeat
+   * @param repetitive the repetitive task to run
+   * @return a simple repetitive task
+   */
+  @NonNull
+  default Repetitive repeat(
+      @NonNull Time initial, @NonNull Time period, @NonNull Runnable repetitive) {
+    return this.repeat(initial, period, new SimpleRepetitive(this.nextId(), repetitive));
+  }
+
+  /**
    * Get a new id for a task
    *
    * @return the new id

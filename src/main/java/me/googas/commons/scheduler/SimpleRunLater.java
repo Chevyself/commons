@@ -1,11 +1,14 @@
 package me.googas.commons.scheduler;
 
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 
 public class SimpleRunLater implements RunLater {
 
+  @Setter private long start = System.currentTimeMillis();
   private final int id;
-  @NonNull private final Runnable onEnd;
+  @NonNull @Setter @Getter private Runnable onEnd;
   private boolean cancelled;
 
   public SimpleRunLater(int id, @NonNull Runnable onEnd) {
@@ -33,5 +36,10 @@ public class SimpleRunLater implements RunLater {
   @Override
   public boolean isCancelled() {
     return this.cancelled;
+  }
+
+  @Override
+  public long startedAt() {
+    return this.start;
   }
 }

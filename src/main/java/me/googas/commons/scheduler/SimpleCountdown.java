@@ -9,6 +9,8 @@ import me.googas.commons.time.Unit;
 
 public class SimpleCountdown implements Countdown {
 
+  @Setter private long start = System.currentTimeMillis();
+  private long pause = 0;
   @NonNull private final int id;
   @NonNull @Getter @Setter private Time time;
   @Setter private long secondsLeft;
@@ -60,6 +62,7 @@ public class SimpleCountdown implements Countdown {
   public boolean pause() {
     if (this.cancelled || this.paused) return false;
     this.paused = true;
+    this.pause = System.currentTimeMillis();
     return true;
   }
 
@@ -71,6 +74,16 @@ public class SimpleCountdown implements Countdown {
   @Override
   public boolean isPaused() {
     return this.paused;
+  }
+
+  @Override
+  public long startedAt() {
+    return this.start;
+  }
+
+  @Override
+  public long lastPause() {
+    return this.pause;
   }
 
   @Override

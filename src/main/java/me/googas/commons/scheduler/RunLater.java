@@ -12,4 +12,9 @@ public interface RunLater extends Task {
   default boolean isPaused() {
     return false;
   }
+
+  @Override
+  default long lastPause() {
+    return 0;
+  }
 }

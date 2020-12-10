@@ -74,6 +74,27 @@ public class TimerScheduler implements Scheduler {
   }
 
   @Override
+  public @NonNull Repetitive repeat(
+      @NonNull Time initial, @NonNull Time period, @NonNull Repetitive repetitive) {
+    this.schedule(
+        new TimerTask() {
+          @Override
+          public void run() {
+            if (repetitive.isCancelled()) {
+              this.cancel();
+              TimerScheduler.this.tasks.remove(repetitive);
+              return;
+            }
+            repetitive.run();
+          }
+        },
+        initial.millis(),
+        period.millis());
+    this.tasks.add(repetitive);
+    return repetitive;
+  }
+
+  @Override
   public @NonNull Collection<Task> getTasks() {
     return this.tasks;
   }
