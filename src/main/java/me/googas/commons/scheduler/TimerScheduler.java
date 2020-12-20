@@ -36,22 +36,7 @@ public class TimerScheduler implements Scheduler {
   @Override
   @NonNull
   public Countdown countdown(@NonNull Time repetition, @NonNull Countdown countdown) {
-    this.schedule(
-        new TimerTask() {
-          @Override
-          public void run() {
-            if (countdown.isCancelled()) {
-              this.cancel();
-              TimerScheduler.this.tasks.remove(countdown);
-              return;
-            }
-            countdown.run();
-          }
-        },
-        repetition.millis(),
-        repetition.millis());
-    this.tasks.add(countdown);
-    return countdown;
+    return (Countdown) this.repeat(repetition, repetition, countdown);
   }
 
   @Override

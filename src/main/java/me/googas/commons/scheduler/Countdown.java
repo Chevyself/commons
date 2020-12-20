@@ -5,7 +5,7 @@ import me.googas.commons.time.Time;
 import me.googas.commons.time.Unit;
 
 /** This countdown is a task that repeats until it reaches 0 */
-public interface Countdown extends Task {
+public interface Countdown extends Repetitive {
 
   /**
    * Refreshes the time of the countdown this means sets the {@link #getMillisLeft()} ()} to {@link
