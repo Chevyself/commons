@@ -43,6 +43,21 @@ public class CoreFiles {
   }
 
   /**
+   * Deletes the given directory
+   *
+   * @param directory the directory to delete
+   */
+  public static void delete(@NonNull File directory) {
+    File[] files = directory.listFiles();
+    if (files != null) {
+      for (File file : files) {
+        CoreFiles.delete(file);
+      }
+    }
+    if (directory.exists()) directory.delete();
+  }
+
+  /**
    * Gets a file from a directory or creates it
    *
    * @param parent the directory of the file

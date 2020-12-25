@@ -11,7 +11,7 @@ public interface Catchable {
    *
    * @throws Throwable in case something goes wrong while unloading this object
    */
-  void onRemove() throws Throwable;
+  default void onRemove() throws Throwable {}
 
   /**
    * Get the time for the object to be removed from cache
