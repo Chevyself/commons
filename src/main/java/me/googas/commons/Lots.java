@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import lombok.NonNull;
+import me.googas.annotations.Nullable;
 
 /**
  * Static utilities for groups of objects such as {@link List}, {@link java.lang.reflect.Array} or
@@ -120,8 +121,24 @@ public class Lots {
    * @return a string given by the collection
    */
   @NonNull
-  public static <O> String pretty(Collection<O> collection) {
+  public static <O> String pretty(@NonNull Collection<O> collection) {
     return collection.toString().replace("[", "").replace("]", "");
+  }
+
+  @NonNull
+  public static <O> String pretty(@NonNull Collection<O> collection, @Nullable String empty) {
+    if (collection.isEmpty()) return empty == null ? "Empty" : empty;
+    StringBuilder builder = Strings.getBuilder();
+    boolean first = true;
+    for (O obj : collection) {
+      if (first) {
+        builder.append("- ").append(obj);
+        first = false;
+      } else {
+        builder.append("\n- ").append(obj);
+      }
+    }
+    return builder.toString();
   }
 
   /**

@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import me.googas.annotations.Nullable;
 import me.googas.commons.fallback.Fallback;
 import me.googas.commons.fallback.SimpleFallback;
 
@@ -48,7 +49,7 @@ public class Validate {
    * @throws NullPointerException if the object is null with the provided message if given one
    */
   @NonNull
-  public static <O> O notNull(O object, String message) {
+  public static <O> O notNull(@Nullable O object, String message) {
     return Validate.notNull(object, new NullPointerException(message));
   }
 
@@ -63,7 +64,8 @@ public class Validate {
    * @throws T the exception in the parameter if the object is null
    */
   @NonNull
-  public static <O, T extends Throwable> O notNull(O object, @NonNull T toThrow) throws T {
+  public static <O, T extends Throwable> O notNull(@Nullable O object, @NonNull T toThrow)
+      throws T {
     if (object != null) {
       return object;
     } else {
@@ -82,7 +84,7 @@ public class Validate {
    * @return the object if not null else the default object
    */
   @NonNull
-  public static <O> O notNullOr(O object, O def, String message) {
+  public static <O> O notNullOr(@Nullable O object, @NonNull O def, String message) {
     if (object != null) {
       return object;
     } else {
@@ -102,7 +104,7 @@ public class Validate {
    * @return the object if not null else the default object
    */
   @NonNull
-  public static <O> O notNullOr(O object, @NonNull O def) {
+  public static <O> O notNullOr(@Nullable O object, @NonNull O def) {
     return object == null ? def : object;
   }
 
@@ -112,9 +114,11 @@ public class Validate {
    * @param object the object to check that is not null
    * @param supplier the supplier to get the default object in case that the object to check is null
    * @param <O> the type of the object
-   * @return the object if not null else the default object
+   * @return the object if not null else the default object supplied this means that the supplier
+   *     could also return null
    */
-  public static <O> O notNullOrGet(O object, @NonNull Supplier<O> supplier) {
+  @Nullable
+  public static <O> O notNullOrGet(@Nullable O object, @NonNull Supplier<O> supplier) {
     if (object != null) {
       return object;
     } else {
