@@ -5,14 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.googas.commons</groupId>
-    <artifactId>Commons</artifactId>
+    <artifactId>commons</artifactId>
     <version>1.0.0_0</version>
     <description>Commons Utilities for Java</description>
+    <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub xChevy Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/xChevy/Commons/</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <plugins>
@@ -54,7 +63,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Shade plugin -->
+            <!-- Shade plugin
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -84,7 +93,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
 
@@ -105,5 +114,4 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
-
 </project>
