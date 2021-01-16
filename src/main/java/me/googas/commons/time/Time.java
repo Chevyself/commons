@@ -1,5 +1,6 @@
 package me.googas.commons.time;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.concurrent.TimeUnit;
@@ -273,6 +274,16 @@ public class Time {
   @NonNull
   public Unit getUnit() {
     return this.unit;
+  }
+
+  /**
+   * Get the time as duration
+   *
+   * @return the duration given from the millis of this time
+   */
+  @NonNull
+  public Duration toDuration() {
+    return Duration.ofMillis(this.millis());
   }
 
   @Override
