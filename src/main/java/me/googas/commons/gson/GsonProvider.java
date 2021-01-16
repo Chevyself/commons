@@ -13,6 +13,7 @@ import java.util.Set;
 import lombok.NonNull;
 
 /** Provides an static instance of Gson and static utilities for adapters and factories. */
+@Deprecated
 public class GsonProvider {
 
   /** The map of adapters working in the gson instance */
