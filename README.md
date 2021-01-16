@@ -38,7 +38,7 @@ mvn clean install
 ```
 
 4. Add it to your project. You have to change `%version` to the latest version.
-
+``
 ```xml
 <dependency>
     <groupId>me.googas.commons</groupId>
@@ -58,11 +58,12 @@ Create your own builders implementing `Builder`.
 
 ```
 public java.lang.String toString() {
-    return new me.googas.commons.builder.ToStringBuilder(this)
-#foreach($member in $members)
-    .append("$member.name", $member.accessor)
-#end
-    .build();
+   return new me.googas.commons.builder.ToStringBuilder(this)
+      #foreach($member in $members)
+         .append("$member.name", $member.accessor)
+      #end
+   .build();
+}   
 ```
 
 #### Example:
@@ -159,6 +160,22 @@ Keep track of the errors in your application! This provides you a class to store
 with the interface `Fallback`. For this class the implementation is way too simple as it does not use a logger just prints 
 the stacktrace with `Throwable#printStackTrace()`
 
+#### Example
+
+```java
+public class FallbackSamples {
+   public static void main(String[] args) {
+      SimpleFallback fallback = new SimpleFallback();
+      try {
+         Integer.parseInt("Obvious error");
+      } catch (NumberFormatException e) {
+         fallback.process(e);
+      }
+      System.out.println(fallback.getErrors());
+   }
+}
+```
+
 ### Gson
 
 This package contains deserializers for some classes in the framework such as `Time`, `Cuboid` or `Circle`
@@ -172,3 +189,20 @@ which mainly aims for minecraft usages but maybe you can find another use.
 
 Its like a `Timer` with steroids. Create tasks like `Countdown`, `Repetitive` or `RunLater`. You can also create your own scheduler
 implementing `Scheduler` and tasks implementing `Task`
+
+#### Example
+
+```java
+public class SchedulerSamples {
+  public static void main(String[] args) {
+    Scheduler scheduler = new TimerScheduler(new Timer());
+    Time aSecond = new Time(1, Unit.SECONDS);
+    scheduler.repeat(aSecond, aSecond, () -> System.out.println("I will print every second!"));
+    scheduler.later(aSecond, () -> System.out.println("I will run after a second has passed!"));
+    scheduler.countdown(
+        new Time(30, Unit.SECONDS),
+        (left) -> System.out.printf("I will run for the next %s \n", left.toEffectiveString()),
+        () -> System.out.println("I will run when the countdown is finished"));
+  }
+}
+```
