@@ -152,7 +152,7 @@ A method that may be used as a listener has to be annotated with `Listener` the 
 the listener will be called. Also, the parameter of the listener must be only one, and the class of the event
 that listens, this means, that the class of the parameter must implement `Event`
 
-> This framework will have its own wiki, but it is WIP
+[Take me to the wiki](https://github.com/xChevy/Commons/wiki/Events)
 
 ### Fallback
 
