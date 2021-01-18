@@ -16,10 +16,16 @@
     </properties>
 
     <distributionManagement>
+        <!--
         <repository>
             <id>github</id>
             <name>GitHub xChevy Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/xChevy/Commons/</url>
+        </repository> -->
+        <repository>
+            <id>bintray-xchevy-Starfish</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/xchevy/Starfish</url>
         </repository>
     </distributionManagement>
 
