@@ -24,8 +24,8 @@
         </repository> -->
         <repository>
             <id>bintray-xchevy-Starfish</id>
-            <name>bintray</name>
-            <url>https://dl.bintray.com/xchevy/Starfish</url>
+            <name>xchevy-Starfish</name>
+            <url>https://api.bintray.com/maven/xchevy/Starfish/Commons/;publish=1</url>
         </repository>
     </distributionManagement>
 
