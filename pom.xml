@@ -6,7 +6,7 @@
 
     <groupId>me.googas.commons</groupId>
     <artifactId>commons</artifactId>
-    <version>1.0.0_0</version>
+    <version>1.0.0_1</version>
     <description>Commons Utilities for Java</description>
     <packaging>jar</packaging>
 
