@@ -162,7 +162,7 @@ public class Time {
    */
   @NonNull
   public String toEffectiveString() {
-    return this.getAs(Unit.fromMillis(this.millis())).toString();
+    return this.toEffectiveTime().toString();
   }
 
   /**
@@ -173,6 +173,15 @@ public class Time {
   @NonNull
   public String toDatabaseString() {
     return this.value + this.unit.getSimple();
+  }
+
+  /**
+   * @see #toDatabaseString() but using {@link #toEffectiveTime()}
+   * @return the effective database string
+   */
+  @NonNull
+  public String toEffectiveDatabaseString() {
+    return this.toEffectiveTime().toDatabaseString();
   }
 
   /**
@@ -187,6 +196,17 @@ public class Time {
     TimeUnit newUnit = this.unit.toTimeUnit();
     long newValue = this.getValue(newUnit);
     return new ClassicTime(newValue, newUnit);
+  }
+
+  /**
+   * Get the effective time. This means this same time but with the Unit that matches the best
+   *
+   * @return the effective time
+   */
+  @NonNull
+  public Time toEffectiveTime() {
+    Unit unit = Unit.fromMillis(this.millis());
+    return new Time(unit.duration(this.millis()), unit);
   }
 
   /**
@@ -244,6 +264,20 @@ public class Time {
   @NonNull
   public Time sum(@NonNull Time time) {
     return Time.fromMillis(this.millis() + time.millis());
+  }
+
+  /**
+   * Get this time as the format hh:mm:ss
+   *
+   * @return the formatted string
+   */
+  @NonNull
+  public String toHhMmSs() {
+    long seconds = Unit.SECONDS.duration(this.millis());
+    long hours = seconds / 3600;
+    long minutes = (seconds - (hours * 3600)) / 60;
+    long effectiveSeconds = seconds - (hours * 3600) - (minutes * 60);
+    return String.format("%02d:%02d:%02d", hours, minutes, effectiveSeconds);
   }
 
   /**

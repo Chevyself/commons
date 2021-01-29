@@ -141,6 +141,16 @@ public enum Unit {
   }
 
   /**
+   * Get the duration of this unit with the given milliseconds
+   *
+   * @param millis the milliseconds to get the duration
+   * @return the duration
+   */
+  public long duration(long millis) {
+    return millis / this.millis;
+  }
+
+  /**
    * Get this unit as {@link TimeUnit}. It will do a loop similar that the one made in {@link
    * #fromMillis(long)} but given the {@link TimeUnit#values()}
    *

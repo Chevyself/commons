@@ -16,12 +16,6 @@
     </properties>
 
     <distributionManagement>
-        <!--
-        <repository>
-            <id>github</id>
-            <name>GitHub xChevy Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/xChevy/Commons/</url>
-        </repository> -->
         <repository>
             <id>bintray-xchevy-Starfish</id>
             <name>xchevy-Starfish</name>
