@@ -1,34 +1,45 @@
 package me.googas.commons.log.formatters;
 
+import lombok.NonNull;
+import me.googas.commons.Strings;
+import me.googas.commons.time.TimeUtils;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Formatter;
+import java.util.logging.Level;
 import java.util.logging.LogRecord;
-import lombok.NonNull;
-import me.googas.commons.Strings;
-import me.googas.commons.time.TimeUtils;
 
 /**
  * Make a formatter for you handlers easily.
  *
- * <p>Your string to be formatted can have the next place holders (all of them must look like
- * %placeholder name%): - day: Gives the day of the month - month: Gives the number of the month -
- * year: Gives the year - hour: Gives the hour - minute: Gives the minute - second: Gives the second
- * - level: Gives the level of the log - message: Gives the message logging - stack: Gives the stack
- * trace in case of a thrown error
+ * Your string to be formatted can have the next placeholders (all of them must look like
+ * %placeholder name%):
+ *
+ * <ul>
+ *     <li><b>day:</b> Gives the day of the month</li>
+ *     <li><b>month:</b> Gives the number of the month</li>
+ *     <li><b>year:</b> Gives the year</li>
+ *     <li><b>hour:</b> Gives the hour</li>
+ *     <li><b>minute:</b> Gives the minute</li>
+ *     <li><b>second:</b> Gives the second</li>
+ *     <li><b>level:</b> Gives the level of log as in {@link Level#toString()}</li>
+ *     <li><b>message:</b> Gives the message logging</li>
+ *     <li><b>stack:</b>Gives the stacktrace of an exception</li>
+ * </ul>
  */
 public class CustomFormatter extends Formatter {
 
-  /** The format for the formatter */
   @NonNull private final String format;
 
   /**
    * Create an instance
    *
-   * @param format the format to use
+   * @param format the format to use which may contain the placeholders that this formatter supports
    */
   public CustomFormatter(@NonNull String format) {
     this.format = format;
@@ -38,9 +49,9 @@ public class CustomFormatter extends Formatter {
    * Gets the placeholders to use in the process
    *
    * @param record the record to format
-   * @return a pack of placeholders
+   * @return a map of placeholders
    */
-  private HashMap<String, String> getPlaceholders(@NonNull LogRecord record) {
+  private Map<String, String> getPlaceholders(@NonNull LogRecord record) {
     HashMap<String, String> placeHolders = new HashMap<>();
     this.addTimePlaceholders(record, placeHolders);
     placeHolders.put("level", record.getLevel().getName());
@@ -50,13 +61,13 @@ public class CustomFormatter extends Formatter {
   }
 
   /**
-   * Get the time placeholders of a record
+   * Get the time placeholders of a record and add them to the map of placeholders
    *
    * @param record the record to get the placeholders from
-   * @param placeHolders the brand new place holders
+   * @param placeHolders the map of the placeholders in which the time placeholders will be included
    */
   private void addTimePlaceholders(
-      @NonNull LogRecord record, @NonNull HashMap<String, String> placeHolders) {
+      @NonNull LogRecord record, @NonNull Map<String, String> placeHolders) {
     LocalDateTime date = TimeUtils.getLocalDateFromMillis(record.getMillis());
     placeHolders.put("day", String.valueOf(date.getDayOfMonth()));
     placeHolders.put("month", String.valueOf(date.getMonthValue()));
@@ -76,7 +87,7 @@ public class CustomFormatter extends Formatter {
 
   @Override
   public String format(@NonNull LogRecord record) {
-    HashMap<String, String> placeholders = this.getPlaceholders(record);
+    Map<String, String> placeholders = this.getPlaceholders(record);
     if (record.getThrown() != null) {
       String message = record.getThrown().getMessage();
       placeholders.put("message", message == null ? "No information provided" : message);

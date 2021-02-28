@@ -1,15 +1,15 @@
 package me.googas.commons.maps;
 
-import java.util.Map;
 import lombok.NonNull;
 import lombok.experimental.Delegate;
 import me.googas.commons.builder.Builder;
 import me.googas.commons.builder.ToStringBuilder;
 
-/** Helps with single line hash map building */
+import java.util.Map;
+
+/** Helps with single line {@link Map} building */
 public class MapBuilder<K, V> implements Builder<Map<K, V>> {
 
-  /** The map that is being built */
   @NonNull private final Map<K, V> map;
 
   /**
@@ -23,16 +23,14 @@ public class MapBuilder<K, V> implements Builder<Map<K, V>> {
   }
 
   /**
-   * Appends values to the map
+   * Appends a property to the map
    *
-   * @param key with which the value is associated
+   * @param key the key of hte property
    * @param value the value associated with the key
-   * @return the map builder
-   * @param <O> the type that extends key
-   * @param <T> the type that extends value
+   * @return this same instance
    */
   @NonNull
-  public <T extends K, O extends V> MapBuilder<K, V> append(@NonNull T key, O value) {
+  public MapBuilder<K, V> append(@NonNull K key, V value) {
     this.map.put(key, value);
     return this;
   }
@@ -41,7 +39,7 @@ public class MapBuilder<K, V> implements Builder<Map<K, V>> {
    * Appends another map to the builder
    *
    * @param map mappings to be stored in this map
-   * @return the map builder
+   * @return this same instance
    */
   @NonNull
   public MapBuilder<K, V> appendAll(@NonNull Map<? extends K, ? extends V> map) {
@@ -49,11 +47,6 @@ public class MapBuilder<K, V> implements Builder<Map<K, V>> {
     return this;
   }
 
-  /**
-   * Get the built map
-   *
-   * @return the built map
-   */
   @NonNull
   @Override
   public Map<K, V> build() {

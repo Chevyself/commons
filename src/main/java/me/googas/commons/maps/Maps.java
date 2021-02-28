@@ -1,15 +1,16 @@
 package me.googas.commons.maps;
 
-import java.util.HashMap;
-import java.util.Map;
 import lombok.NonNull;
 import me.googas.commons.Strings;
 
-/** Utils for maps */
+import java.util.HashMap;
+import java.util.Map;
+
+/** Static utils for maps */
 public class Maps {
 
   /**
-   * Create a map starting with single values
+   * Create a map starting with a single property
    *
    * @param key the key of the map
    * @param value the value of the map

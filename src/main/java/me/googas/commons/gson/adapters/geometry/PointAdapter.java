@@ -7,17 +7,19 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import java.lang.reflect.Type;
 import lombok.NonNull;
 import me.googas.commons.Strings;
 import me.googas.commons.math.geometry.Point;
 
+import java.lang.reflect.Type;
+
 public class PointAdapter implements JsonSerializer<Point>, JsonDeserializer<Point> {
 
   /**
-   * Get the json format of a double
+   * Get the json format of an infinite double. If the double is infinite the resulting json primitive will be
+   * "-oo" for negative infinite and "oo" for infinite
    *
-   * @param number the double to get as json
+   * @param number the infinite double to get as json
    * @return the json object
    */
   @NonNull
@@ -26,10 +28,10 @@ public class PointAdapter implements JsonSerializer<Point>, JsonDeserializer<Poi
   }
 
   /**
-   * Get a double from a json element
+   * Get a double from a json element. This will check if it is a string as that's how {@link #infiniteToJson(double)} save them
    *
    * @param element the json element to get the double from
-   * @return the double parsed from the json file
+   * @return the double parsed from the json element
    */
   public static double fromJson(@NonNull JsonElement element) {
     String string = element.getAsString();

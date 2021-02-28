@@ -5,12 +5,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
-import java.lang.reflect.Type;
 import me.googas.commons.math.geometry.modifier.Complement;
 import me.googas.commons.math.geometry.modifier.Intersect;
 import me.googas.commons.math.geometry.modifier.Modifier;
 import me.googas.commons.math.geometry.modifier.Negative;
 import me.googas.commons.math.geometry.modifier.Union;
+
+import java.lang.reflect.Type;
 
 public class ModifiersAdapter implements ModifierAdapter<Modifier> {
 
