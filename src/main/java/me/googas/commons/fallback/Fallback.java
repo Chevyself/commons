@@ -1,14 +1,16 @@
 package me.googas.commons.fallback;
 
-import java.util.List;
 import lombok.NonNull;
 import me.googas.commons.Pagination;
 
-/** A class to handle errors in a more user friendly way */
+import java.util.List;
+
+/** A class to handle errors in a more user friendly way. This means in a way to get them in the future
+ * and check what went wrong */
 public interface Fallback {
 
   /**
-   * Create a pagination from the list of errors
+   * Create a pagination from {@link #getErrors()}
    *
    * @return the paginated list of errors
    */
@@ -39,4 +41,6 @@ public interface Fallback {
    */
   @NonNull
   List<String> getErrors();
+
+  // TODO could use a clear method
 }

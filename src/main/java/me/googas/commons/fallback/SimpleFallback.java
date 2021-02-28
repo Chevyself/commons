@@ -1,10 +1,15 @@
 package me.googas.commons.fallback;
 
-import java.util.ArrayList;
-import java.util.List;
 import lombok.NonNull;
 import lombok.experimental.Delegate;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * The most simple implementation of fallback that the processing for an exception is just printing its stacktrace
+ * and adding the message of it to the errors
+ */
 public class SimpleFallback implements Fallback {
 
   @Delegate @NonNull private final List<String> errors = new ArrayList<>();
