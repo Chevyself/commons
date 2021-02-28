@@ -42,7 +42,7 @@ mvn clean install
 ```xml
 <dependency>
     <groupId>me.googas.commons</groupId>
-    <artifactId>Commons</artifactId>
+    <artifactId>commons</artifactId>
     <version>%version%</version>
 </dependency>
 ```

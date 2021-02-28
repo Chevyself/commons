@@ -6,3 +6,4 @@
 ### February 28, 2021
 
 - [X] More javadoc fixes
+- [X] Remove distribution management
