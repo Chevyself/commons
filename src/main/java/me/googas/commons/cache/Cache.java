@@ -31,11 +31,11 @@ public interface Cache extends Runnable {
   }
 
   /**
-   * Get an object from cache this will refresh the object inside of cache use {@link #get(Class,
+   * Get an object from cache. This will refresh the object inside of cache use {@link #get(Class,
    * Predicate, boolean)} to not refresh it
    *
    * @param clazz the clazz of the catchable for casting
-   * @param predicate the boolean to match
+   * @param predicate the predicate to match the catchable
    * @param <T> the type of the catchable
    * @return the catchable if found else null
    */
@@ -47,8 +47,9 @@ public interface Cache extends Runnable {
    * Get an object from cache and select whether to refresh it
    *
    * @param clazz the clazz of the catchable for casting
-   * @param predicate the boolean to match
-   * @param refresh whether to refresh the object
+   * @param predicate the predicate to match the catchable
+   * @param refresh whether to refresh the object. By refreshing means that the time of the object inside the cache will be
+   *                extended to its initial value
    * @param <T> the type of the catchable
    * @return the catchable if found else null
    */
@@ -68,11 +69,11 @@ public interface Cache extends Runnable {
   }
 
   /**
-   * Get an object from cache or return another value
+   * Get an object from cache and refresh it or return a default value in case the object is not found inside the cache
    *
    * @param clazz the clazz of the catchable for casting
-   * @param predicate the boolean to match
-   * @param def the default value to provide if not found in cache
+   * @param predicate the predicate to match the catchable
+   * @param def the default value to provide if the catchable is not found in cache
    * @param <T> the type of the catchable
    * @return the catchable if found else the default value
    */
@@ -83,13 +84,13 @@ public interface Cache extends Runnable {
   }
 
   /**
-   * Get an object from cache or return another value
+   * Get an object from cache and refresh it or return a default value supplied by a {@link Supplier} in case the object is not found inside the cache
    *
    * @param clazz the clazz of the catchable for casting
-   * @param predicate the boolean to match
+   * @param predicate the predicate to match the catchable
    * @param supplier the supplier to get the default value to provide if not found in cache
    * @param <T> the type of the catchable
-   * @return the catchable if found else the default value
+   * @return the catchable if found else the default value provided by the supplier
    */
   default <T extends Catchable> T getOrSupply(
       @NonNull Class<T> clazz, @NonNull Predicate<T> predicate, @NonNull Supplier<T> supplier) {
@@ -97,13 +98,13 @@ public interface Cache extends Runnable {
   }
 
   /**
-   * Get a list of catchables matching a predicate this will not refresh the objects use {@link
+   * Get a list of catchables matching a predicate. This will not refresh the objects use {@link
    * #refresh(Catchable)} to refresh them
    *
-   * @param clazz the clazz of catchables to get
-   * @param predicate the predicate of the catchables
+   * @param clazz the clazz of catchables for casting
+   * @param predicate the predicate to match the catchables
    * @param <T> the type of the catchables
-   * @return the list of catchables
+   * @return the list of catchables this will not be null but it could be empty
    */
   @NonNull
   default <T extends Catchable> Collection<T> getMany(
@@ -140,6 +141,7 @@ public interface Cache extends Runnable {
    * Adds an object to the cache
    *
    * @param catchable the object to be added
+   * @throws IllegalStateException if there's an instance of the object in cache already
    */
   default void add(@NonNull Catchable catchable) {
     if (this.contains(catchable)) {
@@ -153,7 +155,7 @@ public interface Cache extends Runnable {
    * Get the time left of an object inside of cache
    *
    * @param catchable the object to check the time
-   * @return the time of the object inside of cache
+   * @return the time of the object inside of cache. If the object is null it will return 0 seconds else the value in time with a unit of {@link Unit#MILLISECONDS}
    */
   @NonNull
   default Time getTimeLeft(@NonNull Catchable catchable) {
@@ -187,7 +189,7 @@ public interface Cache extends Runnable {
   /**
    * Refreshes a catchable object
    *
-   * @param catchable the object to be cache
+   * @param catchable the object to be cached
    */
   default void refresh(@NonNull Catchable catchable) {
     for (SoftReference<Catchable> reference : this.getMap().keySet()) {
@@ -198,7 +200,7 @@ public interface Cache extends Runnable {
   }
 
   /**
-   * get the time in which an object must be removed
+   * Get the time in which an object must be removed
    *
    * @param catchable the object to get the removal time
    * @return the removal time of the object
@@ -208,7 +210,8 @@ public interface Cache extends Runnable {
   }
 
   /**
-   * Get a copy of the map
+   * Get a copy of the cache map. To see what is the cache map
+   * @see #getMap()
    *
    * @return a copy of the map
    */
@@ -218,7 +221,7 @@ public interface Cache extends Runnable {
   }
 
   /**
-   * This map contains the reference to the cache object and the time in toMillis for the object to
+   * This map contains the reference to the cache object and the time in millis for the object to
    * be removed
    *
    * @return the map with the reference and time of the objects
@@ -228,21 +231,25 @@ public interface Cache extends Runnable {
 
   @Override
   default void run() {
+    // Get a copy of the map to avoid concurrent modification exception
     Map<SoftReference<Catchable>, Long> copy = new HashMap<>(this.getMap());
-    copy.forEach(
-        (reference, time) -> {
-          Catchable catchable = reference.get();
-          if (catchable != null) {
-            if (System.currentTimeMillis() >= time) {
-              try {
-                catchable.onRemove();
-                reference.clear();
-              } catch (Throwable e) {
-                e.printStackTrace();
-              }
-            }
+    for (Map.Entry<SoftReference<Catchable>, Long> entry : copy.entrySet()) {
+      SoftReference<Catchable> reference = entry.getKey();
+      Long time = entry.getValue();
+      if (reference == null) continue;
+      Catchable catchable = reference.get();
+      if (catchable != null) {
+        // Checks if time has expired
+        if (time == null || System.currentTimeMillis() >= time) {
+          try {
+            catchable.onRemove();
+            reference.clear();
+          } catch (Throwable e) {
+            e.printStackTrace();
           }
-        });
+        }
+      }
+    }
     this.getMap().keySet().removeIf(reference -> reference.get() == null);
   }
 }

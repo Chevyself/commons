@@ -1,6 +1,6 @@
 package me.googas.commons.events;
 
-/** An event that can be cancelled */
+/** An {@link Event} that can be cancelled */
 public interface Cancellable {
 
   /**

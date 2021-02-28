@@ -12,23 +12,16 @@ import me.googas.commons.builder.ToStringBuilder;
  */
 public class EventListener {
 
-  /** The object to invoke the method */
   @NonNull @Getter private final Object listener;
-
-  /** The method that is listing for the method to be invoked */
   @NonNull @Getter private final Method method;
-
-  /** The event parameter that is used to invoke the method */
   @NonNull @Getter private final Class<? extends Event> event;
-
-  /** The priority for the event to be called in the listener */
   @Getter private final int priority;
 
   /**
    * Create an event listener instance which can be used inside the {@link ListenerManager} to be
    * called
    *
-   * @param listener the object used to call the method
+   * @param listener the object used to invoke the method
    * @param method the method that is listening to the event
    * @param event the event that is being listened to. Required to invoke the method
    * @param priority the priority for the event to be called in the listener

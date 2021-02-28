@@ -7,7 +7,9 @@ import lombok.NonNull;
 import lombok.experimental.Delegate;
 import me.googas.commons.builder.ToStringBuilder;
 
-/** A simple implementation for cache */
+/** A simple implementation for cache. This must be registered inside a {@link java.util.Timer} or {@link me.googas.commons.scheduler.Scheduler}
+ * in order to work an check if objects can be removed from cache
+ */
 public class MemoryCache implements Cache {
 
   /** The map required for the cache */

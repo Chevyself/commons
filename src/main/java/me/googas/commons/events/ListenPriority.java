@@ -2,7 +2,7 @@ package me.googas.commons.events;
 
 /**
  * A class with static instances for easier understanding of priorities. It will call the lowest
- * priority first, this means that 0 will be called first then 1, because, for example with
+ * priority first, this means that 0 will be called first then 1, for example with
  * cancellable, the highest priority can decide whether to cancel the event or not
  */
 public class ListenPriority {

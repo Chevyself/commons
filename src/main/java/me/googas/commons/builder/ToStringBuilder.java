@@ -38,7 +38,7 @@ public class ToStringBuilder implements Builder<String> {
   }
 
   /**
-   * Appends a key and a value on the string
+   * Appends a property the string
    *
    * @param key the key of the property to add in the string
    * @param value the value of the property to add in the string
@@ -52,7 +52,7 @@ public class ToStringBuilder implements Builder<String> {
   }
 
   /**
-   * Append a key with a value as an array objects
+   * Append a property with a value as an array objects
    *
    * @param key the key of the property to add in the string
    * @param objects the values of the property to add in the string

@@ -3,11 +3,11 @@ package me.googas.commons.cache;
 import lombok.NonNull;
 import me.googas.commons.time.Time;
 
-/** An object which can be stored inside cache */
+/** An object which can be stored inside {@link Cache} */
 public interface Catchable {
 
   /**
-   * Called when the cache is ready to remove this object
+   * Called when the cache is ready to remove this object. This will be called in {@link Cache#run()}
    *
    * @throws Throwable in case something goes wrong while unloading this object
    */
