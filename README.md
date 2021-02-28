@@ -111,12 +111,12 @@ You, of course, can use the implementation `MemoryCache`:
 ```java
 public class MemoryCacheSample {
     public void cache() {
-        MemoryCache cache = new MemoryCache();
-        // Cache must be registered inside a task (It implements runnable) in which you can make it check
+        memorycache cache = new memorycache();
+        // cache must be registered inside a task (it implements runnable) in which you can make it check
         // if the catchable can be removed in the time you want .
-        // For this example, we will use the Scheduler framework.
-        TimerScheduler scheduler = new TimerScheduler(new Timer());
-        Time time = new Time(1, Unit.SECONDS);
+        // for this example, we will use the scheduler framework.
+        timerscheduler scheduler = new timerscheduler(new timer());
+        time time = new time(1, unit.seconds);
         scheduler.repeat(time, time, cache);
     }
 }

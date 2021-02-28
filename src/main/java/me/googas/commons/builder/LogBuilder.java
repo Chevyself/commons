@@ -48,7 +48,11 @@ public class LogBuilder implements Builder<LogRecord> {
     this(level, null);
   }
 
-  /** @param initial the initial message of the log */
+  /**
+   * Create the log builder
+   *
+   * @param initial the initial message of the log
+   */
   public LogBuilder(Object initial) {
     this(Level.FINEST, new StringBuffer(), initial);
   }

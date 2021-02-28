@@ -198,7 +198,7 @@ public interface Cache extends Runnable {
   }
 
   /**
-   * Get the time in which an object must be removed
+   * get the time in which an object must be removed
    *
    * @param catchable the object to get the removal time
    * @return the removal time of the object
@@ -238,8 +238,7 @@ public interface Cache extends Runnable {
                 catchable.onRemove();
                 reference.clear();
               } catch (Throwable e) {
-                Thread.getDefaultUncaughtExceptionHandler()
-                    .uncaughtException(Thread.currentThread(), e);
+                e.printStackTrace();
               }
             }
           }

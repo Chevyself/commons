@@ -7,7 +7,7 @@ import me.googas.commons.Lots;
 
 /**
  * This object heads to help the construction of {@link Object#toString()} This string is not meant
- * to be read by an user
+ * to be read by a human
  */
 public class ToStringBuilder implements Builder<String> {
 
@@ -21,7 +21,7 @@ public class ToStringBuilder implements Builder<String> {
    * Create the builder
    *
    * @param buffer the buffer to build the strings of the object
-   * @param object the object which strings is being build to
+   * @param object the object which string is being build for
    */
   public ToStringBuilder(@NonNull StringBuffer buffer, Object object) {
     this.buffer = buffer;
@@ -31,7 +31,7 @@ public class ToStringBuilder implements Builder<String> {
   /**
    * Create the builder
    *
-   * @param object the object that is requesting {@link #toString()}
+   * @param object the object which string is being build for
    */
   public ToStringBuilder(Object object) {
     this(new StringBuffer(), object);
@@ -42,7 +42,7 @@ public class ToStringBuilder implements Builder<String> {
    *
    * @param key the key of the property to add in the string
    * @param value the value of the property to add in the string
-   * @return the same instance of builder
+   * @return the same instance of the builder
    */
   @NonNull
   public ToStringBuilder append(@NonNull String key, Object value) {
@@ -55,8 +55,8 @@ public class ToStringBuilder implements Builder<String> {
    * Append a key with a value as an array objects
    *
    * @param key the key of the property to add in the string
-   * @param objects the objects of the property to add in the string
-   * @return the same instance of builder
+   * @param objects the values of the property to add in the string
+   * @return the same instance of the builder
    */
   public ToStringBuilder append(@NonNull String key, Object... objects) {
     return this.append(key, Lots.inmutable(objects));
