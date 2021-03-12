@@ -49,7 +49,7 @@ mvn clean install
 
 <dependency>
    <groupId>me.googas.starbox</groupId>
-   <artifactId>commons</artifactId>
+   <artifactId>starbox</artifactId>
    <version>%version%</version>
 </dependency>
 ```
