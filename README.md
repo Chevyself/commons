@@ -1,7 +1,11 @@
-# Commons
+# Starbox
 
-This project has been maintained for about two years now by the Starfish Studios.  It's been used in a variety of projects
-thanks to the amount of utilities and frameworks, mainly focused on Bukkit, Bungee and JDA but can do the trick in anything.
+Starbox is a package of utility Java classes to make coding easier and finish things quicker for the Starfish Studios' projects.
+
+# Documentation
+
+At the moment no Javadoc can be browsed, but once the project is built in Maven you will find `/apidocs` directory
+which contains it. There's also some tutorials which can be seen in [Contents](#contents). 
 
 ## Contents
 
@@ -13,6 +17,7 @@ thanks to the amount of utilities and frameworks, mainly focused on Bukkit, Bung
     * [Fallback](#fallback)
     * [Gson](#gson)
     * [Math](#math)
+   
 ## Installation
 
 At the moment, the Starfish Studios does not have a maven repository to provide easy access to its projects. You can download
@@ -39,11 +44,13 @@ mvn clean install
 
 4. Add it to your project. You have to change `%version` to the latest version.
 ``
+
 ```xml
+
 <dependency>
-    <groupId>me.googas.commons</groupId>
-    <artifactId>commons</artifactId>
-    <version>%version%</version>
+   <groupId>me.googas.starbox</groupId>
+   <artifactId>commons</artifactId>
+   <version>%version%</version>
 </dependency>
 ```
 
@@ -51,7 +58,7 @@ mvn clean install
 
 ### Builders
 
-Create your own builders implementing `Builder`.
+Create your own builders implementing `Builder` or `SuppliedBuilder`.
 
 * `LogBuilder` to create a message to send to a `java.util.logging.Logger`
 * `ToStringBuilder` to create on your objects `#toString()`. The template for IntelliJ is:
@@ -100,7 +107,7 @@ public class BuilderSample {
 
 ### Cache
 
-Cache is a task that contains Catchables until a time has passed and are considered safe to unload. Cache
+Cache is a task that contains `Catchables` until a time has passed and are considered safe to unload. Cache
 implements `Runnable` and must registered in a task to check if those objects can be unloaded.
 
 Create your own implementation with the interface `Cache` and make sure that the objects that you want to store
@@ -111,12 +118,12 @@ You, of course, can use the implementation `MemoryCache`:
 ```java
 public class MemoryCacheSample {
     public void cache() {
-        memorycache cache = new memorycache();
-        // cache must be registered inside a task (it implements runnable) in which you can make it check
-        // if the catchable can be removed in the time you want .
-        // for this example, we will use the scheduler framework.
-        timerscheduler scheduler = new timerscheduler(new timer());
-        time time = new time(1, unit.seconds);
+        MemoryCache cache = new MemoryCache();
+        // Cache must be registered inside a task (it implements Runnable) in which you can make it check
+        // if the catchable can be removed in the time you want.
+        // For this example, we will use the scheduler framework.
+        TimerScheduler scheduler = new TimerScheduler(new timer());
+        Time time = new Time(1, Unit.seconds);
         scheduler.repeat(time, time, cache);
     }
 }
@@ -128,7 +135,7 @@ Implementing `Catchable`:
 public class ACatchable implements Catchable {
    @Override
    public void onRemove() {
-      System.out.println("This has been unloaded");
+      System.out.println(this + " has been unloaded");
    }
 
    @Override
