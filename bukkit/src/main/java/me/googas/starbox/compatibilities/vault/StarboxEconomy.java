@@ -153,7 +153,8 @@ public class StarboxEconomy extends AbstractEconomy implements VaultImplementati
   @Override
   public EconomyResponse withdrawPlayer(String player, double amount) {
     Profile profile = this.getPlayer(player);
-    if (profile != null) return StarboxEconomy.parse(profile.withdraw(amount, Starbox.getContext()));
+    if (profile != null)
+      return StarboxEconomy.parse(profile.withdraw(amount, Starbox.getContext()));
     return new EconomyResponse(-1, -1, EconomyResponse.ResponseType.FAILURE, "Player not found");
   }
 
@@ -161,7 +162,8 @@ public class StarboxEconomy extends AbstractEconomy implements VaultImplementati
   @Override
   public EconomyResponse withdrawPlayer(String player, String world, double amount) {
     Profile profile = this.getPlayer(player);
-    if (profile != null) return StarboxEconomy.parse(profile.withdraw(amount, Starbox.buildContext(world)));
+    if (profile != null)
+      return StarboxEconomy.parse(profile.withdraw(amount, Starbox.buildContext(world)));
     return new EconomyResponse(-1, -1, EconomyResponse.ResponseType.FAILURE, "Player not found");
   }
 
@@ -177,7 +179,8 @@ public class StarboxEconomy extends AbstractEconomy implements VaultImplementati
   @Override
   public EconomyResponse depositPlayer(String player, String world, double amount) {
     Profile profile = this.getPlayer(player);
-    if (profile != null) return StarboxEconomy.parse(profile.deposit(amount, Starbox.buildContext(world)));
+    if (profile != null)
+      return StarboxEconomy.parse(profile.deposit(amount, Starbox.buildContext(world)));
     return new EconomyResponse(-1, -1, EconomyResponse.ResponseType.FAILURE, "Player not found");
   }
 
@@ -326,7 +329,8 @@ public class StarboxEconomy extends AbstractEconomy implements VaultImplementati
 
   @Override
   public EconomyResponse withdrawPlayer(OfflinePlayer player, String worldName, double amount) {
-    return StarboxEconomy.parse(this.getPlayer(player).withdraw(amount, Starbox.buildContext(worldName)));
+    return StarboxEconomy.parse(
+        this.getPlayer(player).withdraw(amount, Starbox.buildContext(worldName)));
   }
 
   @Override
@@ -336,7 +340,8 @@ public class StarboxEconomy extends AbstractEconomy implements VaultImplementati
 
   @Override
   public EconomyResponse depositPlayer(OfflinePlayer player, String worldName, double amount) {
-    return StarboxEconomy.parse(this.getPlayer(player).deposit(amount, Starbox.buildContext(worldName)));
+    return StarboxEconomy.parse(
+        this.getPlayer(player).deposit(amount, Starbox.buildContext(worldName)));
   }
 
   @Override

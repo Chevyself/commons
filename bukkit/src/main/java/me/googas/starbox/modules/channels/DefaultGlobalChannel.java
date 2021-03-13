@@ -9,14 +9,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
 public class DefaultGlobalChannel implements GlobalChannelProvider, Channel {
 
   @Override
-  public void sendMessage(@NotNull String string) {
+  public void sendMessage(@NonNull String string) {
     for (Player player : Bukkit.getOnlinePlayers()) {
       player.sendMessage(string);
     }
@@ -44,7 +43,7 @@ public class DefaultGlobalChannel implements GlobalChannelProvider, Channel {
   }
 
   @Override
-  public @NotNull String getLocale() {
+  public @NonNull String getLocale() {
     return "en";
   }
 

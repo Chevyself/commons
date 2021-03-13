@@ -17,6 +17,7 @@ public class Starbox {
 
   @NonNull @Getter @Setter private static String context = "bukkit";
   @Nullable @Getter private static StarboxPlugin instance;
+
   @NonNull @Setter
   private static Supplier<LanguageModule> languageModuleSupplier =
       () -> Starbox.getModuleRegistry().require(LanguageModule.class);

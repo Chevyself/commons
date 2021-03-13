@@ -1,7 +1,7 @@
 package me.googas.starbox.gameplay.exception;
 
 import com.starfishst.core.exceptions.type.SimpleException;
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 /** Creates an exception that has a game involved */
 public class GameException extends SimpleException {
@@ -11,7 +11,7 @@ public class GameException extends SimpleException {
    *
    * @param message the reason why t
    */
-  public GameException(@NotNull String message) {
+  public GameException(@NonNull String message) {
     super(message);
   }
 }

@@ -3,14 +3,13 @@ package me.googas.starbox.compatibilities.papi;
 import lombok.NonNull;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.googas.annotations.Nullable;
 import me.googas.starbox.Starbox;
 import me.googas.starbox.modules.Module;
 import me.googas.starbox.modules.placeholders.Placeholder;
 import me.googas.starbox.modules.placeholders.PlaceholderModule;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * This handler makes possible that the placeholders registered in Starbox can also be used in PAPI
@@ -46,17 +45,17 @@ public class PAPIPlaceholderHandler implements Module {
     }
 
     @Override
-    public @NotNull String getIdentifier() {
+    public @NonNull String getIdentifier() {
       return "me/googas/starbox";
     }
 
     @Override
-    public @NotNull String getAuthor() {
+    public @NonNull String getAuthor() {
       return "Starbox";
     }
 
     @Override
-    public @NotNull String getVersion() {
+    public @NonNull String getVersion() {
       return "1.0";
     }
 
@@ -71,12 +70,12 @@ public class PAPIPlaceholderHandler implements Module {
     }
 
     @Override
-    public String onRequest(OfflinePlayer player, @NotNull String params) {
+    public String onRequest(OfflinePlayer player, @NonNull String params) {
       return this.get(player, params);
     }
 
     @Override
-    public String onPlaceholderRequest(Player player, @NotNull String params) {
+    public String onPlaceholderRequest(Player player, @NonNull String params) {
       return this.get(player, params);
     }
   }

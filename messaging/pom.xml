@@ -10,17 +10,22 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>core</artifactId>
+    <groupId>me.googas.messaging</groupId>
+    <artifactId>messaging</artifactId>
     <version>1.0.0</version>
 
     <dependencies>
-        <!-- Soft dependency on Gson as any of the utilities requires it
-        this is only to provide adapters for classes such as the ones in geometry and time -->
+        <!-- Dependency on core module -->
+        <dependency>
+            <groupId>me.googas.starbox</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- Required for Json socket messaging -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.8.6</version>
-            <optional>true</optional>
             <scope>provided</scope>
         </dependency>
     </dependencies>

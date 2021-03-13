@@ -17,7 +17,6 @@ import me.googas.starbox.utility.Players;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -59,7 +58,7 @@ public class MatchPlayer implements MatchEntity {
   }
 
   @Override
-  public @NotNull String getLocale() {
+  public @NonNull String getLocale() {
     return this.isOnline() ? Players.getLocale(this.requirePlayer()) : "en";
   }
 

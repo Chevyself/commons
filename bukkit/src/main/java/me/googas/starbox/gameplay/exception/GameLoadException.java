@@ -1,6 +1,6 @@
 package me.googas.starbox.gameplay.exception;
 
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 /** An exception thrown when a game could not be loaded */
 public class GameLoadException extends GameException {
@@ -10,7 +10,7 @@ public class GameLoadException extends GameException {
    *
    * @param message the reason why t
    */
-  public GameLoadException(@NotNull String message) {
+  public GameLoadException(@NonNull String message) {
     super(message);
   }
 }

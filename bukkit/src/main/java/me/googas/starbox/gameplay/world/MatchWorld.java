@@ -14,7 +14,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * A match world is where the match is happening please note that some matches could have more than
@@ -145,7 +144,7 @@ public class MatchWorld {
    *
    * @return the spawn location of the world
    */
-  @NotNull
+  @NonNull
   public Location getSpawnLocation() {
     return this.world.getSpawnLocation();
   }

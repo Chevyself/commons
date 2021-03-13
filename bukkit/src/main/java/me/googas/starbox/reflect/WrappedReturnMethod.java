@@ -4,7 +4,6 @@ import lombok.NonNull;
 import me.googas.annotations.Nullable;
 import me.googas.commons.Validate;
 import me.googas.commons.builder.ToStringBuilder;
-import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
 
@@ -22,7 +21,7 @@ public class WrappedReturnMethod<T> extends WrappedMethod {
   }
 
   @NonNull
-  public T invokeOr(@NonNull Object object, @NotNull T def, @NonNull Object... params) {
+  public T invokeOr(@NonNull Object object, @NonNull T def, @NonNull Object... params) {
     return Validate.notNullOr(this.invoke(object, params), def);
   }
 

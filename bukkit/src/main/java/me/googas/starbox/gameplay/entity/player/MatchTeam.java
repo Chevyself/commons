@@ -16,7 +16,6 @@ import me.googas.starbox.gameplay.match.Match;
 import me.googas.starbox.gameplay.world.MatchWorld;
 import me.googas.starbox.modules.placeholders.Line;
 import org.bukkit.potion.PotionEffect;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,14 +89,14 @@ public class MatchTeam implements MatchEntity {
   }
 
   @Override
-  public void sendMessage(@NotNull String string, @NotNull Map<String, String> placeholders) {
+  public void sendMessage(@NonNull String string, @NonNull Map<String, String> placeholders) {
     for (MatchEntity member : this.members) {
       member.sendMessage(string, placeholders);
     }
   }
 
   @Override
-  public void sendMessage(@NotNull String string) {
+  public void sendMessage(@NonNull String string) {
     for (MatchEntity member : this.members) {
       member.sendMessage(string);
     }
@@ -111,21 +110,21 @@ public class MatchTeam implements MatchEntity {
   }
 
   @Override
-  public void sendLocalized(@NotNull String path) {
+  public void sendLocalized(@NonNull String path) {
     for (MatchEntity member : this.members) {
       member.sendLocalized(path);
     }
   }
 
   @Override
-  public void sendLocalized(@NotNull String path, @NotNull Map<String, String> placeholders) {
+  public void sendLocalized(@NonNull String path, @NonNull Map<String, String> placeholders) {
     for (MatchEntity member : this.members) {
       member.sendLocalized(path, placeholders);
     }
   }
 
   @Override
-  public @NotNull String getLocale() {
+  public @NonNull String getLocale() {
     return "en";
   }
 
