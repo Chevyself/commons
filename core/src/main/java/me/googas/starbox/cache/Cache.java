@@ -1,10 +1,5 @@
 package me.googas.starbox.cache;
 
-import lombok.NonNull;
-import me.googas.starbox.Validate;
-import me.googas.starbox.time.Time;
-import me.googas.starbox.time.Unit;
-
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,6 +9,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import lombok.NonNull;
+import me.googas.starbox.Validate;
+import me.googas.starbox.time.Time;
+import me.googas.starbox.time.Unit;
 
 /**
  * An object which represents a way to manage cache. This stores the catchables objects and the time

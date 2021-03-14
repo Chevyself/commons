@@ -1,5 +1,7 @@
 package me.googas.starbox.modules.data.economy;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
@@ -7,9 +9,6 @@ import me.googas.starbox.modules.data.type.Bank;
 import me.googas.starbox.modules.data.type.Currency;
 import me.googas.starbox.modules.data.type.Profile;
 import me.googas.starbox.modules.placeholders.Line;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This object is in charge of handling the economy of the server with a given currency and banks

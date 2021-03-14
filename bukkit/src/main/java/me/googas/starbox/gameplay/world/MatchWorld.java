@@ -2,13 +2,13 @@ package me.googas.starbox.gameplay.world;
 
 import lombok.Getter;
 import lombok.NonNull;
-import me.googas.commons.RandomUtils;
-import me.googas.commons.math.geometry.Point;
-import me.googas.commons.math.geometry.Sphere;
+import me.googas.starbox.RandomUtils;
 import me.googas.starbox.Starbox;
+import me.googas.starbox.math.geometry.Point;
+import me.googas.starbox.math.geometry.Sphere;
 import me.googas.starbox.reflect.APIVersion;
-import me.googas.starbox.reflect.WrappedClass;
-import me.googas.starbox.reflect.WrappedMethod;
+import me.googas.starbox.reflect.wrappers.WrappedClass;
+import me.googas.starbox.reflect.wrappers.WrappedMethod;
 import me.googas.starbox.utility.Versions;
 import org.bukkit.Location;
 import org.bukkit.Material;

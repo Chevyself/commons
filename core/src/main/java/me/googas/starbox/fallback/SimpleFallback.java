@@ -1,10 +1,9 @@
 package me.googas.starbox.fallback;
 
-import lombok.NonNull;
-import lombok.experimental.Delegate;
-
 import java.util.ArrayList;
 import java.util.List;
+import lombok.NonNull;
+import lombok.experimental.Delegate;
 
 /**
  * The most simple implementation of fallback that the processing for an exception is just printing

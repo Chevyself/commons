@@ -1,18 +1,17 @@
 package me.googas.starbox.modules.language;
 
-import com.starfishst.commands.bukkit.context.CommandContext;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.Delegate;
-import me.googas.commons.Lots;
+import me.googas.commands.bukkit.context.CommandContext;
+import me.googas.starbox.Lots;
 import me.googas.starbox.modules.Module;
 import me.googas.starbox.utility.Players;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LanguageModule implements Module {
 

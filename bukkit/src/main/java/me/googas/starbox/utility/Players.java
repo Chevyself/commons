@@ -1,11 +1,13 @@
 package me.googas.starbox.utility;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
 import me.googas.starbox.reflect.APIVersion;
-import me.googas.starbox.reflect.WrappedClass;
-import me.googas.starbox.reflect.WrappedMethod;
-import me.googas.starbox.reflect.WrappedReturnMethod;
+import me.googas.starbox.reflect.wrappers.WrappedClass;
+import me.googas.starbox.reflect.wrappers.WrappedMethod;
+import me.googas.starbox.reflect.wrappers.WrappedReturnMethod;
 import me.googas.starbox.wrappers.attributes.WrappedAttribute;
 import me.googas.starbox.wrappers.attributes.WrappedAttributeInstance;
 import org.bukkit.Bukkit;
@@ -13,9 +15,6 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Players {
 

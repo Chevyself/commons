@@ -2,8 +2,8 @@ package me.googas.starbox.wrappers.properties;
 
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
-import me.googas.starbox.reflect.WrappedClass;
-import me.googas.starbox.reflect.WrappedConstructor;
+import me.googas.starbox.reflect.wrappers.WrappedClass;
+import me.googas.starbox.reflect.wrappers.WrappedConstructor;
 import me.googas.starbox.wrappers.SimpleWrapper;
 
 public class WrappedProperty extends SimpleWrapper {

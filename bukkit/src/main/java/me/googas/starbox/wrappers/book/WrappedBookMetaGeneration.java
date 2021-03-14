@@ -2,8 +2,8 @@ package me.googas.starbox.wrappers.book;
 
 import lombok.NonNull;
 import me.googas.starbox.reflect.APIVersion;
-import me.googas.starbox.reflect.WrappedClass;
-import me.googas.starbox.reflect.WrappedMethod;
+import me.googas.starbox.reflect.wrappers.WrappedClass;
+import me.googas.starbox.reflect.wrappers.WrappedMethod;
 import me.googas.starbox.utility.Versions;
 
 @APIVersion(12)

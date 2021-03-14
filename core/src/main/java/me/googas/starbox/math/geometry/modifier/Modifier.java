@@ -1,9 +1,8 @@
 package me.googas.starbox.math.geometry.modifier;
 
+import java.util.Collection;
 import lombok.NonNull;
 import me.googas.starbox.math.geometry.Shape;
-
-import java.util.Collection;
 
 /** Shapes can have different modifications which introduce a bunch of new usages */
 public interface Modifier extends Shape {

@@ -1,8 +1,7 @@
 package me.googas.messaging.api;
 
-import lombok.NonNull;
-
 import java.util.UUID;
+import lombok.NonNull;
 
 /** A message send between two messengers */
 public interface Message {

@@ -1,5 +1,7 @@
 package me.googas.starbox.modules.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
@@ -12,9 +14,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This module makes {@link UI} work. This module is required when a plugin attempts to loadJson

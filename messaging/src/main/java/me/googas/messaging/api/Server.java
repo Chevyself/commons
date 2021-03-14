@@ -1,13 +1,12 @@
 package me.googas.messaging.api;
 
-import lombok.NonNull;
-import me.googas.messaging.Request;
-
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiConsumer;
+import lombok.NonNull;
+import me.googas.messaging.Request;
 
 /** This object represents the server {@link Messenger} connects to */
 public interface Server {

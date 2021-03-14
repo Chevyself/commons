@@ -1,11 +1,10 @@
 package me.googas.starbox.reflect.wrappers;
 
+import java.lang.reflect.Field;
 import lombok.Getter;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
 import me.googas.starbox.builder.ToStringBuilder;
-
-import java.lang.reflect.Field;
 
 /**
  * This object represents field wrapped to avoid exceptions such as {@link IllegalAccessException}

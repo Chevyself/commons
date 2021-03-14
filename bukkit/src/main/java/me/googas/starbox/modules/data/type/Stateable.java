@@ -1,10 +1,9 @@
 package me.googas.starbox.modules.data.type;
 
-import lombok.NonNull;
-import me.googas.annotations.Nullable;
-
 import java.util.HashMap;
 import java.util.Map;
+import lombok.NonNull;
+import me.googas.annotations.Nullable;
 
 public interface Stateable {
 

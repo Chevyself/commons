@@ -1,8 +1,7 @@
 package me.googas.starbox;
 
-import lombok.NonNull;
-
 import java.util.UUID;
+import lombok.NonNull;
 
 /** Static utilities for {@link UUID} */
 public class UUIDUtils {

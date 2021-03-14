@@ -1,11 +1,10 @@
 package me.googas.starbox.reflect.wrappers;
 
+import java.lang.reflect.Method;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
 import me.googas.starbox.Validate;
 import me.googas.starbox.builder.ToStringBuilder;
-
-import java.lang.reflect.Method;
 
 /**
  * Same as {@link WrappedMethod} (as it is extended) but the return type is set as the parameter

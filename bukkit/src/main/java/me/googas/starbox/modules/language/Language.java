@@ -1,10 +1,9 @@
 package me.googas.starbox.modules.language;
 
-import com.starfishst.commands.bukkit.utils.BukkitUtils;
-import lombok.NonNull;
-import me.googas.commons.maps.MapBuilder;
-
 import java.util.Map;
+import lombok.NonNull;
+import me.googas.commands.bukkit.utils.BukkitUtils;
+import me.googas.starbox.maps.MapBuilder;
 
 public interface Language {
 

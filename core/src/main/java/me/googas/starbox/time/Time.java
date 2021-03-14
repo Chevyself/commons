@@ -1,11 +1,10 @@
 package me.googas.starbox.time;
 
-import lombok.NonNull;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.concurrent.TimeUnit;
+import lombok.NonNull;
 
 /**
  * This object represents time in a simple fashion: a time {@link Unit} and a value that is given in

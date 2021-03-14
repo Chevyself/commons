@@ -1,14 +1,13 @@
 package me.googas.starbox.gameplay.module;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.NonNull;
 import me.googas.starbox.gameplay.match.Match;
 import me.googas.starbox.modules.Module;
 import me.googas.starbox.modules.ModuleRegistry;
 import org.bukkit.plugin.Plugin;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MatchModuleRegistry extends ModuleRegistry {
 

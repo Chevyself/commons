@@ -1,11 +1,10 @@
 package me.googas.starbox.math.geometry;
 
+import java.util.HashSet;
+import java.util.Set;
 import lombok.NonNull;
 import me.googas.starbox.RandomUtils;
 import me.googas.starbox.math.geometry.containers.Points;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /** An object that represents a 3 dimensional shape */
 public interface Shape {

@@ -1,26 +1,25 @@
 package me.googas.starbox.utility.items.meta;
 
 import com.google.common.collect.Multimap;
+import java.util.HashMap;
 import lombok.Getter;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
-import me.googas.commons.Strings;
-import me.googas.commons.builder.SuppliedBuilder;
-import me.googas.commons.maps.MapBuilder;
+import me.googas.starbox.Strings;
+import me.googas.starbox.builder.SuppliedBuilder;
+import me.googas.starbox.maps.MapBuilder;
 import me.googas.starbox.modules.ui.Button;
 import me.googas.starbox.modules.ui.ButtonListener;
 import me.googas.starbox.modules.ui.buttons.StarboxButton;
 import me.googas.starbox.reflect.APIVersion;
-import me.googas.starbox.reflect.WrappedClass;
-import me.googas.starbox.reflect.WrappedMethod;
+import me.googas.starbox.reflect.wrappers.WrappedClass;
+import me.googas.starbox.reflect.wrappers.WrappedMethod;
 import me.googas.starbox.utility.Versions;
 import me.googas.starbox.utility.items.ItemBuilder;
 import me.googas.starbox.wrappers.attributes.WrappedAttributes;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.HashMap;
 
 public class ItemMetaBuilder implements SuppliedBuilder<ItemStack, ItemMeta> {
 

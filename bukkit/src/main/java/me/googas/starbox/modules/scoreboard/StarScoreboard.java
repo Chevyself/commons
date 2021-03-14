@@ -1,17 +1,22 @@
 package me.googas.starbox.modules.scoreboard;
 
-import com.starfishst.commands.bukkit.utils.BukkitUtils;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import me.googas.annotations.Nullable;
-import me.googas.commons.Strings;
-import me.googas.commons.Validate;
-import me.googas.commons.maps.Maps;
+import me.googas.commands.bukkit.utils.BukkitUtils;
+import me.googas.starbox.Strings;
+import me.googas.starbox.Validate;
+import me.googas.starbox.maps.Maps;
 import me.googas.starbox.modules.placeholders.Line;
 import me.googas.starbox.reflect.APIVersion;
-import me.googas.starbox.reflect.WrappedClass;
-import me.googas.starbox.reflect.WrappedReturnMethod;
+import me.googas.starbox.reflect.wrappers.WrappedClass;
+import me.googas.starbox.reflect.wrappers.WrappedReturnMethod;
 import me.googas.starbox.utility.Versions;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -21,12 +26,6 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
 
 /** The custom scoreboard for a player */
 public class StarScoreboard {

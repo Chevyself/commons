@@ -1,8 +1,9 @@
 package me.googas.starbox.modules.ui.buttons;
 
+import java.util.Objects;
 import lombok.Getter;
 import lombok.NonNull;
-import me.googas.commons.builder.ToStringBuilder;
+import me.googas.starbox.builder.ToStringBuilder;
 import me.googas.starbox.modules.ui.Button;
 import me.googas.starbox.modules.ui.ButtonListener;
 import me.googas.starbox.modules.ui.types.PaginatedInventory;
@@ -10,8 +11,6 @@ import me.googas.starbox.utility.items.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.Objects;
 
 public class StarboxButton implements Button {
 

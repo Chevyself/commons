@@ -1,5 +1,6 @@
 package me.googas.starbox.compatibilities.vault;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
@@ -13,8 +14,6 @@ import me.googas.starbox.modules.data.type.Profile;
 import net.milkbowl.vault.economy.AbstractEconomy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.OfflinePlayer;
-
-import java.util.List;
 
 public class StarboxEconomy extends AbstractEconomy implements VaultImplementation {
 

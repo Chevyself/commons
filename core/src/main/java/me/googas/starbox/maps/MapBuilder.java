@@ -1,11 +1,10 @@
 package me.googas.starbox.maps;
 
+import java.util.Map;
 import lombok.NonNull;
 import lombok.experimental.Delegate;
 import me.googas.starbox.builder.Builder;
 import me.googas.starbox.builder.ToStringBuilder;
-
-import java.util.Map;
 
 /** Helps with single line {@link Map} building */
 public class MapBuilder<K, V> implements Builder<Map<K, V>> {

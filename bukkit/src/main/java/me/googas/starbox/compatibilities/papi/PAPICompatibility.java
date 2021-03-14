@@ -1,15 +1,14 @@
 package me.googas.starbox.compatibilities.papi;
 
-import com.starfishst.commands.bukkit.context.CommandContext;
-import com.starfishst.core.providers.type.IContextualProvider;
+import java.util.ArrayList;
+import java.util.Collection;
 import lombok.NonNull;
+import me.googas.commands.bukkit.context.CommandContext;
+import me.googas.commands.providers.type.IContextualProvider;
 import me.googas.starbox.StarboxCommand;
 import me.googas.starbox.compatibilities.Compatibility;
 import me.googas.starbox.modules.Module;
 import org.bukkit.plugin.Plugin;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * This compatibility adds an easy way to register placeholders thru Starbox or use placeholders in

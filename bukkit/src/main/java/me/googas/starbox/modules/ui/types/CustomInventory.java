@@ -1,5 +1,7 @@
 package me.googas.starbox.modules.ui.types;
 
+import java.util.HashMap;
+import java.util.Map;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -11,9 +13,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /** A custom inventory is a fixed size UI */
 public class CustomInventory implements UI {

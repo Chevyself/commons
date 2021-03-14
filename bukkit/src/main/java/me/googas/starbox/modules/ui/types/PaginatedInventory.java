@@ -1,10 +1,15 @@
 package me.googas.starbox.modules.ui.types;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import me.googas.annotations.Nullable;
-import me.googas.commons.Validate;
+import me.googas.starbox.Validate;
 import me.googas.starbox.modules.ui.Button;
 import me.googas.starbox.modules.ui.UI;
 import me.googas.starbox.modules.ui.buttons.StarboxButton;
@@ -13,12 +18,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * A paginated inventory has different sizes depending on the buttons size and has pages if there is

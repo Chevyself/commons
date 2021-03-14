@@ -1,9 +1,8 @@
 package me.googas.starbox.utility;
 
-import lombok.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
+import lombok.NonNull;
 
 public class ListUtils {
 

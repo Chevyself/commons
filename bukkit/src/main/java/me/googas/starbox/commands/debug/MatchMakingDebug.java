@@ -1,9 +1,10 @@
 package me.googas.starbox.commands.debug;
 
-import com.starfishst.commands.bukkit.annotations.Command;
-import com.starfishst.commands.bukkit.result.Result;
-import com.starfishst.commands.bukkit.utils.BukkitUtils;
+import java.util.Collection;
 import lombok.NonNull;
+import me.googas.commands.bukkit.annotations.Command;
+import me.googas.commands.bukkit.result.Result;
+import me.googas.commands.bukkit.utils.BukkitUtils;
 import me.googas.starbox.Starbox;
 import me.googas.starbox.gameplay.MiniGame;
 import me.googas.starbox.gameplay.entity.MatchEntity;
@@ -19,8 +20,6 @@ import me.googas.starbox.utility.items.meta.ItemMetaBuilder;
 import me.googas.starbox.utility.items.meta.SkullMetaBuilder;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-
-import java.util.Collection;
 
 /**
  * This commands are used to provide some information about match making objects. This commands are

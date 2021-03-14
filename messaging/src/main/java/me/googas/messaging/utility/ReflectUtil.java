@@ -1,10 +1,9 @@
 package me.googas.messaging.utility;
 
-import lombok.NonNull;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import lombok.NonNull;
 
 /** Static utilities for java reflection */
 public class ReflectUtil {

@@ -1,8 +1,8 @@
 package me.googas.starbox.commands.providers;
 
-import com.starfishst.commands.bukkit.context.CommandContext;
-import com.starfishst.commands.bukkit.providers.type.BukkitExtraArgumentProvider;
 import lombok.NonNull;
+import me.googas.commands.bukkit.context.CommandContext;
+import me.googas.commands.bukkit.providers.type.BukkitExtraArgumentProvider;
 import me.googas.starbox.Starbox;
 import me.googas.starbox.modules.language.FallbackLanguage;
 import me.googas.starbox.modules.language.Language;

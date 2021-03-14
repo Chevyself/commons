@@ -32,11 +32,11 @@
     </repositories>
 
     <dependencies>
-        <!-- Command framework -->
+        <!-- Command framework & Starbox core -->
         <dependency>
-            <groupId>com.starfishst.commands.bukkit</groupId>
+            <groupId>me.googas.commands</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.0.0_0</version>
+            <version>1.0.0</version>
         </dependency>
         <!-- Spigot API -->
         <dependency>
@@ -58,6 +58,12 @@
             <artifactId>VaultAPI</artifactId>
             <version>1.7</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.googas.starbox</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

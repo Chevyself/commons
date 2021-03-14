@@ -1,12 +1,11 @@
 package me.googas.starbox.modules.placeholders;
 
-import com.starfishst.commands.bukkit.utils.BukkitUtils;
+import java.util.Map;
 import lombok.NonNull;
+import me.googas.commands.bukkit.utils.BukkitUtils;
 import me.googas.starbox.Starbox;
 import me.googas.starbox.modules.language.LanguageModule;
 import org.bukkit.OfflinePlayer;
-
-import java.util.Map;
 
 /** A line that is localized */
 public class LocalizedLine extends Line {

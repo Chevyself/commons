@@ -1,9 +1,8 @@
 package me.googas.starbox.fallback;
 
+import java.util.List;
 import lombok.NonNull;
 import me.googas.starbox.Pagination;
-
-import java.util.List;
 
 /**
  * A class to handle errors in a more user friendly way. This means in a way to get them in the

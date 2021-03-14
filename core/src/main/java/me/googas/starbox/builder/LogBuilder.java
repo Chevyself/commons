@@ -1,12 +1,11 @@
 package me.googas.starbox.builder;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Delegate;
-
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.experimental.Delegate;
 
 /** This helps build logs to later send in a logger */
 public class LogBuilder implements Builder<LogRecord> {

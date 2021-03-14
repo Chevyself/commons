@@ -1,10 +1,11 @@
 package me.googas.starbox.utility.items.meta;
 
+import java.util.UUID;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
 import me.googas.starbox.reflect.APIVersion;
-import me.googas.starbox.reflect.WrappedClass;
-import me.googas.starbox.reflect.WrappedMethod;
+import me.googas.starbox.reflect.wrappers.WrappedClass;
+import me.googas.starbox.reflect.wrappers.WrappedMethod;
 import me.googas.starbox.utility.Versions;
 import me.googas.starbox.utility.items.ItemBuilder;
 import me.googas.starbox.wrappers.profile.WrappedGameProfile;
@@ -13,8 +14,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-
-import java.util.UUID;
 
 public class SkullMetaBuilder extends ItemMetaBuilder {
 

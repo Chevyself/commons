@@ -1,12 +1,11 @@
 package me.googas.starbox;
 
-import lombok.Getter;
-import lombok.NonNull;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+import lombok.Getter;
+import lombok.NonNull;
 
 /** Static utilities for randomization */
 public class RandomUtils {

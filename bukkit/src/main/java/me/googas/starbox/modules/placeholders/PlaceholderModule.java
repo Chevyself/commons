@@ -1,18 +1,17 @@
 package me.googas.starbox.modules.placeholders;
 
-import com.starfishst.commands.bukkit.utils.BukkitUtils;
-import lombok.NonNull;
-import lombok.experimental.Delegate;
-import me.googas.annotations.Nullable;
-import me.googas.starbox.Starbox;
-import me.googas.starbox.compatibilities.papi.PAPIPlaceholderHandler;
-import me.googas.starbox.modules.Module;
-import org.bukkit.OfflinePlayer;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lombok.NonNull;
+import lombok.experimental.Delegate;
+import me.googas.annotations.Nullable;
+import me.googas.commands.bukkit.utils.BukkitUtils;
+import me.googas.starbox.Starbox;
+import me.googas.starbox.compatibilities.papi.PAPIPlaceholderHandler;
+import me.googas.starbox.modules.Module;
+import org.bukkit.OfflinePlayer;
 
 public class PlaceholderModule implements Module {
 

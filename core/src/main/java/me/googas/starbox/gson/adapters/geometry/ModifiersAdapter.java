@@ -5,13 +5,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
+import java.lang.reflect.Type;
 import me.googas.starbox.math.geometry.modifier.Complement;
 import me.googas.starbox.math.geometry.modifier.Intersect;
 import me.googas.starbox.math.geometry.modifier.Modifier;
 import me.googas.starbox.math.geometry.modifier.Negative;
 import me.googas.starbox.math.geometry.modifier.Union;
-
-import java.lang.reflect.Type;
 
 public class ModifiersAdapter implements ModifierAdapter<Modifier> {
 

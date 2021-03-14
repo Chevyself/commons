@@ -1,16 +1,15 @@
 package me.googas.starbox.wrappers.profile;
 
+import java.util.UUID;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
-import me.googas.commons.Validate;
-import me.googas.starbox.reflect.WrappedClass;
-import me.googas.starbox.reflect.WrappedConstructor;
-import me.googas.starbox.reflect.WrappedMethod;
-import me.googas.starbox.reflect.WrappedReturnMethod;
+import me.googas.starbox.Validate;
+import me.googas.starbox.reflect.wrappers.WrappedClass;
+import me.googas.starbox.reflect.wrappers.WrappedConstructor;
+import me.googas.starbox.reflect.wrappers.WrappedMethod;
+import me.googas.starbox.reflect.wrappers.WrappedReturnMethod;
 import me.googas.starbox.wrappers.SimpleWrapper;
 import me.googas.starbox.wrappers.properties.WrappedPropertyMap;
-
-import java.util.UUID;
 
 public class WrappedGameProfile extends SimpleWrapper {
 

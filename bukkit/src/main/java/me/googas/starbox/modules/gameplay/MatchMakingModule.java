@@ -1,9 +1,14 @@
 package me.googas.starbox.modules.gameplay;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 import lombok.Getter;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
-import me.googas.commons.Lots;
+import me.googas.starbox.Lots;
 import me.googas.starbox.gameplay.MiniGame;
 import me.googas.starbox.gameplay.entity.MatchEntity;
 import me.googas.starbox.gameplay.entity.MatchEntityState;
@@ -19,12 +24,6 @@ import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerLoginEvent;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 public class MatchMakingModule implements Module {
 

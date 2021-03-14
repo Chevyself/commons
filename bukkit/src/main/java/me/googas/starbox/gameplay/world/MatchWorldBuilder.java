@@ -1,15 +1,16 @@
 package me.googas.starbox.gameplay.world;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
-import me.googas.commons.RandomUtils;
-import me.googas.commons.builder.Builder;
-import me.googas.commons.builder.ToStringBuilder;
+import me.googas.starbox.RandomUtils;
 import me.googas.starbox.Starbox;
+import me.googas.starbox.builder.Builder;
+import me.googas.starbox.builder.ToStringBuilder;
 import me.googas.starbox.reflect.APIVersion;
-import me.googas.starbox.reflect.WrappedClass;
-import me.googas.starbox.reflect.WrappedMethod;
+import me.googas.starbox.reflect.wrappers.WrappedClass;
+import me.googas.starbox.reflect.wrappers.WrappedMethod;
 import me.googas.starbox.utility.Versions;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -21,8 +22,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
-
-import java.util.List;
 
 public class MatchWorldBuilder implements Builder<MatchWorld> {
 

@@ -1,17 +1,16 @@
 package me.googas.starbox.compatibilities.vault;
 
-import com.starfishst.commands.bukkit.context.CommandContext;
-import com.starfishst.core.providers.type.IContextualProvider;
+import java.util.ArrayList;
+import java.util.Collection;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import me.googas.commands.bukkit.context.CommandContext;
+import me.googas.commands.providers.type.IContextualProvider;
 import me.googas.starbox.StarboxCommand;
 import me.googas.starbox.compatibilities.Compatibility;
 import me.googas.starbox.modules.Module;
 import org.bukkit.plugin.Plugin;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Most plugins use or require Vault nowadays this compatibility allows developers to easily connect

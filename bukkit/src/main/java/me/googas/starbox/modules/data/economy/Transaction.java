@@ -1,8 +1,8 @@
 package me.googas.starbox.modules.data.economy;
 
-import com.starfishst.commands.bukkit.utils.BukkitUtils;
 import lombok.Getter;
 import lombok.NonNull;
+import me.googas.commands.bukkit.utils.BukkitUtils;
 import me.googas.starbox.modules.placeholders.Line;
 
 /** A transaction is an object that represents the result from an economic action */

@@ -1,12 +1,11 @@
 package me.googas.starbox.channels;
 
+import java.util.Map;
 import lombok.NonNull;
-import me.googas.commons.Strings;
 import me.googas.starbox.Starbox;
+import me.googas.starbox.Strings;
 import me.googas.starbox.modules.language.LanguageModule;
 import me.googas.starbox.modules.placeholders.Line;
-
-import java.util.Map;
 
 /**
  * A channel is an object in which different types of media can be sent such as messages, sounds,

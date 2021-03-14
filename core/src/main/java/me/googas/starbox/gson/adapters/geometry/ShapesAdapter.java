@@ -5,13 +5,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
+import java.lang.reflect.Type;
 import me.googas.starbox.math.geometry.Box;
 import me.googas.starbox.math.geometry.Cylinder;
 import me.googas.starbox.math.geometry.Shape;
 import me.googas.starbox.math.geometry.Sphere;
 import me.googas.starbox.math.geometry.modifier.Modifier;
-
-import java.lang.reflect.Type;
 
 public class ShapesAdapter implements ShapeAdapter<Shape> {
 

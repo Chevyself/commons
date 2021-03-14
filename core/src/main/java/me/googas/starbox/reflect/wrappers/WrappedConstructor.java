@@ -1,11 +1,10 @@
 package me.googas.starbox.reflect.wrappers;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import lombok.Getter;
 import me.googas.annotations.Nullable;
 import me.googas.starbox.builder.ToStringBuilder;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * This class represents a constructor wrapped to avoid exceptions such as {@link

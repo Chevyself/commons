@@ -1,13 +1,12 @@
 package me.googas.starbox;
 
+import java.util.function.Supplier;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import me.googas.annotations.Nullable;
 import me.googas.starbox.fallback.Fallback;
 import me.googas.starbox.fallback.SimpleFallback;
-
-import java.util.function.Supplier;
 
 /** Static method to validate certain stuff like booleans, non nulls, etc */
 public class Validate {

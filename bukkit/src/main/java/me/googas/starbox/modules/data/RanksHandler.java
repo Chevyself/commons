@@ -1,19 +1,18 @@
 package me.googas.starbox.modules.data;
 
-import com.starfishst.commands.bukkit.utils.BukkitUtils;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.Delegate;
 import me.googas.annotations.Nullable;
+import me.googas.commands.bukkit.utils.BukkitUtils;
 import me.googas.starbox.modules.data.type.Profile;
 import me.googas.starbox.modules.data.type.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /** Handles ranks for the data module */
 public class RanksHandler {

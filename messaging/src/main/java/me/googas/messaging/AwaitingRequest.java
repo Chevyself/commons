@@ -1,9 +1,8 @@
 package me.googas.messaging;
 
-import lombok.NonNull;
-
 import java.util.Optional;
 import java.util.function.Consumer;
+import lombok.NonNull;
 
 /**
  * A request that is waiting for a {@link Response} in a {@link me.googas.messaging.api.Messenger}

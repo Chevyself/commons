@@ -1,13 +1,6 @@
 package me.googas.messaging.json.client;
 
 import com.google.gson.Gson;
-import lombok.NonNull;
-import me.googas.messaging.AwaitingRequest;
-import me.googas.messaging.ThrowableHandler;
-import me.googas.messaging.json.JsonMessenger;
-import me.googas.messaging.json.reflect.JsonReceptor;
-import me.googas.messaging.json.server.JsonSocketServer;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,6 +12,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.NonNull;
+import me.googas.messaging.AwaitingRequest;
+import me.googas.messaging.ThrowableHandler;
+import me.googas.messaging.json.JsonMessenger;
+import me.googas.messaging.json.reflect.JsonReceptor;
+import me.googas.messaging.json.server.JsonSocketServer;
 
 /** This object represents a client that can be used to connect to the {@link JsonSocketServer} */
 public class JsonClient extends Thread implements JsonMessenger {

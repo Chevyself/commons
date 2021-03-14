@@ -1,14 +1,13 @@
 package me.googas.starbox.modules.data.type;
 
-import lombok.NonNull;
-import me.googas.annotations.Nullable;
-import me.googas.starbox.modules.ui.Displayable;
-import org.bukkit.permissions.Permission;
-
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.NonNull;
+import me.googas.annotations.Nullable;
+import me.googas.starbox.modules.ui.Displayable;
+import org.bukkit.permissions.Permission;
 
 /** A rank is an object which players may posses: it gives the player permissions */
 public interface Rank extends Displayable, Data, Permissible, Decorative {

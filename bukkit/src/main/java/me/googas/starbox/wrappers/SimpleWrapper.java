@@ -1,7 +1,7 @@
 package me.googas.starbox.wrappers;
 
 import me.googas.annotations.Nullable;
-import me.googas.commons.builder.ToStringBuilder;
+import me.googas.starbox.builder.ToStringBuilder;
 
 public class SimpleWrapper implements Wrapper {
 

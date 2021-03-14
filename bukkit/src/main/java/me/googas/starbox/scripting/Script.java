@@ -2,23 +2,22 @@ package me.googas.starbox.scripting;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import jdk.nashorn.api.scripting.NashornScriptEngine;
-import lombok.Getter;
-import lombok.NonNull;
-import me.googas.annotations.Nullable;
-import me.googas.commons.CoreFiles;
-import me.googas.commons.builder.ToStringBuilder;
-import me.googas.starbox.Starbox;
-import org.bukkit.Bukkit;
-
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+import jdk.nashorn.api.scripting.NashornScriptEngine;
+import lombok.Getter;
+import lombok.NonNull;
+import me.googas.annotations.Nullable;
+import me.googas.starbox.CoreFiles;
+import me.googas.starbox.Starbox;
+import me.googas.starbox.builder.ToStringBuilder;
+import org.bukkit.Bukkit;
 
 /** Uses JavaScript ES5 https://www.w3schools.com/Js/js_es5.asp */
 public class Script {

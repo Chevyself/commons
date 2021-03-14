@@ -1,16 +1,15 @@
 package me.googas.starbox.reflect.wrappers;
 
-import lombok.Getter;
-import lombok.NonNull;
-import me.googas.annotations.Nullable;
-import me.googas.starbox.Lots;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
+import lombok.NonNull;
+import me.googas.annotations.Nullable;
+import me.googas.starbox.Lots;
 
 /**
  * This object represents a class but the methods here prevent exceptions such as {@link

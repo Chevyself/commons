@@ -1,10 +1,9 @@
 package me.googas.starbox.compatibilities;
 
+import java.util.Set;
 import lombok.Getter;
 import lombok.NonNull;
 import org.bukkit.Bukkit;
-
-import java.util.Set;
 
 /**
  * This object is required in order to check whether the compatibilities are loaded or can be

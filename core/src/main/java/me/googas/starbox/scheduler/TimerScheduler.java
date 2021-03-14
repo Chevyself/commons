@@ -1,15 +1,14 @@
 package me.googas.starbox.scheduler;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Delegate;
-import me.googas.starbox.time.Time;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.experimental.Delegate;
+import me.googas.starbox.time.Time;
 
 /** An scheduler using {@link java.util.Timer} */
 public class TimerScheduler implements Scheduler {

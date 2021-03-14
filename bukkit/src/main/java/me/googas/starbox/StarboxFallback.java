@@ -1,17 +1,16 @@
 package me.googas.starbox;
 
-import com.starfishst.commands.bukkit.utils.BukkitUtils;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
 import lombok.Getter;
 import lombok.NonNull;
-import me.googas.commons.fallback.Fallback;
+import me.googas.commands.bukkit.utils.BukkitUtils;
+import me.googas.starbox.fallback.Fallback;
 import me.googas.starbox.modules.ui.Button;
 import me.googas.starbox.modules.ui.types.PaginatedInventory;
 import me.googas.starbox.utility.items.ItemBuilder;
 import org.bukkit.Material;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
 
 public class StarboxFallback implements Fallback {
 

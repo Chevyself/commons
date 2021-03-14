@@ -1,16 +1,15 @@
 package me.googas.starbox.modules.data.type;
 
+import java.util.UUID;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
-import me.googas.commons.cache.Catchable;
+import me.googas.starbox.cache.Catchable;
 import me.googas.starbox.channels.Channel;
 import me.googas.starbox.modules.placeholders.Line;
 import me.googas.starbox.utility.Players;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-
-import java.util.UUID;
 
 /**
  * This object represents the data of a {@link org.bukkit.entity.Player} which may have money,

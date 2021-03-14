@@ -1,16 +1,15 @@
 package me.googas.starbox.commands.providers;
 
-import com.starfishst.commands.bukkit.context.CommandContext;
-import com.starfishst.commands.bukkit.providers.type.BukkitArgumentProvider;
-import com.starfishst.core.exceptions.ArgumentProviderException;
+import java.util.List;
 import lombok.NonNull;
+import me.googas.commands.bukkit.context.CommandContext;
+import me.googas.commands.bukkit.providers.type.BukkitArgumentProvider;
+import me.googas.commands.exceptions.ArgumentProviderException;
 import me.googas.starbox.Starbox;
 import me.googas.starbox.modules.data.DataModule;
 import me.googas.starbox.modules.data.type.Profile;
 import me.googas.starbox.utility.Players;
 import org.bukkit.OfflinePlayer;
-
-import java.util.List;
 
 public class ProfileProvider implements BukkitArgumentProvider<Profile> {
 

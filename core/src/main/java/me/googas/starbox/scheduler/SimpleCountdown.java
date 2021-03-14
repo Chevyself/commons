@@ -1,12 +1,11 @@
 package me.googas.starbox.scheduler;
 
+import java.util.function.Consumer;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import me.googas.starbox.time.Time;
 import me.googas.starbox.time.Unit;
-
-import java.util.function.Consumer;
 
 public class SimpleCountdown implements Countdown {
 

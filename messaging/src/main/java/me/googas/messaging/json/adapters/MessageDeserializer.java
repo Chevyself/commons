@@ -7,11 +7,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import java.lang.reflect.Type;
 import me.googas.messaging.ReceivedRequest;
 import me.googas.messaging.Response;
 import me.googas.messaging.api.Message;
-
-import java.lang.reflect.Type;
 
 /** Deserializes messages */
 public class MessageDeserializer implements JsonSerializer<Message>, JsonDeserializer<Message> {

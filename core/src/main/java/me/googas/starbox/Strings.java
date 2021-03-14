@@ -1,12 +1,11 @@
 package me.googas.starbox;
 
-import lombok.NonNull;
-import me.googas.starbox.maps.MapBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
+import lombok.NonNull;
+import me.googas.starbox.maps.MapBuilder;
 
 /** Static utilities for strings */
 public class Strings {

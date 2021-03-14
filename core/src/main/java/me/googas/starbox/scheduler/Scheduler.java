@@ -1,12 +1,11 @@
 package me.googas.starbox.scheduler;
 
+import java.util.Collection;
+import java.util.function.Consumer;
 import lombok.NonNull;
 import me.googas.starbox.RandomUtils;
 import me.googas.starbox.time.Time;
 import me.googas.starbox.time.Unit;
-
-import java.util.Collection;
-import java.util.function.Consumer;
 
 /** An scheduler is an object used to create and manage {@link Task} */
 public interface Scheduler {

@@ -7,9 +7,8 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import me.googas.starbox.time.Time;
-
 import java.lang.reflect.Type;
+import me.googas.starbox.time.Time;
 
 public class TimeAdapter implements JsonSerializer<Time>, JsonDeserializer<Time> {
 

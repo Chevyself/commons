@@ -2,24 +2,6 @@ package me.googas.messaging.json;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import lombok.NonNull;
-import me.googas.annotations.Nullable;
-import me.googas.messaging.AwaitingRequest;
-import me.googas.messaging.IRequest;
-import me.googas.messaging.ReceivedRequest;
-import me.googas.messaging.Request;
-import me.googas.messaging.Response;
-import me.googas.messaging.ThrowableHandler;
-import me.googas.messaging.api.Message;
-import me.googas.messaging.api.Messenger;
-import me.googas.messaging.api.MessengerListenFailException;
-import me.googas.messaging.json.exception.JsonCommunicationException;
-import me.googas.messaging.json.exception.JsonExternalCommunicationException;
-import me.googas.messaging.json.exception.JsonInternalCommunicationException;
-import me.googas.messaging.json.reflect.JsonReceptor;
-import me.googas.messaging.json.reflect.JsonReceptorParameter;
-import me.googas.messaging.json.server.JsonClientThread;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,6 +20,23 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
+import lombok.NonNull;
+import me.googas.annotations.Nullable;
+import me.googas.messaging.AwaitingRequest;
+import me.googas.messaging.IRequest;
+import me.googas.messaging.ReceivedRequest;
+import me.googas.messaging.Request;
+import me.googas.messaging.Response;
+import me.googas.messaging.ThrowableHandler;
+import me.googas.messaging.api.Message;
+import me.googas.messaging.api.Messenger;
+import me.googas.messaging.api.MessengerListenFailException;
+import me.googas.messaging.json.exception.JsonCommunicationException;
+import me.googas.messaging.json.exception.JsonExternalCommunicationException;
+import me.googas.messaging.json.exception.JsonInternalCommunicationException;
+import me.googas.messaging.json.reflect.JsonReceptor;
+import me.googas.messaging.json.reflect.JsonReceptorParameter;
+import me.googas.messaging.json.server.JsonClientThread;
 
 /** A {@link Messenger} that works with json messages */
 public interface JsonMessenger extends Messenger, Runnable {

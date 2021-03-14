@@ -1,10 +1,13 @@
 package me.googas.starbox.modules.death;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-import me.googas.commons.maps.Maps;
 import me.googas.starbox.events.player.StarboxPlayerDeathEvent;
+import me.googas.starbox.maps.Maps;
 import me.googas.starbox.modules.Module;
 import me.googas.starbox.modules.placeholders.Line;
 import me.googas.starbox.modules.placeholders.LocalizedLine;
@@ -13,10 +16,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 public class DeathMessagesModule implements Module {
 

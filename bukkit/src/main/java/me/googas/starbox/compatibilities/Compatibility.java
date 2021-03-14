@@ -1,15 +1,14 @@
 package me.googas.starbox.compatibilities;
 
-import com.starfishst.commands.bukkit.context.CommandContext;
-import com.starfishst.core.providers.type.IContextualProvider;
+import java.util.Collection;
 import lombok.NonNull;
+import me.googas.commands.bukkit.context.CommandContext;
+import me.googas.commands.providers.type.IContextualProvider;
 import me.googas.starbox.Starbox;
 import me.googas.starbox.StarboxCommand;
 import me.googas.starbox.StarboxPlugin;
 import me.googas.starbox.modules.Module;
 import org.bukkit.plugin.Plugin;
-
-import java.util.Collection;
 
 /**
  * This object represents another plugin which can be used with Starbox or which ever plugin that

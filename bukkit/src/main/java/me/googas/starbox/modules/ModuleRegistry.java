@@ -1,17 +1,16 @@
 package me.googas.starbox.modules;
 
-import lombok.Getter;
-import lombok.NonNull;
-import me.googas.annotations.Nullable;
-import me.googas.commons.Lots;
-import me.googas.commons.Validate;
-import org.bukkit.Bukkit;
-import org.bukkit.event.HandlerList;
-import org.bukkit.plugin.Plugin;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import lombok.Getter;
+import lombok.NonNull;
+import me.googas.annotations.Nullable;
+import me.googas.starbox.Lots;
+import me.googas.starbox.Validate;
+import org.bukkit.Bukkit;
+import org.bukkit.event.HandlerList;
+import org.bukkit.plugin.Plugin;
 
 /**
  * The module registry takes care of modules: engaging, disengaging, getting modules etc.

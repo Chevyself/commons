@@ -1,9 +1,8 @@
 package me.googas.starbox.modules.language;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.NonNull;
-
-import java.util.List;
 
 public class LanguageBundle implements Language {
 

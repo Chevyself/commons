@@ -1,12 +1,11 @@
 package me.googas.messaging.api;
 
-import lombok.NonNull;
-import me.googas.annotations.Nullable;
-import me.googas.messaging.Request;
-
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import lombok.NonNull;
+import me.googas.annotations.Nullable;
+import me.googas.messaging.Request;
 
 /** This object is used to give and receive {@link Message} */
 public interface Messenger {

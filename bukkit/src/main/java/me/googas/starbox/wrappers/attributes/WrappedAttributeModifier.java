@@ -1,15 +1,14 @@
 package me.googas.starbox.wrappers.attributes;
 
+import java.util.UUID;
 import lombok.Getter;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
 import me.googas.starbox.reflect.APIVersion;
-import me.googas.starbox.reflect.WrappedClass;
-import me.googas.starbox.reflect.WrappedConstructor;
-import me.googas.starbox.reflect.WrappedMethod;
+import me.googas.starbox.reflect.wrappers.WrappedClass;
+import me.googas.starbox.reflect.wrappers.WrappedConstructor;
+import me.googas.starbox.reflect.wrappers.WrappedMethod;
 import me.googas.starbox.utility.Versions;
-
-import java.util.UUID;
 
 @APIVersion(9)
 public class WrappedAttributeModifier {

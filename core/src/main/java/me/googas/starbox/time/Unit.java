@@ -1,8 +1,7 @@
 package me.googas.starbox.time;
 
-import lombok.NonNull;
-
 import java.util.concurrent.TimeUnit;
+import lombok.NonNull;
 
 /** Represents a time unit */
 public enum Unit {

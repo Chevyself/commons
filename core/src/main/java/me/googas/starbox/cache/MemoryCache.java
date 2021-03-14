@@ -1,12 +1,11 @@
 package me.googas.starbox.cache;
 
-import lombok.NonNull;
-import lombok.experimental.Delegate;
-import me.googas.starbox.builder.ToStringBuilder;
-
 import java.lang.ref.SoftReference;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import lombok.NonNull;
+import lombok.experimental.Delegate;
+import me.googas.starbox.builder.ToStringBuilder;
 
 /**
  * A simple implementation for cache. This must be registered inside a {@link java.util.Timer} or

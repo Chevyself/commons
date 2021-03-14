@@ -1,14 +1,14 @@
 package me.googas.starbox.modules.language;
 
-import com.starfishst.commands.bukkit.AnnotatedCommand;
-import com.starfishst.commands.bukkit.ParentCommand;
-import com.starfishst.commands.bukkit.context.CommandContext;
-import com.starfishst.commands.bukkit.messages.MessagesProvider;
-import com.starfishst.core.arguments.Argument;
 import lombok.NonNull;
-import me.googas.commons.Lots;
-import me.googas.commons.maps.MapBuilder;
-import me.googas.commons.maps.Maps;
+import me.googas.commands.arguments.Argument;
+import me.googas.commands.bukkit.AnnotatedCommand;
+import me.googas.commands.bukkit.ParentCommand;
+import me.googas.commands.bukkit.context.CommandContext;
+import me.googas.commands.bukkit.messages.MessagesProvider;
+import me.googas.starbox.Lots;
+import me.googas.starbox.maps.MapBuilder;
+import me.googas.starbox.maps.Maps;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;

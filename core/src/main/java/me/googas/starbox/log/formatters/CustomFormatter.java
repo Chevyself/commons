@@ -1,9 +1,5 @@
 package me.googas.starbox.log.formatters;
 
-import lombok.NonNull;
-import me.googas.starbox.Strings;
-import me.googas.starbox.time.TimeUtils;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -13,6 +9,9 @@ import java.util.Map;
 import java.util.logging.Formatter;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
+import lombok.NonNull;
+import me.googas.starbox.Strings;
+import me.googas.starbox.time.TimeUtils;
 
 /**
  * Make a formatter for you handlers easily.

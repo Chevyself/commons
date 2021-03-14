@@ -1,10 +1,9 @@
 package me.googas.starbox.events;
 
+import java.lang.reflect.Method;
 import lombok.Getter;
 import lombok.NonNull;
 import me.googas.starbox.builder.ToStringBuilder;
-
-import java.lang.reflect.Method;
 
 /**
  * This class represents each method that is listening to an event. {@link #listener} is the object

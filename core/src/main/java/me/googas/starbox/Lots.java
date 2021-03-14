@@ -1,8 +1,5 @@
 package me.googas.starbox;
 
-import lombok.NonNull;
-import me.googas.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -11,6 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
+import lombok.NonNull;
+import me.googas.annotations.Nullable;
 
 /**
  * Static utilities for groups of objects such as {@link List}, {@link java.lang.reflect.Array} or

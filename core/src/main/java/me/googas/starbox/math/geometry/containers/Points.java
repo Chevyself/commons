@@ -1,11 +1,10 @@
 package me.googas.starbox.math.geometry.containers;
 
+import java.util.Set;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.Delegate;
 import me.googas.starbox.math.geometry.Point;
-
-import java.util.Set;
 
 /** A set of points inside a region */
 public class Points {

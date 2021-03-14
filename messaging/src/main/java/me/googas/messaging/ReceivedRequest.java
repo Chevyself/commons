@@ -1,11 +1,10 @@
 package me.googas.messaging;
 
 import com.google.gson.JsonElement;
-import lombok.NonNull;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import lombok.NonNull;
 
 /**
  * This object represents a request that is being read by a {@link

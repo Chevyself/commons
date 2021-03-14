@@ -1,15 +1,6 @@
 package me.googas.messaging.json.server;
 
 import com.google.gson.Gson;
-import lombok.NonNull;
-import me.googas.annotations.Nullable;
-import me.googas.messaging.Request;
-import me.googas.messaging.ThrowableHandler;
-import me.googas.messaging.api.Messenger;
-import me.googas.messaging.api.MessengerListenFailException;
-import me.googas.messaging.api.Server;
-import me.googas.messaging.json.reflect.JsonReceptor;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -21,6 +12,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiConsumer;
+import lombok.NonNull;
+import me.googas.annotations.Nullable;
+import me.googas.messaging.Request;
+import me.googas.messaging.ThrowableHandler;
+import me.googas.messaging.api.Messenger;
+import me.googas.messaging.api.MessengerListenFailException;
+import me.googas.messaging.api.Server;
+import me.googas.messaging.json.reflect.JsonReceptor;
 
 /** An implementation for socket servers for guido */
 public class JsonSocketServer extends Thread implements Server {

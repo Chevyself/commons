@@ -1,10 +1,9 @@
 package me.googas.messaging;
 
+import java.util.UUID;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
 import me.googas.messaging.api.Message;
-
-import java.util.UUID;
 
 /**
  * This object represents the message to send a client when it is waiting for a {@link Response}

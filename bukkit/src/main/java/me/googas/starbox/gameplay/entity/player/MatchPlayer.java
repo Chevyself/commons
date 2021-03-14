@@ -1,11 +1,13 @@
 package me.googas.starbox.gameplay.entity.player;
 
+import java.util.Objects;
+import java.util.UUID;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.Delegate;
 import me.googas.annotations.Nullable;
-import me.googas.commons.Validate;
-import me.googas.commons.builder.ToStringBuilder;
+import me.googas.starbox.Validate;
+import me.googas.starbox.builder.ToStringBuilder;
 import me.googas.starbox.events.gameplay.entity.player.MatchPlayerPreSetMatchEvent;
 import me.googas.starbox.events.gameplay.entity.player.MatchPlayerSetMatchEvent;
 import me.googas.starbox.gameplay.entity.MatchEntity;
@@ -17,9 +19,6 @@ import me.googas.starbox.utility.Players;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-
-import java.util.Objects;
-import java.util.UUID;
 
 public class MatchPlayer implements MatchEntity {
 

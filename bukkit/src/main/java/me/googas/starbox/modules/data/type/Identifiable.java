@@ -1,8 +1,7 @@
 package me.googas.starbox.modules.data.type;
 
-import lombok.NonNull;
-
 import java.util.Map;
+import lombok.NonNull;
 
 /**
  * When an object can be identified such as a Player with its uuid this can be used to create a map

@@ -1,9 +1,14 @@
 package me.googas.starbox.gameplay.entity.player;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
 import lombok.Getter;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
-import me.googas.commons.builder.ToStringBuilder;
+import me.googas.starbox.builder.ToStringBuilder;
 import me.googas.starbox.events.gameplay.entity.team.MatchTeamJoinEvent;
 import me.googas.starbox.events.gameplay.entity.team.MatchTeamLeaveEvent;
 import me.googas.starbox.events.gameplay.entity.team.MatchTeamPreJoinEvent;
@@ -16,12 +21,6 @@ import me.googas.starbox.gameplay.match.Match;
 import me.googas.starbox.gameplay.world.MatchWorld;
 import me.googas.starbox.modules.placeholders.Line;
 import org.bukkit.potion.PotionEffect;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
 
 public class MatchTeam implements MatchEntity {
 

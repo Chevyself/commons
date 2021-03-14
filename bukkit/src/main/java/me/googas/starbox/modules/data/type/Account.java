@@ -1,13 +1,12 @@
 package me.googas.starbox.modules.data.type;
 
+import java.util.Map;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
 import me.googas.starbox.modules.data.economy.Transaction;
 import me.googas.starbox.modules.data.economy.TransactionResponse;
 import me.googas.starbox.modules.data.economy.TransactionType;
 import me.googas.starbox.modules.placeholders.LocalizedLine;
-
-import java.util.Map;
 
 /** An account is an interface that objects implement when they are able to interact with economy */
 public interface Account {

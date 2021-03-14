@@ -1,11 +1,10 @@
 package me.googas.messaging.json;
 
-import lombok.NonNull;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import lombok.NonNull;
 
 /**
  * This annotation is used in methods which are capable of receiving {@link

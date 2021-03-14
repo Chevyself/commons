@@ -1,9 +1,9 @@
 package me.googas.starbox;
 
-import com.starfishst.commands.bukkit.messages.DefaultMessagesProvider;
+import java.util.ArrayList;
 import lombok.Getter;
 import lombok.NonNull;
-import me.googas.commons.Lots;
+import me.googas.commands.bukkit.messages.DefaultMessagesProvider;
 import me.googas.starbox.compatibilities.CompatibilityManager;
 import me.googas.starbox.compatibilities.papi.PAPICompatibility;
 import me.googas.starbox.compatibilities.vault.VaultCompatibility;
@@ -11,8 +11,6 @@ import me.googas.starbox.modules.ModuleRegistry;
 import me.googas.starbox.utility.Versions;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.ArrayList;
 
 public class StarboxPlugin extends JavaPlugin {
 

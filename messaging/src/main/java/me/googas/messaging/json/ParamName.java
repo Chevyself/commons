@@ -1,13 +1,12 @@
 package me.googas.messaging.json;
 
-import lombok.NonNull;
-import me.googas.messaging.json.reflect.JsonReceptorParameter;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.lang.reflect.Parameter;
+import lombok.NonNull;
+import me.googas.messaging.json.reflect.JsonReceptorParameter;
 
 /**
  * The normal behaviour while parsing a {@link JsonReceptorParameter} is using {@link

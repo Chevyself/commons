@@ -1,8 +1,12 @@
 package me.googas.starbox.modules.data;
 
-import com.starfishst.commands.bukkit.utils.BukkitUtils;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.UUID;
 import lombok.Getter;
 import lombok.NonNull;
+import me.googas.commands.bukkit.utils.BukkitUtils;
 import me.googas.starbox.Starbox;
 import me.googas.starbox.events.player.PlayerUpdateDisplayNameEvent;
 import me.googas.starbox.modules.Module;
@@ -16,11 +20,6 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.permissions.PermissionAttachment;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.UUID;
 
 /** The data module centralizes permissions and economy */
 public class DataModule implements Module {

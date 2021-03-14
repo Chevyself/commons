@@ -1,8 +1,7 @@
 package me.googas.messaging.json.exception;
 
-import lombok.NonNull;
-
 import java.security.PrivilegedActionException;
+import lombok.NonNull;
 
 /** Thrown when there's been a communication error between json messengers */
 public class JsonCommunicationException extends Exception {

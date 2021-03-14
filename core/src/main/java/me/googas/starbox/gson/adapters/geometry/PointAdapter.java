@@ -7,11 +7,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import java.lang.reflect.Type;
 import lombok.NonNull;
 import me.googas.starbox.Strings;
 import me.googas.starbox.math.geometry.Point;
-
-import java.lang.reflect.Type;
 
 public class PointAdapter implements JsonSerializer<Point>, JsonDeserializer<Point> {
 

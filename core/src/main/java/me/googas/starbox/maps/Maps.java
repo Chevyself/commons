@@ -1,10 +1,9 @@
 package me.googas.starbox.maps;
 
-import lombok.NonNull;
-import me.googas.starbox.Strings;
-
 import java.util.HashMap;
 import java.util.Map;
+import lombok.NonNull;
+import me.googas.starbox.Strings;
 
 /** Static utils for maps */
 public class Maps {

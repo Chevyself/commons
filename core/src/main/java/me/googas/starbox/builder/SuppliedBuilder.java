@@ -1,10 +1,9 @@
 package me.googas.starbox.builder;
 
+import java.util.function.Supplier;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
 import me.googas.starbox.Validate;
-
-import java.util.function.Supplier;
 
 /**
  * Just like {@link Builder} but the type T represents the parameter to get the object.

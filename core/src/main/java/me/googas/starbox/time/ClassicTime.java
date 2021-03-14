@@ -1,9 +1,8 @@
 package me.googas.starbox.time;
 
+import java.util.concurrent.TimeUnit;
 import lombok.NonNull;
 import lombok.experimental.Delegate;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * Just like {@link Time} but using the java unit {@link TimeUnit}. Only created for getting the

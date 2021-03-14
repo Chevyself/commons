@@ -1,9 +1,8 @@
 package me.googas.messaging;
 
+import java.util.Map;
 import lombok.NonNull;
 import me.googas.messaging.api.Message;
-
-import java.util.Map;
 
 /** An extension for messages to receive a {@link Response} */
 public interface IRequest extends Message {

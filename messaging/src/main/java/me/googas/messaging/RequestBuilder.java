@@ -1,16 +1,15 @@
 package me.googas.messaging;
 
-import lombok.NonNull;
-import me.googas.annotations.Nullable;
-import me.googas.messaging.api.Messenger;
-import me.googas.messaging.api.MessengerListenFailException;
-import me.googas.messaging.api.Server;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import lombok.NonNull;
+import me.googas.annotations.Nullable;
+import me.googas.messaging.api.Messenger;
+import me.googas.messaging.api.MessengerListenFailException;
+import me.googas.messaging.api.Server;
 
 public class RequestBuilder<T> {
 

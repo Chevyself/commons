@@ -1,7 +1,7 @@
 package me.googas.starbox.gameplay.exception;
 
-import com.starfishst.core.exceptions.type.SimpleException;
 import lombok.NonNull;
+import me.googas.commands.exceptions.type.SimpleException;
 
 /** Creates an exception that has a game involved */
 public class GameException extends SimpleException {

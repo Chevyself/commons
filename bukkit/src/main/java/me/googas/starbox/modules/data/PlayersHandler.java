@@ -1,14 +1,13 @@
 package me.googas.starbox.modules.data;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 import lombok.Getter;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
 import me.googas.starbox.modules.data.type.Profile;
 import org.bukkit.OfflinePlayer;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 public class PlayersHandler {
 

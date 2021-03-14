@@ -1,12 +1,11 @@
 package me.googas.starbox;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Delegate;
-
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.experimental.Delegate;
 
 /** This object represents the initial arguments of a program */
 public class ProgramArguments {

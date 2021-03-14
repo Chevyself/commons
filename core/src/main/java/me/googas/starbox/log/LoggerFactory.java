@@ -1,8 +1,5 @@
 package me.googas.starbox.log;
 
-import lombok.NonNull;
-import me.googas.starbox.CoreFiles;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.ConsoleHandler;
@@ -10,6 +7,8 @@ import java.util.logging.FileHandler;
 import java.util.logging.Formatter;
 import java.util.logging.Handler;
 import java.util.logging.Logger;
+import lombok.NonNull;
+import me.googas.starbox.CoreFiles;
 
 /** Factory for loggers */
 public class LoggerFactory {

@@ -1,11 +1,10 @@
 package me.googas.starbox.time;
 
-import lombok.NonNull;
-
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
+import lombok.NonNull;
 
 /** Static utilities for time */
 public class TimeUtils {

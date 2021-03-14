@@ -1,9 +1,5 @@
 package me.googas.starbox.events;
 
-import lombok.Getter;
-import lombok.NonNull;
-import me.googas.starbox.Validate;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -12,6 +8,9 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import lombok.Getter;
+import lombok.NonNull;
+import me.googas.starbox.Validate;
 
 /**
  * Manages calling to events and selecting the respective listeners for the event. Listener are

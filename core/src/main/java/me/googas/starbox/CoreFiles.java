@@ -1,8 +1,5 @@
 package me.googas.starbox;
 
-import lombok.Getter;
-import lombok.NonNull;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,6 +10,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import lombok.Getter;
+import lombok.NonNull;
 
 /** Core utilities for files */
 public class CoreFiles {

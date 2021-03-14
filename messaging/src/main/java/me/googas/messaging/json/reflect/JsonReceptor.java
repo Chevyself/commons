@@ -1,18 +1,17 @@
 package me.googas.messaging.json.reflect;
 
-import lombok.NonNull;
-import me.googas.annotations.Nullable;
-import me.googas.messaging.json.JsonMessenger;
-import me.googas.messaging.json.ParamName;
-import me.googas.messaging.json.Receptor;
-import me.googas.messaging.utility.ReflectUtil;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.NonNull;
+import me.googas.annotations.Nullable;
+import me.googas.messaging.json.JsonMessenger;
+import me.googas.messaging.json.ParamName;
+import me.googas.messaging.json.Receptor;
+import me.googas.messaging.utility.ReflectUtil;
 
 /**
  * This object represents the {@link Receptor} registered inside a {@link JsonMessenger} this means

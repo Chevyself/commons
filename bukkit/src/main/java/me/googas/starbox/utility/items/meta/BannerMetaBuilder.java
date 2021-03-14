@@ -1,5 +1,7 @@
 package me.googas.starbox.utility.items.meta;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.NonNull;
 import lombok.experimental.Delegate;
 import me.googas.annotations.Nullable;
@@ -8,9 +10,6 @@ import org.bukkit.block.banner.Pattern;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BannerMetaBuilder extends ItemMetaBuilder {
 

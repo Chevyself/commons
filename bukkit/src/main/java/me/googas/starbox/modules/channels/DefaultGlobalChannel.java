@@ -1,16 +1,15 @@
 package me.googas.starbox.modules.channels;
 
+import java.util.Map;
 import lombok.NonNull;
-import me.googas.commons.maps.Maps;
 import me.googas.starbox.Starbox;
 import me.googas.starbox.channels.Channel;
+import me.googas.starbox.maps.Maps;
 import me.googas.starbox.modules.placeholders.Line;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-
-import java.util.Map;
 
 public class DefaultGlobalChannel implements GlobalChannelProvider, Channel {
 

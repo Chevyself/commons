@@ -1,12 +1,11 @@
 package me.googas.starbox.math.geometry;
 
+import java.util.HashSet;
+import java.util.Set;
 import lombok.NonNull;
 import lombok.Setter;
 import me.googas.starbox.RandomUtils;
 import me.googas.starbox.math.geometry.containers.Points;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /** A box */
 public class Box implements Shape {

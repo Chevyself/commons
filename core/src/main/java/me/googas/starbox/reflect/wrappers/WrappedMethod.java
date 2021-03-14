@@ -1,13 +1,12 @@
 package me.googas.starbox.reflect.wrappers;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import lombok.Getter;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
 import me.googas.starbox.builder.ToStringBuilder;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * This object represents method wrapped to avoid exceptions such as {@link IllegalAccessException}

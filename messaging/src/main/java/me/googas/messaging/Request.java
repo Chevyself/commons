@@ -1,10 +1,9 @@
 package me.googas.messaging;
 
-import lombok.NonNull;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import lombok.NonNull;
 
 /**
  * This object represents a request which is a message that makes the client which sent it wait for

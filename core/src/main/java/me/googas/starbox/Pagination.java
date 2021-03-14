@@ -1,11 +1,10 @@
 package me.googas.starbox;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.Delegate;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This object helps to create pagination for certain type of objects. It is done using an {@link

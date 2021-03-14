@@ -1,11 +1,10 @@
 package me.googas.starbox.modules.data.type;
 
+import java.util.HashMap;
+import java.util.Map;
 import lombok.NonNull;
 import me.googas.annotations.Nullable;
 import org.bukkit.World;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /** A permissible is an interface that object that may have permissions should implement */
 public interface Permissible {

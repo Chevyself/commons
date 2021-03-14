@@ -1,14 +1,6 @@
 package me.googas.messaging.json.server;
 
 import com.google.gson.Gson;
-import lombok.NonNull;
-import me.googas.messaging.AwaitingRequest;
-import me.googas.messaging.ReceivedRequest;
-import me.googas.messaging.Response;
-import me.googas.messaging.ThrowableHandler;
-import me.googas.messaging.json.JsonMessenger;
-import me.googas.messaging.json.reflect.JsonReceptor;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,6 +10,13 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.HashMap;
+import lombok.NonNull;
+import me.googas.messaging.AwaitingRequest;
+import me.googas.messaging.ReceivedRequest;
+import me.googas.messaging.Response;
+import me.googas.messaging.ThrowableHandler;
+import me.googas.messaging.json.JsonMessenger;
+import me.googas.messaging.json.reflect.JsonReceptor;
 
 /**
  * A guido client thread is the {@link Thread} where a client connected to the {@link

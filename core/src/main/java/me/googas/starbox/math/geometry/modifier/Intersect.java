@@ -1,13 +1,12 @@
 package me.googas.starbox.math.geometry.modifier;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.NonNull;
 import me.googas.starbox.math.geometry.Point;
 import me.googas.starbox.math.geometry.Shape;
 import me.googas.starbox.math.geometry.containers.Points;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 /** Returns the area where the regions intersect */
 public class Intersect implements Modifier {

@@ -1,11 +1,10 @@
 package me.googas.starbox.modules.data.type;
 
-import lombok.NonNull;
-import me.googas.annotations.Nullable;
-import me.googas.commons.Validate;
-
 import java.util.HashMap;
 import java.util.Map;
+import lombok.NonNull;
+import me.googas.annotations.Nullable;
+import me.googas.starbox.Validate;
 
 /** Data is an interface which objects can implement when they support having information */
 public interface Data {

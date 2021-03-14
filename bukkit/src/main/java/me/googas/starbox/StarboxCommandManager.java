@@ -1,23 +1,21 @@
 package me.googas.starbox;
 
-import com.starfishst.commands.bukkit.AnnotatedCommand;
-import com.starfishst.commands.bukkit.CommandManager;
-import com.starfishst.commands.bukkit.CommandManagerOptions;
-import com.starfishst.commands.bukkit.ParentCommand;
-import com.starfishst.commands.bukkit.annotations.Command;
-import com.starfishst.commands.bukkit.messages.MessagesProvider;
-import com.starfishst.commands.bukkit.providers.registry.BukkitProvidersRegistry;
-import com.starfishst.commands.bukkit.utils.BukkitUtils;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.NonNull;
-import me.googas.commons.Lots;
+import me.googas.commands.bukkit.AnnotatedCommand;
+import me.googas.commands.bukkit.CommandManager;
+import me.googas.commands.bukkit.CommandManagerOptions;
+import me.googas.commands.bukkit.ParentCommand;
+import me.googas.commands.bukkit.annotations.Command;
+import me.googas.commands.bukkit.messages.MessagesProvider;
+import me.googas.commands.bukkit.providers.registry.BukkitProvidersRegistry;
+import me.googas.commands.bukkit.utils.BukkitUtils;
 import me.googas.starbox.commands.StarboxCommands;
 import me.googas.starbox.commands.debug.MatchMakingDebug;
 import org.bukkit.command.CommandMap;
 import org.bukkit.plugin.Plugin;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 
 public class StarboxCommandManager extends CommandManager {
 
