@@ -1,6 +1,6 @@
-# Starbox
+# Commons
 
-Starbox is a package of utility Java classes to make coding easier and finish things quicker for the Starfish Studios' projects.
+Commons is a package of utility Java classes to make coding easier and finish things quicker for the Starfish Studios' projects.
 
 # Documentation
 
@@ -48,8 +48,8 @@ mvn clean install
 ```xml
 
 <dependency>
-   <groupId>me.googas.starbox</groupId>
-   <artifactId>starbox</artifactId>
+   <groupId>me.googas.commons</groupId>
+   <artifactId>commons</artifactId>
    <version>%version%</version>
 </dependency>
 ```

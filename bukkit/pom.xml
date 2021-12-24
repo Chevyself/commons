@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>me.googas.starbox</groupId>
-        <artifactId>starbox</artifactId>
+        <groupId>me.googas.commons</groupId>
+        <artifactId>commons</artifactId>
         <version>1.0.0</version>
     </parent>
 
@@ -24,7 +24,7 @@
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
-        <!-- Vault -->
+        <!-- Vault & Commands -->
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
