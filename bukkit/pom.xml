@@ -34,9 +34,9 @@
     <dependencies>
         <!-- Command framework & Starbox core -->
         <dependency>
-            <groupId>me.googas.commands</groupId>
+            <groupId>me.googas.starbox-commands</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.0.0</version>
+            <version>commons-01fed4f1de-1</version>
         </dependency>
         <!-- Spigot API -->
         <dependency>
