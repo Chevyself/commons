@@ -17,7 +17,7 @@
     <dependencies>
         <!-- Dependency on core module -->
         <dependency>
-            <groupId>me.googas.starbox</groupId>
+            <groupId>me.googas.commons</groupId>
             <artifactId>core</artifactId>
             <version>1.0.0</version>
         </dependency>
