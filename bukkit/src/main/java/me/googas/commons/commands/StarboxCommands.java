@@ -14,7 +14,7 @@ public class StarboxCommands {
       description = "Parent command for Starbox",
       permission = "starbox.parent")
   public Result starbox() {
-    return new Result(
+    return Result.of(
         "Using &bStarbox&r version: &l&b" + Starbox.getPlugin().getDescription().getVersion());
   }
 }

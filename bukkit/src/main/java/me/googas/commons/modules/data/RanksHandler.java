@@ -96,7 +96,7 @@ public class RanksHandler {
     for (Rank rank : ranks) {
       builder.append(rank.getPrefix(player.getWorld()));
     }
-    return BukkitUtils.build(builder.toString());
+    return BukkitUtils.format(builder.toString());
   }
 
   /**
@@ -112,7 +112,7 @@ public class RanksHandler {
     for (Rank rank : ranks) {
       builder.append(rank.getSuffix(player.getWorld()));
     }
-    return BukkitUtils.build(builder.toString());
+    return BukkitUtils.format(builder.toString());
   }
 
   /**

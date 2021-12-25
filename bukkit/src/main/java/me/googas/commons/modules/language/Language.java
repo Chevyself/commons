@@ -25,7 +25,7 @@ public interface Language {
    * @return the built string
    */
   default @NonNull String get(@NonNull String path, @NonNull Map<String, String> placeholders) {
-    return BukkitUtils.build(this.get(path), placeholders);
+    return BukkitUtils.format(this.get(path), placeholders);
   }
 
   /**
@@ -38,7 +38,7 @@ public interface Language {
    */
   default @NonNull String get(
       @NonNull String path, @NonNull MapBuilder<String, String> placeholders) {
-    return BukkitUtils.build(this.get(path), placeholders.build());
+    return BukkitUtils.format(this.get(path), placeholders.build());
   }
 
   @NonNull

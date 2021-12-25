@@ -1,9 +1,9 @@
 package me.googas.commons.modules.language;
 
+import java.util.HashMap;
 import lombok.NonNull;
 import me.googas.commands.arguments.Argument;
 import me.googas.commands.arguments.SingleArgument;
-import me.googas.commands.bukkit.AnnotatedCommand;
 import me.googas.commands.bukkit.StarboxBukkitCommand;
 import me.googas.commands.bukkit.context.CommandContext;
 import me.googas.commands.bukkit.messages.MessagesProvider;
@@ -13,9 +13,6 @@ import me.googas.commons.maps.Maps;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import sun.text.resources.th.BreakIteratorInfo_th;
-
-import java.util.HashMap;
 
 public class LanguageModuleMessagesProvider implements MessagesProvider {
 
@@ -61,9 +58,10 @@ public class LanguageModuleMessagesProvider implements MessagesProvider {
     MapBuilder<String, String> builder = new MapBuilder<>(new HashMap<>());
     if (argument instanceof SingleArgument) {
       SingleArgument<?> singleArgument = (SingleArgument<?>) argument;
-      builder.append("name", singleArgument.getName())
-              .append("description", singleArgument.getDescription())
-              .append("position", String.valueOf(singleArgument.getPosition()));
+      builder
+          .append("name", singleArgument.getName())
+          .append("description", singleArgument.getDescription())
+          .append("position", String.valueOf(singleArgument.getPosition()));
     }
     return builder;
   }
@@ -174,7 +172,8 @@ public class LanguageModuleMessagesProvider implements MessagesProvider {
 
   @Override
   public @NonNull String commandShortText(@NonNull StarboxBukkitCommand starboxBukkitCommand) {
-    return this.getLanguage().get("help.command.short", this.getCommandPlaceholders(starboxBukkitCommand));
+    return this.getLanguage()
+        .get("help.command.short", this.getCommandPlaceholders(starboxBukkitCommand));
   }
 
   @Override
@@ -183,15 +182,19 @@ public class LanguageModuleMessagesProvider implements MessagesProvider {
   }
 
   @Override
-  public @NonNull String commandFullText(@NonNull StarboxBukkitCommand command, @NonNull String name) {
+  public @NonNull String commandFullText(
+      @NonNull StarboxBukkitCommand command, @NonNull String name) {
     return this.getLanguage().get("help.command.full", this.getCommandPlaceholders(command));
   }
 
   @Override
-  public @NonNull String childCommand(@NonNull StarboxBukkitCommand parent, @NonNull StarboxBukkitCommand child) {
+  public @NonNull String childCommand(
+      @NonNull StarboxBukkitCommand parent, @NonNull StarboxBukkitCommand child) {
     // TODO add parent
     MapBuilder<String, String> builder = this.getCommandPlaceholders(parent);
-    builder.append("child-name", child.getName()).append("child-description", child.getDescription());
+    builder
+        .append("child-name", child.getName())
+        .append("child-description", child.getDescription());
     return this.getLanguage().get("help.command.child", builder);
   }
 

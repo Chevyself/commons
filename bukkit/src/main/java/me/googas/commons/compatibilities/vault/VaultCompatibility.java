@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import me.googas.commands.bukkit.context.CommandContext;
-import me.googas.commands.providers.type.IContextualProvider;
+import me.googas.commands.providers.type.StarboxContextualProvider;
 import me.googas.commons.StarboxCommand;
 import me.googas.commons.compatibilities.Compatibility;
 import me.googas.commons.modules.Module;
@@ -28,7 +28,7 @@ public class VaultCompatibility implements Compatibility {
   }
 
   @Override
-  public Collection<IContextualProvider<?, CommandContext>> getProviders() {
+  public Collection<StarboxContextualProvider<?, CommandContext>> getProviders() {
     return new ArrayList<>();
   }
 

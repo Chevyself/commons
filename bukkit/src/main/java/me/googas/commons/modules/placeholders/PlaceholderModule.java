@@ -39,7 +39,7 @@ public class PlaceholderModule implements Module {
       Placeholder placeholder = this.getPlaceholder(name);
       if (placeholder != null) raw = raw.replace("%" + name + "%", placeholder.build(player));
     }
-    return BukkitUtils.build(raw);
+    return BukkitUtils.format(raw);
   }
 
   @Override

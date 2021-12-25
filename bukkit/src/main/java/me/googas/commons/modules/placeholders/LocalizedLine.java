@@ -58,7 +58,7 @@ public class LocalizedLine extends Line {
     String raw;
     if (language != null) {
       raw =
-          BukkitUtils.build(
+          BukkitUtils.format(
               language.getLanguage(player).get(this.getRaw()), this.getPlaceholders());
     } else {
       raw = this.getRaw();

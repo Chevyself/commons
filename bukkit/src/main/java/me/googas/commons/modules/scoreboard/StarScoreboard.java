@@ -93,9 +93,9 @@ public class StarScoreboard {
   @NonNull
   public static String getEntryName(int position) {
     if (position < 9) {
-      return BukkitUtils.build("&" + position + "&r");
+      return BukkitUtils.format("&" + position + "&r");
     } else {
-      return BukkitUtils.build("&" + StarScoreboard.characters.get(position) + "&r");
+      return BukkitUtils.format("&" + StarScoreboard.characters.get(position) + "&r");
     }
   }
 

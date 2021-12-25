@@ -24,12 +24,12 @@ public class StarboxPlugin extends JavaPlugin {
   @NonNull @Getter private final ModuleRegistry moduleRegistry = new ModuleRegistry(this);
   @NonNull @Getter private final StarboxScheduler scheduler = new StarboxScheduler(this);
 
-  @NonNull @Getter
-  private final MessagesProvider messagesProvider = new BukkitMessagesProvider();
+  @NonNull @Getter private final MessagesProvider messagesProvider = new BukkitMessagesProvider();
 
   @NonNull @Getter
   private final CommandManager manager =
-      new CommandManager(this, new BukkitProvidersRegistry(this.messagesProvider), this.messagesProvider);
+      new CommandManager(
+          this, new BukkitProvidersRegistry(this.messagesProvider), this.messagesProvider);
 
   @NonNull @Getter private final StarboxFallback fallback = new StarboxFallback();
 

@@ -18,12 +18,12 @@ public class StarboxFallback implements Fallback {
 
   @NonNull @Getter
   private final PaginatedInventory inventory =
-      new PaginatedInventory(BukkitUtils.build("&cErrors %page%/%max%")).addDefaultToolbar();
+      new PaginatedInventory(BukkitUtils.format("&cErrors %page%/%max%")).addDefaultToolbar();
 
   @NonNull
   private Button toButton(@NonNull String message) {
     return new ItemBuilder(Material.BARRIER)
-        .setName(BukkitUtils.build(message))
+        .setName(BukkitUtils.format(message))
         .buildAll(
             event -> {
               this.errors.remove(message);

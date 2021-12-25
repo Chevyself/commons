@@ -101,7 +101,7 @@ public class Line {
   @NonNull
   public String build(@NonNull OfflinePlayer player) {
     PlaceholderModule placeholders = this.placeholders();
-    String raw = BukkitUtils.build(this.raw, this.placeholders);
+    String raw = BukkitUtils.format(this.raw, this.placeholders);
     if (placeholders != null) return placeholders.build(player, raw);
     return raw;
   }

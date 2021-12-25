@@ -45,7 +45,7 @@ public class MatchMakingDebug {
       player.openInventory(this.getInventory(module.getEntities()).getInventory());
       return new Result();
     }
-    return new Result("&cThere's no entities");
+    return Result.of("&cThere's no entities");
   }
 
   @Command(
@@ -58,7 +58,7 @@ public class MatchMakingDebug {
       player.openInventory(this.getInventoryMatches(module.getMatches()).getInventory());
       return new Result();
     }
-    return new Result("&cThere's no matches");
+    return Result.of("&cThere's no matches");
   }
 
   @Command(
@@ -72,7 +72,7 @@ public class MatchMakingDebug {
       player.openInventory(this.getInventoryMiniGames(module.getMiniGames()).getInventory());
       return new Result();
     }
-    return new Result("&cThere's no minigames");
+    return Result.of("&cThere's no minigames");
   }
 
   /**
@@ -85,7 +85,7 @@ public class MatchMakingDebug {
   @NonNull
   private PaginatedInventory getInventoryMatches(@NonNull Collection<Match> matches) {
     PaginatedInventory inventory =
-        new PaginatedInventory(BukkitUtils.build("&eMatch making matches %page%/%max%"));
+        new PaginatedInventory(BukkitUtils.format("&eMatch making matches %page%/%max%"));
     for (Match match : matches) {
       inventory.add(this.toButton(match));
     }
@@ -102,7 +102,7 @@ public class MatchMakingDebug {
   @NonNull
   private PaginatedInventory getInventoryMiniGames(@NonNull Collection<MiniGame> miniGames) {
     PaginatedInventory inventory =
-        new PaginatedInventory(BukkitUtils.build("&eMatch making mini games %page%/%max%"));
+        new PaginatedInventory(BukkitUtils.format("&eMatch making mini games %page%/%max%"));
     for (MiniGame miniGame : miniGames) {
       inventory.add(this.toButton(miniGame));
     }
@@ -147,7 +147,7 @@ public class MatchMakingDebug {
   @NonNull
   private PaginatedInventory getInventory(@NonNull Collection<MatchEntity> entities) {
     PaginatedInventory inventory =
-        new PaginatedInventory(BukkitUtils.build("&eMatch making entities %page%/%max%"));
+        new PaginatedInventory(BukkitUtils.format("&eMatch making entities %page%/%max%"));
     for (MatchEntity entity : entities) {
       if (entity instanceof MatchPlayer) {
         inventory.add(this.toButton((MatchPlayer) entity));
@@ -170,7 +170,7 @@ public class MatchMakingDebug {
     ItemBuilder builder = new ItemBuilder(Materials.getSkull());
     ItemMetaBuilder metaBuilder = builder.getMetaBuilder();
     if (metaBuilder instanceof SkullMetaBuilder) {
-      metaBuilder.setName(BukkitUtils.build("&6" + player.getName())).setLore(player.toString());
+      metaBuilder.setName(BukkitUtils.format("&6" + player.getName())).setLore(player.toString());
       ((SkullMetaBuilder) metaBuilder).setOwner(player.getOfflinePlayer());
     }
     return builder.build(event -> event.setCancelled(true));

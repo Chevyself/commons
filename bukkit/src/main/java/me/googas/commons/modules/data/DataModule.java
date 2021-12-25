@@ -168,7 +168,7 @@ public class DataModule implements Module {
     if (this.updateNames) {
       PlayerUpdateDisplayNameEvent event =
           new PlayerUpdateDisplayNameEvent(
-              player, BukkitUtils.build(name), BukkitUtils.build(tabName));
+              player, BukkitUtils.format(name), BukkitUtils.format(tabName));
       player.setDisplayName(event.getName());
       player.setPlayerListName(event.getTabName());
       this.displayNames.put(player.getUniqueId(), event.getName());

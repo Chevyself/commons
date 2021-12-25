@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import lombok.NonNull;
 import me.googas.commands.bukkit.context.CommandContext;
-import me.googas.commands.providers.type.IContextualProvider;
+import me.googas.commands.providers.type.StarboxContextualProvider;
 import me.googas.commons.StarboxCommand;
 import me.googas.commons.compatibilities.Compatibility;
 import me.googas.commons.modules.Module;
@@ -24,7 +24,7 @@ public class PAPICompatibility implements Compatibility {
   }
 
   @Override
-  public Collection<IContextualProvider<?, CommandContext>> getProviders() {
+  public Collection<StarboxContextualProvider<?, CommandContext>> getProviders() {
     return new ArrayList<>();
   }
 

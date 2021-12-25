@@ -13,7 +13,7 @@ public class Transaction {
   @Getter private final double balance;
 
   @NonNull @Getter
-  private final String errorString = BukkitUtils.build("&cCannot proceed with transaction");
+  private final String errorString = BukkitUtils.format("&cCannot proceed with transaction");
 
   @NonNull @Getter private Line error = new Line("&cCannot proceed with transaction");
   @NonNull @Getter private TransactionResponse transactionResponse = TransactionResponse.SUCCESS;
